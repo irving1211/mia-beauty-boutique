@@ -25,17 +25,20 @@ const services = [
   { title: 'Bridal', icon: '✦', body: 'Bridal makeup and styling. Special service — book your date ahead of time.', price: 'By appointment' },
   { title: 'Threading', icon: '✦', body: 'Eyebrows, upper lip, full face. Precise, gentle technique for sensitive skin.', price: 'From $12' },
   { title: 'Hair Treatments', icon: '✦', body: 'Deep conditioning, keratin, shine, and repair for every hair type.', price: 'From $40' },
+  { title: 'Manicure', icon: '✦', body: 'Classic, gel, and nail art manicures. Hands as cared-for as your hair.', price: 'From $20' },
+  { title: 'Pedicure', icon: '✦', body: 'Classic and spa pedicures. Soft feet, perfect nails — relax while we treat you.', price: 'From $30' },
+  { title: 'Acrylic & Gel Nails', icon: '✦', body: 'Acrylic, gel, dip powder, and nail art. Length, style, and color, your way.', price: 'From $35' },
 ];
 
 const whyMia = [
-  { title: 'Authentic Dominican craft', body: '40+ years specializing in Dominican hair. We know curls, waves, textures — and how to bring out their best.' },
+  { title: 'Authentic Dominican craft', body: '30+ years specializing in Dominican hair. We know curls, waves, textures — and how to bring out their best.' },
   { title: 'Walk-ins, no stress', body: "Walk-ins welcome. Come when you can, we'll get you in. Perfect for busy moms and tight schedules." },
   { title: 'Bilingual & family-run', body: "We greet you in English or Spanish. Family salon — three generations of clients, zero factory feel." },
   { title: 'Results that last', body: 'Blowouts that last the week. Color that protects your hair. Decades of craft behind every chair.' },
 ];
 
 const stylists = [
-  { name: 'Mía', role: 'Founder · Master Stylist', body: '40+ years perfecting the Dominican blowout. Three generations of clients know her by name.' },
+  { name: 'Mía', role: 'Founder · Master Stylist', body: '30+ years perfecting the Dominican blowout. Three generations of clients know her by name.' },
   { name: 'The team', role: 'Bilingual Stylists', body: 'Specialists in color, cuts, extensions, bridal, and makeup. We work as a team — someone is always ready for you.' },
 ];
 
@@ -72,6 +75,7 @@ const faqs = [
   { q: 'Do I need an appointment?', a: "No — we take walk-ins first come, first served. For longer services (bridal, full color, extensions) we recommend calling ahead to reserve a time." },
   { q: 'What are the best days to come in?', a: 'Tuesday through Thursday are our slowest days. Friday and Saturday are busiest — we still get you in, but wait can be longer. Earlier is better.' },
   { q: 'Do you work with all hair types?', a: 'Yes. We specialize in Dominican hair — curls, waves, mixed textures, fine, thick, color-treated, all of it. Decades of experience with every type.' },
+  { q: 'Do you do nails too?', a: 'Yes. We offer manicure, pedicure, gel nails, acrylic, dip powder, and nail art. You can get hair and nails done in the same visit — perfect for brides, events, or a full pampering day.' },
   { q: 'How long does a Dominican blowout last?', a: 'With basic care (silk cap at night, no getting it wet) our Dominican blowout lasts the whole week — many clients get 10 days.' },
   { q: 'Do you do bridal and large events?', a: 'Yes. For bridal, book your date in advance (ideally 4-8 weeks). We offer makeup and hair trials. Call to talk through your day.' },
   { q: 'What payment do you accept?', a: 'Cash and credit card (Visa, Mastercard, Amex). If you have questions, call before you come.' },
@@ -104,10 +108,10 @@ const faqs = [
   <section class="hero" id="top">
     <div class="container hero-grid">
       <div class="hero-copy">
-        <span class="eyebrow">Lawrence, MA · 40+ years making women feel beautiful</span>
+        <span class="eyebrow">Lawrence, MA · 30+ years making women feel beautiful</span>
         <h1>Where Dominican hair <em>shines</em>.</h1>
         <p class="hero-lede">
-          Mía Beauty Boutique is a family-run salon in Lawrence, MA — over four decades perfecting the Dominican blowout, color, bridal, and everything that makes you look exactly how you want to look.
+          Mía Beauty Boutique is a family-run salon in Lawrence, MA — over three decades perfecting the Dominican blowout, color, bridal, and everything that makes you look exactly how you want to look.
         </p>
         <div class="hero-cta">
           <a class="btn btn-primary" href={`tel:${phoneTel}`}>Call the Salon</a>
@@ -115,7 +119,7 @@ const faqs = [
           <a class="btn btn-ghost" href="#gallery">See Gallery</a>
         </div>
         <ul class="hero-stats">
-          <li><strong>40+</strong><span>years of experience</span></li>
+          <li><strong>30+</strong><span>years of experience</span></li>
           <li><strong>Walk-ins</strong><span>first come, first served</span></li>
           <li><strong>Bilingual</strong><span>english · español</span></li>
           <li><strong>Family</strong><span>3 generations</span></li>
@@ -124,7 +128,7 @@ const faqs = [
       <div class="hero-photo">
         <img src={img('mia-1.jpg')} alt="Featured work from Mía Beauty Boutique" loading="eager" />
         <div class="hero-badge">
-          <strong>40+</strong>
+          <strong>30+</strong>
           <span>years in Lawrence</span>
         </div>
       </div>
@@ -155,7 +159,7 @@ const faqs = [
       <div class="section-head">
         <span class="kicker">Services</span>
         <h2>Everything your beauty needs.</h2>
-        <p class="section-sub">Specialists in Dominican hair. Plus makeup, bridal, threading, and more. Starting prices shown — call to confirm.</p>
+        <p class="section-sub">Specialists in Dominican hair. Plus makeup, bridal, threading, and nails — manicure, pedicure, gel, and acrylic. Starting prices shown — call to confirm.</p>
       </div>
       <div class="service-grid">
         {services.map((s, i) => (
@@ -184,9 +188,9 @@ const faqs = [
       </div>
       <div class="about-copy">
         <span class="kicker">About</span>
-        <h2>Four decades making you feel at home.</h2>
+        <h2>Three decades making you feel at home.</h2>
         <p>
-          Mía Beauty Boutique is a family-run Dominican salon in the heart of Lawrence. We've been serving three generations of clients for over 40 years — grandmothers, mothers, daughters, and now granddaughters.
+          Mía Beauty Boutique is a family-run Dominican salon in the heart of Lawrence. We've been serving three generations of clients for over 30 years — grandmothers, mothers, daughters, and now granddaughters.
         </p>
         <p>
           What makes Mía special isn't just the technique — though the technique is there. It's the atmosphere: the team that works together, the coffee while you wait, the conversations in Spanish, the kind of attention that makes you feel like family.

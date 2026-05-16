@@ -25,17 +25,20 @@ const services = [
   { title: 'Novias', icon: '✦', body: 'Maquillaje y peinado de novia. Servicio especial — separa tu fecha con tiempo.', price: 'Cita previa requerida' },
   { title: 'Depilación con Hilo', icon: '✦', body: 'Cejas, bigote, rostro. Técnica precisa y delicada para piel sensible.', price: 'Desde $12' },
   { title: 'Tratamientos', icon: '✦', body: 'Hidratación profunda, queratina, brillo y reparación para todo tipo de cabello.', price: 'Desde $40' },
+  { title: 'Manicura', icon: '✦', body: 'Manicura clásica, gel, y diseños de uñas. Para que tus manos luzcan tan cuidadas como tu cabello.', price: 'Desde $20' },
+  { title: 'Pedicura', icon: '✦', body: 'Pedicura clásica y spa. Pies suaves, uñas perfectas — relájate mientras te consentimos.', price: 'Desde $30' },
+  { title: 'Uñas Acrílicas y Gel', icon: '✦', body: 'Uñas acrílicas, gel, dip powder, y arte de uñas. Duración, estilo y color a tu gusto.', price: 'Desde $35' },
 ];
 
 const whyMia = [
-  { title: 'Experiencia dominicana auténtica', body: 'Más de 40 años especializadas en cabello dominicano. Conocemos texturas, rizos, ondas — y cómo sacarles lo mejor.' },
+  { title: 'Experiencia dominicana auténtica', body: 'Más de 30 años especializadas en cabello dominicano. Conocemos texturas, rizos, ondas — y cómo sacarles lo mejor.' },
   { title: 'Sin cita, sin estrés', body: 'Walk-ins bienvenidas. Llega cuando puedas y te atendemos por orden. Perfecto para mamás ocupadas y horarios apretados.' },
   { title: 'Bilingüe y familiar', body: 'Te atendemos en español o english. Salón familiar — tres generaciones de clientas, cero ambiente de fábrica.' },
   { title: 'Resultados que duran', body: 'Blowouts que aguantan toda la semana. Color que cuida el cabello. Técnica con décadas de oficio detrás.' },
 ];
 
 const stylists = [
-  { name: 'Mía', role: 'Fundadora · Maestra estilista', body: 'Más de 40 años perfeccionando el blowout dominicano. Tres generaciones de clientas la conocen por nombre.' },
+  { name: 'Mía', role: 'Fundadora · Maestra estilista', body: 'Más de 30 años perfeccionando el blowout dominicano. Tres generaciones de clientas la conocen por nombre.' },
   { name: 'El equipo', role: 'Estilistas bilingües', body: 'Especialistas en color, cortes, extensiones, novias y maquillaje. Trabajamos en equipo — siempre tienes a alguien lista para atenderte.' },
 ];
 
@@ -72,6 +75,7 @@ const faqs = [
   { q: '¿Tengo que hacer cita?', a: 'No, te atendemos sin cita por orden de llegada. Para servicios largos (novias, color completo, extensiones) recomendamos llamar antes para asegurar tu hora.' },
   { q: '¿Cuáles son los mejores días para venir?', a: 'Martes a jueves son nuestros días más tranquilos. Viernes y sábados son los más llenos — te atendemos igual, pero la espera puede ser más larga. Si vienes temprano, mejor.' },
   { q: '¿Trabajan con todo tipo de cabello?', a: 'Sí. Somos especialistas en cabello dominicano — rizos, ondas, texturas mixtas, cabello fino, grueso, teñido, todo. Décadas de experiencia con cada tipo.' },
+  { q: '¿También hacen uñas?', a: 'Sí. Ofrecemos manicura, pedicura, uñas de gel, acrílicas, dip powder y arte de uñas. Puedes hacer cabello y uñas en la misma visita — perfecto para novias, eventos, o cuando quieres consentirte completa.' },
   { q: '¿Cuánto dura el blowout dominicano?', a: 'Con cuidado básico (gorro de noche, no mojarlo) un blowout dominicano nuestro te dura toda la semana — muchas clientas llegan a 10 días.' },
   { q: '¿Hacen novias y eventos grandes?', a: 'Sí. Para novias separa tu fecha con tiempo (idealmente 4-8 semanas antes). Ofrecemos prueba de maquillaje y peinado. Llama para hablar de tu día.' },
   { q: '¿Qué formas de pago aceptan?', a: 'Efectivo y tarjeta de crédito (Visa, Mastercard, Amex). Si tienes alguna duda, llámanos antes de venir.' },
@@ -104,10 +108,10 @@ const faqs = [
   <section class="hero" id="top">
     <div class="container hero-grid">
       <div class="hero-copy">
-        <span class="eyebrow">Lawrence, MA · Más de 40 años haciéndote sentir bella</span>
+        <span class="eyebrow">Lawrence, MA · Más de 30 años haciéndote sentir bella</span>
         <h1>Donde el cabello dominicano <em>brilla</em>.</h1>
         <p class="hero-lede">
-          Mía Beauty Boutique es un salón familiar en Lawrence, MA — más de cuatro décadas perfeccionando el blowout dominicano, el color, las novias, y todo lo que te hace verte como tú quieres verte.
+          Mía Beauty Boutique es un salón familiar en Lawrence, MA — más de tres décadas perfeccionando el blowout dominicano, el color, las novias, y todo lo que te hace verte como tú quieres verte.
         </p>
         <div class="hero-cta">
           <a class="btn btn-primary" href={`tel:${phoneTel}`}>Llamar al salón</a>
@@ -115,7 +119,7 @@ const faqs = [
           <a class="btn btn-ghost" href="#galeria">Ver galería</a>
         </div>
         <ul class="hero-stats">
-          <li><strong>40+</strong><span>años de experiencia</span></li>
+          <li><strong>30+</strong><span>años de experiencia</span></li>
           <li><strong>Sin cita</strong><span>te atendemos por orden</span></li>
           <li><strong>Bilingüe</strong><span>español · english</span></li>
           <li><strong>Familia</strong><span>3 generaciones</span></li>
@@ -124,7 +128,7 @@ const faqs = [
       <div class="hero-photo">
         <img src={img('mia-1.jpg')} alt="Trabajo destacado de Mía Beauty Boutique" loading="eager" />
         <div class="hero-badge">
-          <strong>40+</strong>
+          <strong>30+</strong>
           <span>años en Lawrence</span>
         </div>
       </div>
@@ -155,7 +159,7 @@ const faqs = [
       <div class="section-head">
         <span class="kicker">Servicios</span>
         <h2>Todo lo que tu belleza necesita.</h2>
-        <p class="section-sub">Especialistas en cabello dominicano. También te atendemos en maquillaje, novias, y depilación. Precios desde — llama para confirmar.</p>
+        <p class="section-sub">Especialistas en cabello dominicano. También te atendemos en maquillaje, novias, depilación, y uñas — manicura, pedicura, gel y acrílicas. Precios desde — llama para confirmar.</p>
       </div>
       <div class="service-grid">
         {services.map((s, i) => (
@@ -184,9 +188,9 @@ const faqs = [
       </div>
       <div class="about-copy">
         <span class="kicker">Sobre Nosotras</span>
-        <h2>Cuatro décadas haciéndote sentir como en casa.</h2>
+        <h2>Tres décadas haciéndote sentir como en casa.</h2>
         <p>
-          Mía Beauty Boutique es un salón dominicano familiar en el corazón de Lawrence. Llevamos más de 40 años atendiendo a tres generaciones de clientas — abuelas, mamás, hijas, y ahora nietas.
+          Mía Beauty Boutique es un salón dominicano familiar en el corazón de Lawrence. Llevamos más de 30 años atendiendo a tres generaciones de clientas — abuelas, mamás, hijas, y ahora nietas.
         </p>
         <p>
           Lo que hace a Mía especial no es solo la técnica — aunque la técnica está ahí. Es el ambiente: las muchachas que trabajan en equipo, el café mientras esperas, las conversaciones en español, y la atención que te hace sentir como familia.

@@ -29,9 +29,9 @@ const localBusinessJsonLd = {
   url: 'https://miabeautyboutique.com',
   telephone: phone,
   priceRange: '$$',
-  description: description || 'Salón dominicano en Lawrence, MA. Más de 40 años haciendo sentir bellas a las mujeres. Dominican blowout, color, extensiones, maquillaje, novias, depilación con hilo.',
+  description: description || 'Salón dominicano en Lawrence, MA. Más de 30 años haciendo sentir bellas a las mujeres. Dominican blowout, color, extensiones, maquillaje, novias, depilación con hilo, manicura y pedicura.',
   founder: { '@type': 'Person', name: 'Mía' },
-  foundingDate: '1984',
+  foundingDate: '1996',
   knowsLanguage: ['es', 'en'],
   paymentAccepted: ['Cash', 'Credit Card'],
   currenciesAccepted: 'USD',
@@ -70,21 +70,26 @@ const localBusinessJsonLd = {
       { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Bridal Hair & Makeup', alternateName: 'Peinado y maquillaje de novia' } },
       { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Eyebrow Threading', alternateName: 'Depilación de cejas con hilo' } },
       { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Hair Treatments', alternateName: 'Tratamientos capilares' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Manicure', alternateName: 'Manicura' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Pedicure', alternateName: 'Pedicura' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Gel Nails', alternateName: 'Uñas de gel' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Acrylic Nails', alternateName: 'Uñas acrílicas' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Nail Art', alternateName: 'Diseños de uñas' } },
     ],
   },
 };
 
 const defaultTitle = lang === 'es'
-  ? 'Salón Dominicano en Lawrence, MA | Mía Beauty Boutique · 40+ Años'
-  : "Dominican Hair Salon in Lawrence, MA | Mía Beauty Boutique · 40+ Years";
+  ? 'Salón Dominicano en Lawrence, MA | Mía Beauty Boutique · 30+ Años'
+  : "Dominican Hair Salon in Lawrence, MA | Mía Beauty Boutique · 30+ Years";
 
 const defaultDesc = lang === 'es'
-  ? 'Salón dominicano en Lawrence, MA con más de 40 años de experiencia. Dominican blowout, color, mechas, extensiones, maquillaje, novias y depilación con hilo. Sin cita previa. Llama (978) 208-7877.'
-  : 'Dominican hair salon in Lawrence, MA with over 40 years of experience. Dominican blowout, color, highlights, extensions, makeup, bridal, and threading. Walk-ins welcome. Call (978) 208-7877.';
+  ? 'Salón dominicano en Lawrence, MA con más de 30 años de experiencia. Dominican blowout, color, mechas, extensiones, maquillaje, novias, depilación con hilo, manicura y pedicura. Sin cita previa. Llama (978) 208-7877.'
+  : 'Dominican hair salon in Lawrence, MA with over 30 years of experience. Dominican blowout, color, highlights, extensions, makeup, bridal, threading, manicures, and pedicures. Walk-ins welcome. Call (978) 208-7877.';
 
 const keywords = lang === 'es'
-  ? 'salon dominicano lawrence ma, dominican blowout lawrence, peluqueria dominicana, salon de belleza lawrence massachusetts, mia beauty boutique, peluqueria lawrence ma, color de cabello lawrence, extensiones de cabello, maquillaje profesional lawrence, salon novias massachusetts'
-  : 'dominican hair salon lawrence ma, dominican blowout, hair salon lawrence massachusetts, mia beauty boutique, hair color lawrence ma, hair extensions lawrence, bridal makeup massachusetts, walk in hair salon lawrence';
+  ? 'salon dominicano lawrence ma, dominican blowout lawrence, peluqueria dominicana, salon de belleza lawrence massachusetts, mia beauty boutique, peluqueria lawrence ma, color de cabello lawrence, extensiones de cabello, maquillaje profesional lawrence, salon novias massachusetts, manicura lawrence ma, pedicura lawrence, uñas de gel lawrence, uñas acrilicas lawrence, salon de uñas dominicano lawrence'
+  : 'dominican hair salon lawrence ma, dominican blowout, hair salon lawrence massachusetts, mia beauty boutique, hair color lawrence ma, hair extensions lawrence, bridal makeup massachusetts, walk in hair salon lawrence, nail salon lawrence ma, manicure lawrence ma, pedicure lawrence, gel nails lawrence, acrylic nails lawrence, dominican nail salon lawrence';
 
 const finalTitle = title || defaultTitle;
 const finalDesc = description || defaultDesc;
