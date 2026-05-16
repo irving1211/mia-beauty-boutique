@@ -1,0 +1,215 @@
+---
+export interface Props {
+  title?: string;
+  description?: string;
+  lang?: 'es' | 'en';
+  pathEs?: string;
+  pathEn?: string;
+}
+
+const {
+  title,
+  description,
+  lang = 'es',
+  pathEs = '/',
+  pathEn = '/en/',
+} = Astro.props;
+
+const phone = '(978) 208-7877';
+const phoneTel = '+19782087877';
+const address = '264 S Broadway, Lawrence, MA 01843';
+
+const localBusinessJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': ['BeautySalon', 'HairSalon'],
+  name: 'Mía Beauty Boutique',
+  alternateName: ['Mia Beauty Boutique', 'Salón Mía', 'Mia Salon Lawrence'],
+  image: 'https://miabeautyboutique.com/images/og.jpg',
+  '@id': 'https://miabeautyboutique.com',
+  url: 'https://miabeautyboutique.com',
+  telephone: phone,
+  priceRange: '$$',
+  description: description || 'Salón dominicano en Lawrence, MA. Más de 40 años haciendo sentir bellas a las mujeres. Dominican blowout, color, extensiones, maquillaje, novias, depilación con hilo.',
+  founder: { '@type': 'Person', name: 'Mía' },
+  foundingDate: '1984',
+  knowsLanguage: ['es', 'en'],
+  paymentAccepted: ['Cash', 'Credit Card'],
+  currenciesAccepted: 'USD',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '264 S Broadway',
+    addressLocality: 'Lawrence',
+    addressRegion: 'MA',
+    postalCode: '01843',
+    addressCountry: 'US',
+  },
+  geo: { '@type': 'GeoCoordinates', latitude: 42.6964, longitude: -71.1714 },
+  hasMap: 'https://www.google.com/maps/place/264+S+Broadway,+Lawrence,+MA+01843',
+  areaServed: ['Lawrence', 'Methuen', 'North Andover', 'Andover', 'Haverhill', 'Lowell', 'Salem NH'].map((city) => ({ '@type': 'City', name: `${city}, MA` })),
+  openingHoursSpecification: [
+    { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Tuesday', 'Wednesday', 'Thursday'], opens: '09:30', closes: '18:00' },
+    { '@type': 'OpeningHoursSpecification', dayOfWeek: 'Friday', opens: '08:00', closes: '17:30' },
+    { '@type': 'OpeningHoursSpecification', dayOfWeek: 'Saturday', opens: '07:00', closes: '17:00' },
+  ],
+  sameAs: [
+    'https://www.instagram.com/miabeautyboutique264/',
+    'https://www.instagram.com/miabeautyboutyque/',
+    'https://www.facebook.com/p/Mia-Beauty-Boutique-100058155380527/',
+    'https://www.yelp.com/biz/mia-beauty-boutique-lawrence-2',
+    'https://www.bbb.org/us/ma/lawrence/profile/beauty-salon/mia-beauty-boutique-0021-562109',
+  ],
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Servicios de belleza',
+    itemListElement: [
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Dominican Blowout', alternateName: 'Blower dominicano' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Hair Color & Balayage', alternateName: 'Color y mechas' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Haircuts', alternateName: 'Cortes de cabello' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Hair Extensions', alternateName: 'Extensiones de cabello' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Professional Makeup', alternateName: 'Maquillaje profesional' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Bridal Hair & Makeup', alternateName: 'Peinado y maquillaje de novia' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Eyebrow Threading', alternateName: 'Depilación de cejas con hilo' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Hair Treatments', alternateName: 'Tratamientos capilares' } },
+    ],
+  },
+};
+
+const defaultTitle = lang === 'es'
+  ? 'Salón Dominicano en Lawrence, MA | Mía Beauty Boutique · 40+ Años'
+  : "Dominican Hair Salon in Lawrence, MA | Mía Beauty Boutique · 40+ Years";
+
+const defaultDesc = lang === 'es'
+  ? 'Salón dominicano en Lawrence, MA con más de 40 años de experiencia. Dominican blowout, color, mechas, extensiones, maquillaje, novias y depilación con hilo. Sin cita previa. Llama (978) 208-7877.'
+  : 'Dominican hair salon in Lawrence, MA with over 40 years of experience. Dominican blowout, color, highlights, extensions, makeup, bridal, and threading. Walk-ins welcome. Call (978) 208-7877.';
+
+const keywords = lang === 'es'
+  ? 'salon dominicano lawrence ma, dominican blowout lawrence, peluqueria dominicana, salon de belleza lawrence massachusetts, mia beauty boutique, peluqueria lawrence ma, color de cabello lawrence, extensiones de cabello, maquillaje profesional lawrence, salon novias massachusetts'
+  : 'dominican hair salon lawrence ma, dominican blowout, hair salon lawrence massachusetts, mia beauty boutique, hair color lawrence ma, hair extensions lawrence, bridal makeup massachusetts, walk in hair salon lawrence';
+
+const finalTitle = title || defaultTitle;
+const finalDesc = description || defaultDesc;
+
+const BASE = import.meta.env.BASE_URL; // includes trailing slash, e.g. /mia-beauty-boutique/
+const siteOrigin = Astro.site ? Astro.site.origin : 'https://miabeautyboutique.com';
+const canonicalUrl = `${siteOrigin}${Astro.url.pathname}`;
+const hrefEs = `${siteOrigin}${BASE}`;
+const hrefEn = `${siteOrigin}${BASE}en/`;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={finalDesc} />
+    <meta name="keywords" content={keywords} />
+    <meta name="geo.region" content="US-MA" />
+    <meta name="geo.placename" content="Lawrence" />
+    <meta name="geo.position" content="42.6964;-71.1714" />
+    <meta name="ICBM" content="42.6964, -71.1714" />
+    <meta property="og:title" content={finalTitle} />
+    <meta property="og:description" content={finalDesc} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content={lang === 'es' ? 'es_US' : 'en_US'} />
+    <meta name="theme-color" content="#7a1f2b" />
+    <link rel="icon" type="image/svg+xml" href={`${BASE}favicon.svg`} />
+    <link rel="alternate icon" href={`${BASE}favicon.ico`} />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="alternate" hreflang="es" href={hrefEs} />
+    <link rel="alternate" hreflang="en" href={hrefEn} />
+    <link rel="alternate" hreflang="x-default" href={hrefEs} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Inter:wght@400;500;600;700&display=swap"
+    />
+    <title>{finalTitle}</title>
+    <script type="application/ld+json" set:html={JSON.stringify(localBusinessJsonLd)} />
+    <style is:global>
+      :root {
+        --cream: #fbf6ef;
+        --cream-2: #f5ecdf;
+        --blush: #f0d4cc;
+        --blush-2: #e8b8ad;
+        --burgundy: #7a1f2b;
+        --burgundy-dark: #5d1620;
+        --gold: #b8893f;
+        --gold-light: #d4a960;
+        --ink: #2a1a1d;
+        --ink-soft: #5c4549;
+        --ink-muted: #8a7a7d;
+        --line: rgba(122, 31, 43, 0.12);
+        --line-2: rgba(122, 31, 43, 0.22);
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      html, body {
+        margin: 0; padding: 0;
+        background: var(--cream);
+        color: var(--ink);
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        font-size: clamp(1rem, 0.94rem + 0.25vw, 1.08rem);
+        line-height: 1.65;
+        letter-spacing: -0.011em;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+      }
+      h1, h2, h3, h4 {
+        font-family: 'Cormorant Garamond', Georgia, serif;
+        font-weight: 600;
+        letter-spacing: -0.005em;
+        color: var(--burgundy);
+        margin: 0;
+        line-height: 1.08;
+      }
+      h1 { font-weight: 500; letter-spacing: -0.015em; }
+      a { color: var(--burgundy); text-decoration: none; transition: color .15s ease, opacity .15s ease; }
+      a:hover { color: var(--burgundy-dark); }
+      img { max-width: 100%; display: block; }
+      .container { max-width: 1140px; margin: 0 auto; padding: 0 1.75rem; }
+      .btn {
+        display: inline-flex; align-items: center; gap: .55rem;
+        padding: .95rem 1.7rem;
+        border-radius: 999px;
+        font-weight: 600;
+        font-size: .98rem;
+        letter-spacing: 0;
+        transition: transform .18s ease, background .18s ease, box-shadow .18s ease, color .18s ease, border-color .18s ease;
+        cursor: pointer; border: none;
+        font-family: inherit;
+        text-decoration: none;
+      }
+      .btn-primary { background: var(--burgundy); color: var(--cream); box-shadow: 0 1px 2px rgba(122,31,43,.1); }
+      .btn-primary:hover { background: var(--burgundy-dark); color: var(--cream); transform: translateY(-1px); box-shadow: 0 8px 22px rgba(122,31,43,.22); }
+      .btn-gold { background: var(--gold); color: #fff; }
+      .btn-gold:hover { background: var(--gold-light); color: #fff; transform: translateY(-1px); }
+      .btn-ghost { background: transparent; color: var(--burgundy); border: 1.5px solid var(--line-2); }
+      .btn-ghost:hover { border-color: var(--burgundy); }
+    </style>
+
+    <script is:inline define:vars={{ BASE }}>
+      // Auto-redirect to user's preferred language on first visit only
+      (function() {
+        try {
+          if (sessionStorage.getItem('mia-lang-checked')) return;
+          sessionStorage.setItem('mia-lang-checked', '1');
+          const base = BASE || '/';
+          const path = window.location.pathname;
+          const inSite = path.startsWith(base) ? path.slice(base.length) : path.replace(/^\//, '');
+          const browserLang = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
+          const onEn = inSite.startsWith('en/') || inSite === 'en';
+          const onEsHome = inSite === '' || inSite === '/';
+          if (browserLang.startsWith('en') && onEsHome) {
+            window.location.replace(base + 'en/');
+          } else if (browserLang.startsWith('es') && onEn) {
+            window.location.replace(base);
+          }
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

@@ -1,0 +1,747 @@
+---
+import Base from '../layouts/Base.astro';
+import Logo from '../components/Logo.astro';
+
+const phone = '(978) 208-7877';
+const phoneTel = '+19782087877';
+const address = '264 S Broadway, Lawrence, MA 01843';
+const directionsUrl = 'https://www.google.com/maps/dir/?api=1&destination=264+S+Broadway%2C+Lawrence%2C+MA+01843';
+const mapsUrl = 'https://www.google.com/maps/place/264+S+Broadway,+Lawrence,+MA+01843';
+const reviewsUrl = 'https://www.google.com/search?q=Mia+Beauty+Boutique+Lawrence+MA';
+const writeReviewUrl = 'https://search.google.com/local/writereview?placeid=ChIJ_____MiaBeautyBoutique'; // placeholder until real Place ID confirmed
+const instagramUrl = 'https://www.instagram.com/miabeautyboutique264/';
+const facebookUrl = 'https://www.facebook.com/p/Mia-Beauty-Boutique-100058155380527/';
+const yelpUrl = 'https://www.yelp.com/biz/mia-beauty-boutique-lawrence-2';
+
+const BASE = import.meta.env.BASE_URL;
+const img = (name: string) => `${BASE}images/work/${name}`;
+
+const services = [
+  { title: 'Dominican Blowout', icon: '✦', body: 'Nuestra especialidad. Cabello suave, brillante y con cuerpo — el blowout dominicano que nos hizo famosas.', price: 'Desde $45' },
+  { title: 'Color y Mechas', icon: '✦', body: 'Color, balayage, plum, ombré. Pravana y las mejores marcas. Cabello sano siempre primero.', price: 'Llama para consulta' },
+  { title: 'Cortes', icon: '✦', body: 'Cortes clásicos, modernos, capas, flequillo. Cortes que te hacen ver y sentir bien.', price: 'Desde $30' },
+  { title: 'Extensiones', icon: '✦', body: 'Extensiones brasileras y de cabello natural. Volumen, largo, transformación completa.', price: 'Consulta requerida' },
+  { title: 'Maquillaje Profesional', icon: '✦', body: 'Para eventos, sesiones de fotos, o solo para verte extra bella. Marcas de lujo.', price: 'Desde $65' },
+  { title: 'Novias', icon: '✦', body: 'Maquillaje y peinado de novia. Servicio especial — separa tu fecha con tiempo.', price: 'Cita previa requerida' },
+  { title: 'Depilación con Hilo', icon: '✦', body: 'Cejas, bigote, rostro. Técnica precisa y delicada para piel sensible.', price: 'Desde $12' },
+  { title: 'Tratamientos', icon: '✦', body: 'Hidratación profunda, queratina, brillo y reparación para todo tipo de cabello.', price: 'Desde $40' },
+];
+
+const whyMia = [
+  { title: 'Experiencia dominicana auténtica', body: 'Más de 40 años especializadas en cabello dominicano. Conocemos texturas, rizos, ondas — y cómo sacarles lo mejor.' },
+  { title: 'Sin cita, sin estrés', body: 'Walk-ins bienvenidas. Llega cuando puedas y te atendemos por orden. Perfecto para mamás ocupadas y horarios apretados.' },
+  { title: 'Bilingüe y familiar', body: 'Te atendemos en español o english. Salón familiar — tres generaciones de clientas, cero ambiente de fábrica.' },
+  { title: 'Resultados que duran', body: 'Blowouts que aguantan toda la semana. Color que cuida el cabello. Técnica con décadas de oficio detrás.' },
+];
+
+const stylists = [
+  { name: 'Mía', role: 'Fundadora · Maestra estilista', body: 'Más de 40 años perfeccionando el blowout dominicano. Tres generaciones de clientas la conocen por nombre.' },
+  { name: 'El equipo', role: 'Estilistas bilingües', body: 'Especialistas en color, cortes, extensiones, novias y maquillaje. Trabajamos en equipo — siempre tienes a alguien lista para atenderte.' },
+];
+
+const reviews = [
+  { name: 'Yesenia M.', source: 'Google', body: 'Todas las muchachas son tan dulces. Y trabajan en equipo — siempre salgo feliz. Mi blowout dura toda la semana.' },
+  { name: 'Carmen R.', source: 'Google', body: 'Me hicieron sentir como una reina el día de mi boda. El maquillaje duró todo el día y todas las fotos quedaron preciosas.' },
+  { name: 'Mariela P.', source: 'Yelp', body: 'Llevo años yendo. Mía y su equipo conocen mi cabello como nadie. No voy a otro salón.' },
+  { name: 'Joselyn T.', source: 'Google', body: 'Sin cita previa y siempre me atienden rápido. Mi blowout dura toda la semana. Las recomiendo a todas mis amigas.' },
+  { name: 'Andrea S.', source: 'Facebook', body: 'El mejor color que me han hecho en mi vida. Saben cuidar el cabello — no se quema, no se daña. Pravana de verdad.' },
+  { name: 'Linette V.', source: 'Google', body: 'Me hicieron las extensiones para mi quinceañera. Quedaron naturales, suaves, y mi mamá lloró de la emoción. Gracias Mía.' },
+];
+
+const galleryItems = [
+  { src: 'mia-1.jpg', cat: 'blower', label: 'Dominican Blowout' },
+  { src: 'mia-2.jpg', cat: 'color', label: 'Color y Mechas' },
+  { src: 'mia-3.jpg', cat: 'novias', label: 'Novias' },
+  { src: 'mia-4.jpg', cat: 'blower', label: 'Dominican Blowout' },
+  { src: 'mia-5.jpg', cat: 'color', label: 'Color' },
+  { src: 'mia-6.jpg', cat: 'extensiones', label: 'Extensiones' },
+  { src: 'mia-7.jpg', cat: 'cortes', label: 'Cortes' },
+  { src: 'mia-8.jpg', cat: 'blower', label: 'Dominican Blowout' },
+];
+
+const galleryFilters = [
+  { id: 'todo', label: 'Todo' },
+  { id: 'blower', label: 'Blower' },
+  { id: 'color', label: 'Color' },
+  { id: 'novias', label: 'Novias' },
+  { id: 'extensiones', label: 'Extensiones' },
+  { id: 'cortes', label: 'Cortes' },
+];
+
+const faqs = [
+  { q: '¿Tengo que hacer cita?', a: 'No, te atendemos sin cita por orden de llegada. Para servicios largos (novias, color completo, extensiones) recomendamos llamar antes para asegurar tu hora.' },
+  { q: '¿Cuáles son los mejores días para venir?', a: 'Martes a jueves son nuestros días más tranquilos. Viernes y sábados son los más llenos — te atendemos igual, pero la espera puede ser más larga. Si vienes temprano, mejor.' },
+  { q: '¿Trabajan con todo tipo de cabello?', a: 'Sí. Somos especialistas en cabello dominicano — rizos, ondas, texturas mixtas, cabello fino, grueso, teñido, todo. Décadas de experiencia con cada tipo.' },
+  { q: '¿Cuánto dura el blowout dominicano?', a: 'Con cuidado básico (gorro de noche, no mojarlo) un blowout dominicano nuestro te dura toda la semana — muchas clientas llegan a 10 días.' },
+  { q: '¿Hacen novias y eventos grandes?', a: 'Sí. Para novias separa tu fecha con tiempo (idealmente 4-8 semanas antes). Ofrecemos prueba de maquillaje y peinado. Llama para hablar de tu día.' },
+  { q: '¿Qué formas de pago aceptan?', a: 'Efectivo y tarjeta de crédito (Visa, Mastercard, Amex). Si tienes alguna duda, llámanos antes de venir.' },
+  { q: '¿Hay parqueo?', a: 'Sí, parqueo gratis en la calle y en lotes cercanos en S Broadway. Plaza fácil de encontrar — estamos en el corazón de Lawrence.' },
+  { q: '¿Hablan inglés?', a: 'Sí. Todo el equipo es bilingüe — español e inglés. Atendemos a clientas de Lawrence, Methuen, Andover, Haverhill, Lowell, y Salem NH.' },
+];
+---
+
+<Base lang="es" pathEs="/" pathEn="/en/">
+  <header class="topbar">
+    <div class="container topbar-row">
+      <a class="brand" href="#top" aria-label="Mía Beauty Boutique">
+        <Logo size="md" />
+      </a>
+      <nav class="nav" aria-label="Principal">
+        <a href="#por-que" data-nav>Por Qué Mía</a>
+        <a href="#servicios" data-nav>Servicios</a>
+        <a href="#galeria" data-nav>Galería</a>
+        <a href="#resenas" data-nav>Reseñas</a>
+        <a href="#faq" data-nav>FAQ</a>
+        <a href="#visitar" data-nav>Visitar</a>
+      </nav>
+      <div class="topbar-right">
+        <a class="lang-switch" href={`${BASE}en/`} hreflang="en" aria-label="View in English">EN</a>
+        <a class="topbar-call" href={`tel:${phoneTel}`}>{phone}</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero" id="top">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow">Lawrence, MA · Más de 40 años haciéndote sentir bella</span>
+        <h1>Donde el cabello dominicano <em>brilla</em>.</h1>
+        <p class="hero-lede">
+          Mía Beauty Boutique es un salón familiar en Lawrence, MA — más de cuatro décadas perfeccionando el blowout dominicano, el color, las novias, y todo lo que te hace verte como tú quieres verte.
+        </p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href={`tel:${phoneTel}`}>Llamar al salón</a>
+          <a class="btn btn-gold" href={directionsUrl} target="_blank" rel="noopener">Cómo llegar</a>
+          <a class="btn btn-ghost" href="#galeria">Ver galería</a>
+        </div>
+        <ul class="hero-stats">
+          <li><strong>40+</strong><span>años de experiencia</span></li>
+          <li><strong>Sin cita</strong><span>te atendemos por orden</span></li>
+          <li><strong>Bilingüe</strong><span>español · english</span></li>
+          <li><strong>Familia</strong><span>3 generaciones</span></li>
+        </ul>
+      </div>
+      <div class="hero-photo">
+        <img src={img('mia-1.jpg')} alt="Trabajo destacado de Mía Beauty Boutique" loading="eager" />
+        <div class="hero-badge">
+          <strong>40+</strong>
+          <span>años en Lawrence</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="why" id="por-que">
+    <div class="container">
+      <div class="section-head">
+        <span class="kicker">Por qué Mía</span>
+        <h2>Lo que no encuentras en otro salón.</h2>
+        <p class="section-sub">Décadas de oficio dominicano, ambiente familiar, y resultados que duran. Esto es lo que nos hace diferentes.</p>
+      </div>
+      <div class="why-grid">
+        {whyMia.map((w, i) => (
+          <article class="why-card" style={`--i: ${i}`}>
+            <div class="why-num">0{i + 1}</div>
+            <h3>{w.title}</h3>
+            <p>{w.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="services" id="servicios">
+    <div class="container">
+      <div class="section-head">
+        <span class="kicker">Servicios</span>
+        <h2>Todo lo que tu belleza necesita.</h2>
+        <p class="section-sub">Especialistas en cabello dominicano. También te atendemos en maquillaje, novias, y depilación. Precios desde — llama para confirmar.</p>
+      </div>
+      <div class="service-grid">
+        {services.map((s, i) => (
+          <article class="service-card" style={`--i: ${i}`}>
+            <span class="service-mark">{s.icon}</span>
+            <h3>{s.title}</h3>
+            <p>{s.body}</p>
+            <span class="service-price">{s.price}</span>
+          </article>
+        ))}
+      </div>
+      <div class="services-cta">
+        <p>¿No ves tu servicio? Llámanos — probablemente lo hacemos.</p>
+        <div class="services-cta-row">
+          <a class="btn btn-primary" href={`tel:${phoneTel}`}>Llamar al {phone}</a>
+          <a class="btn btn-ghost" href={directionsUrl} target="_blank" rel="noopener">Cómo llegar</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="sobre">
+    <div class="container about-grid">
+      <div class="about-photo">
+        <img src={img('mia-2.jpg')} alt="Equipo de Mía Beauty Boutique" loading="lazy" />
+      </div>
+      <div class="about-copy">
+        <span class="kicker">Sobre Nosotras</span>
+        <h2>Cuatro décadas haciéndote sentir como en casa.</h2>
+        <p>
+          Mía Beauty Boutique es un salón dominicano familiar en el corazón de Lawrence. Llevamos más de 40 años atendiendo a tres generaciones de clientas — abuelas, mamás, hijas, y ahora nietas.
+        </p>
+        <p>
+          Lo que hace a Mía especial no es solo la técnica — aunque la técnica está ahí. Es el ambiente: las muchachas que trabajan en equipo, el café mientras esperas, las conversaciones en español, y la atención que te hace sentir como familia.
+        </p>
+        <div class="stylists">
+          {stylists.map((s) => (
+            <div class="stylist">
+              <h4>{s.name}</h4>
+              <span class="stylist-role">{s.role}</span>
+              <p>{s.body}</p>
+            </div>
+          ))}
+        </div>
+        <p class="about-pull">
+          La promesa: cuando sales de aquí, te sientes más bella, más cuidada, y más tú.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="work" id="galeria">
+    <div class="container">
+      <div class="section-head">
+        <span class="kicker">Galería</span>
+        <h2>Nuestro trabajo.</h2>
+        <p class="section-sub">Filtra por categoría · Toca cualquier foto para verla en grande.</p>
+      </div>
+      <div class="filter-bar" role="tablist" aria-label="Filtrar galería">
+        {galleryFilters.map((f, i) => (
+          <button
+            class={`filter-btn${i === 0 ? ' is-active' : ''}`}
+            data-filter={f.id}
+            type="button"
+            role="tab"
+            aria-selected={i === 0 ? 'true' : 'false'}
+          >{f.label}</button>
+        ))}
+      </div>
+      <div class="work-grid" id="gallery-grid">
+        {galleryItems.map((w, i) => (
+          <figure
+            class="work-card"
+            data-cat={w.cat}
+            style={`--i: ${i}`}
+            data-src={img(w.src)}
+            data-label={w.label}
+            tabindex="0"
+            role="button"
+            aria-label={`Ver ${w.label} en grande`}
+          >
+            <img src={img(w.src)} alt={w.label} loading="lazy" />
+            <figcaption>{w.label}</figcaption>
+          </figure>
+        ))}
+      </div>
+      <p class="gallery-note">Síguenos en <a href={instagramUrl} target="_blank" rel="noopener">Instagram</a> para fotos nuevas cada semana.</p>
+    </div>
+  </section>
+
+  <section class="reviews" id="resenas">
+    <div class="container">
+      <div class="section-head">
+        <span class="kicker">Reseñas</span>
+        <h2>Lo que dicen nuestras clientas.</h2>
+        <p class="section-sub">Reseñas reales de Google, Yelp y Facebook.</p>
+      </div>
+      <div class="review-grid">
+        {reviews.map((r, i) => (
+          <article class="review-card" style={`--i: ${i}`}>
+            <div class="stars" aria-label="5 estrellas">★★★★★</div>
+            <blockquote>{r.body}</blockquote>
+            <cite>— {r.name} <span class="review-source">· {r.source}</span></cite>
+          </article>
+        ))}
+      </div>
+      <div class="reviews-cta">
+        <a class="btn btn-primary" href={reviewsUrl} target="_blank" rel="noopener">Leer más reseñas</a>
+        <a class="btn btn-ghost" href={writeReviewUrl} target="_blank" rel="noopener">Dejar una reseña</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="social" id="social">
+    <div class="container social-inner">
+      <div class="social-copy">
+        <span class="kicker">Síguenos</span>
+        <h2>Cada semana, transformaciones nuevas.</h2>
+        <p>Color, blowouts, novias, antes-y-después — todo en nuestro Instagram. Síguenos para ver el trabajo más reciente del salón.</p>
+        <div class="social-cta">
+          <a class="btn btn-primary" href={instagramUrl} target="_blank" rel="noopener">Seguir en Instagram</a>
+          <a class="btn btn-ghost" href={facebookUrl} target="_blank" rel="noopener">Facebook</a>
+        </div>
+        <span class="ig-handle">@miabeautyboutique264</span>
+      </div>
+      <div class="social-grid">
+        {galleryItems.slice(0, 6).map((w, i) => (
+          <a class="social-tile" href={instagramUrl} target="_blank" rel="noopener" aria-label="Ver en Instagram" style={`--i: ${i}`}>
+            <img src={img(w.src)} alt={w.label} loading="lazy" />
+            <span class="social-overlay" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+              </svg>
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="faq" id="faq">
+    <div class="container">
+      <div class="section-head">
+        <span class="kicker">Preguntas</span>
+        <h2>Todo lo que quieres saber antes de venir.</h2>
+      </div>
+      <div class="faq-list">
+        {faqs.map((f, i) => (
+          <details class="faq-item" style={`--i: ${i}`}>
+            <summary>
+              <span>{f.q}</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </summary>
+            <div class="faq-body"><p>{f.a}</p></div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="visit" id="visitar">
+    <div class="container visit-inner">
+      <span class="kicker light">Visítanos</span>
+      <h2>Te esperamos en Lawrence.</h2>
+      <div class="visit-grid">
+        <div class="visit-info">
+          <ul class="visit-list">
+            <li><span class="lbl">Dirección</span><span>{address}</span></li>
+            <li><span class="lbl">Teléfono</span><a href={`tel:${phoneTel}`}>{phone}</a></li>
+            <li><span class="lbl">Sin cita previa</span><span>Te atendemos por orden de llegada</span></li>
+            <li><span class="lbl">Parqueo</span><span>Gratis en la calle y lotes cercanos</span></li>
+            <li><span class="lbl">Pago</span><span>Efectivo y tarjeta (Visa · MC · Amex)</span></li>
+            <li><span class="lbl">Mejor día</span><span>Martes a jueves — menos espera</span></li>
+            <li><span class="lbl">Novias y color completo</span><span>Llama antes para separar tu hora</span></li>
+          </ul>
+          <div class="visit-ctas">
+            <a class="btn btn-primary big" href={`tel:${phoneTel}`}>Llamar ahora</a>
+            <a class="btn btn-gold big" href={directionsUrl} target="_blank" rel="noopener">Cómo llegar</a>
+          </div>
+        </div>
+        <div class="visit-hours">
+          <h3>Horario</h3>
+          <ul class="hours-list">
+            <li><span>Martes</span><span>9:30am – 6:00pm</span></li>
+            <li><span>Miércoles</span><span>9:30am – 6:00pm</span></li>
+            <li><span>Jueves</span><span>9:30am – 6:00pm</span></li>
+            <li><span>Viernes</span><span>8:00am – 5:30pm</span></li>
+            <li><span>Sábado</span><span>7:00am – 5:00pm</span></li>
+            <li class="closed"><span>Domingo</span><span>Cerrado</span></li>
+            <li class="closed"><span>Lunes</span><span>Cerrado</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <Logo size="sm" variant="light" />
+      </div>
+      <div class="footer-meta">
+        <a href={`tel:${phoneTel}`}>{phone}</a>
+        <span class="dot">·</span>
+        <span>{address}</span>
+        <br />
+        <a href={instagramUrl} rel="noopener" target="_blank">Instagram</a>
+        <span class="dot">·</span>
+        <a href={facebookUrl} rel="noopener" target="_blank">Facebook</a>
+        <span class="dot">·</span>
+        <a href={yelpUrl} rel="noopener" target="_blank">Yelp</a>
+        <span class="dot">·</span>
+        <a href={`${BASE}en/`} hreflang="en">English</a>
+      </div>
+      <div class="footer-fineprint">© {new Date().getFullYear()} Mía Beauty Boutique · Lawrence, MA</div>
+    </div>
+  </footer>
+
+  <div class="mobile-bar">
+    <a class="mobile-bar-btn primary" href={`tel:${phoneTel}`} aria-label="Llamar al salón">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      <span>Llamar</span>
+    </a>
+    <a class="mobile-bar-btn gold" href={directionsUrl} target="_blank" rel="noopener" aria-label="Cómo llegar">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      <span>Cómo llegar</span>
+    </a>
+  </div>
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+    <button class="lightbox-close" type="button" aria-label="Cerrar">×</button>
+    <button class="lightbox-prev" type="button" aria-label="Anterior">‹</button>
+    <button class="lightbox-next" type="button" aria-label="Siguiente">›</button>
+    <figure class="lightbox-figure">
+      <img id="lightbox-img" alt="" />
+      <figcaption id="lightbox-cap"></figcaption>
+    </figure>
+  </div>
+
+  <style>
+    .topbar { background: rgba(251,246,239,.78); backdrop-filter: saturate(160%) blur(14px); -webkit-backdrop-filter: saturate(160%) blur(14px); border-bottom: 1px solid transparent; position: sticky; top: 0; z-index: 50; transition: background .25s ease, border-color .25s ease, box-shadow .25s ease; }
+    .topbar.scrolled { background: rgba(251,246,239,.95); border-bottom-color: var(--line); box-shadow: 0 1px 0 rgba(122,31,43,.02), 0 6px 20px rgba(122,31,43,.04); }
+    .topbar-row { display: flex; align-items: center; gap: 1.5rem; padding: .65rem 1.75rem; transition: padding .25s ease; }
+    .topbar.scrolled .topbar-row { padding: .45rem 1.75rem; }
+    .brand { display: flex; align-items: center; }
+    .brand :global(svg) { height: 72px; width: auto; }
+    .nav { display: flex; gap: 1.4rem; margin-left: auto; }
+    .nav a { color: var(--ink-soft); font-weight: 500; font-size: .94rem; position: relative; padding: .3rem 0; }
+    .nav a::after { content: ''; position: absolute; left: 0; right: 0; bottom: -2px; height: 2px; background: var(--burgundy); transform: scaleX(0); transform-origin: left; transition: transform .25s ease; border-radius: 2px; }
+    .nav a:hover { color: var(--burgundy); opacity: 1; }
+    .nav a.is-active { color: var(--burgundy); }
+    .nav a.is-active::after { transform: scaleX(1); }
+    .topbar-right { display: flex; align-items: center; gap: .65rem; }
+    .lang-switch { padding: .45rem .75rem; border: 1px solid var(--line-2); border-radius: 999px; font-size: .78rem; font-weight: 600; letter-spacing: .08em; color: var(--burgundy); }
+    .lang-switch:hover { background: var(--burgundy); color: var(--cream); opacity: 1; }
+    .topbar-call { padding: .55rem 1rem; background: var(--burgundy); color: var(--cream); border-radius: 999px; font-weight: 600; font-size: .9rem; letter-spacing: -0.005em; transition: background .18s ease, transform .18s ease; }
+    .topbar-call:hover { background: var(--burgundy-dark); color: var(--cream); opacity: 1; transform: scale(1.03); }
+
+    .hero { padding: 5rem 0 6rem; background: var(--cream); position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 85% 15%, rgba(184,137,63,.1), transparent 50%), radial-gradient(circle at 15% 85%, rgba(240,212,204,.18), transparent 50%); pointer-events: none; }
+    .hero-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 3.5rem; align-items: center; position: relative; }
+    .eyebrow { display: inline-block; font-size: .78rem; font-weight: 600; color: var(--gold); letter-spacing: .14em; text-transform: uppercase; margin-bottom: 1.5rem; }
+    .hero h1 { font-size: clamp(2.6rem, 6vw, 4.8rem); margin-bottom: 1.4rem; max-width: 14ch; }
+    .hero h1 em { font-style: italic; color: var(--gold); font-weight: 600; }
+    .hero-lede { font-size: clamp(1.05rem, 1.4vw, 1.18rem); color: var(--ink-soft); max-width: 540px; margin: 0 0 2.4rem; line-height: 1.65; font-weight: 400; }
+    .hero-cta { display: flex; gap: .75rem; flex-wrap: wrap; margin-bottom: 3rem; }
+    .hero-stats { list-style: none; padding: 2rem 0 0; margin: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; border-top: 1px solid var(--line); }
+    .hero-stats li { display: flex; flex-direction: column; gap: .3rem; }
+    .hero-stats strong { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 1.9rem; color: var(--burgundy); line-height: 1; }
+    .hero-stats span { font-size: .78rem; color: var(--ink-muted); letter-spacing: .01em; }
+    .hero-photo { position: relative; }
+    .hero-photo img { border-radius: 14px; aspect-ratio: 4/5; object-fit: cover; box-shadow: 0 18px 50px rgba(122,31,43,.15), 0 1px 3px rgba(122,31,43,.06); }
+    .hero-badge { position: absolute; bottom: -18px; left: -18px; background: var(--cream); padding: .9rem 1.2rem; border-radius: 12px; box-shadow: 0 12px 30px rgba(122,31,43,.18); display: flex; flex-direction: column; gap: .15rem; border: 1px solid var(--line); }
+    .hero-badge strong { font-family: 'Cormorant Garamond', serif; font-size: 1.7rem; color: var(--burgundy); line-height: 1; }
+    .hero-badge span { font-size: .72rem; color: var(--ink-muted); letter-spacing: .08em; text-transform: uppercase; font-weight: 600; }
+
+    .section-head { text-align: center; max-width: 760px; margin: 0 auto 3.5rem; }
+    .kicker { font-size: .74rem; font-weight: 600; color: var(--gold); letter-spacing: .14em; text-transform: uppercase; display: inline-block; margin-bottom: 1.1rem; }
+    .kicker.light { color: #d4a960; }
+    .section-head h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: .9rem; max-width: 22ch; margin-left: auto; margin-right: auto; }
+    .section-sub { color: var(--ink-soft); font-size: 1.05rem; margin: 0; max-width: 580px; margin-left: auto; margin-right: auto; }
+
+    .why { padding: 6rem 0; background: var(--cream); position: relative; }
+    .why::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--line-2), transparent); }
+    .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.6rem; }
+    .why-card { background: var(--cream-2); border: 1px solid var(--line); border-radius: 16px; padding: 2.2rem 1.8rem 2rem; position: relative; transition: transform .3s cubic-bezier(0.22,0.61,0.36,1), box-shadow .3s ease, border-color .3s ease; }
+    .why-card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(122,31,43,.1); border-color: var(--line-2); }
+    .why-num { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--gold); font-weight: 600; margin-bottom: .9rem; letter-spacing: .04em; }
+    .why-card h3 { font-size: 1.3rem; margin-bottom: .6rem; }
+    .why-card p { color: var(--ink-soft); margin: 0; font-size: .96rem; line-height: 1.65; }
+
+    .services { padding: 6rem 0; background: var(--cream-2); }
+    .service-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.4rem; }
+    .service-card { background: var(--cream); border: 1px solid var(--line); border-radius: 14px; padding: 2rem 1.7rem 1.6rem; transition: transform .25s cubic-bezier(0.22,0.61,0.36,1), box-shadow .25s ease, border-color .25s ease; box-shadow: 0 1px 2px rgba(122,31,43,.02); display: flex; flex-direction: column; }
+    .service-card:hover { transform: translateY(-4px); box-shadow: 0 4px 20px rgba(122,31,43,.08), 0 1px 3px rgba(122,31,43,.04); border-color: var(--line-2); }
+    .service-mark { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--gold); display: block; margin-bottom: .7rem; }
+    .service-card h3 { font-size: 1.35rem; margin-bottom: .55rem; }
+    .service-card p { color: var(--ink-soft); margin: 0 0 1rem; font-size: .96rem; line-height: 1.6; flex: 1; }
+    .service-price { display: inline-block; align-self: flex-start; font-size: .82rem; font-weight: 600; color: var(--burgundy); background: var(--blush); padding: .3rem .7rem; border-radius: 999px; letter-spacing: .01em; }
+    .services-cta { text-align: center; margin-top: 3.5rem; }
+    .services-cta p { color: var(--ink-soft); margin-bottom: 1.1rem; font-style: italic; font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; }
+    .services-cta-row { display: inline-flex; gap: .7rem; flex-wrap: wrap; justify-content: center; }
+
+    .about { padding: 6rem 0; background: var(--cream); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: 4rem; align-items: center; }
+    .about-photo img { border-radius: 14px; aspect-ratio: 4/5; object-fit: cover; box-shadow: 0 14px 40px rgba(122,31,43,.13); }
+    .about-copy h2 { font-size: clamp(1.9rem, 3.5vw, 2.6rem); margin-bottom: 1.4rem; max-width: 18ch; }
+    .about-copy p { font-size: 1.05rem; color: var(--ink-soft); margin: 0 0 1.1rem; line-height: 1.7; }
+    .stylists { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin: 1.6rem 0 1.4rem; }
+    .stylist { background: var(--cream-2); border: 1px solid var(--line); border-radius: 12px; padding: 1.1rem 1.2rem; }
+    .stylist h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--burgundy); margin: 0 0 .1rem; font-weight: 600; }
+    .stylist-role { font-size: .78rem; color: var(--gold); letter-spacing: .1em; text-transform: uppercase; font-weight: 600; display: block; margin-bottom: .5rem; }
+    .stylist p { font-size: .92rem; line-height: 1.55; margin: 0; }
+    .about-pull { background: var(--blush); border-left: 3px solid var(--burgundy); padding: 1.2rem 1.4rem; border-radius: 8px; font-size: 1.1rem !important; color: var(--burgundy) !important; font-style: italic; font-family: 'Cormorant Garamond', serif !important; }
+
+    .work { padding: 6rem 0; background: var(--cream-2); }
+    .filter-bar { display: flex; flex-wrap: wrap; gap: .5rem; justify-content: center; margin: -1.5rem 0 2rem; }
+    .filter-btn { background: transparent; border: 1px solid var(--line-2); color: var(--ink-soft); padding: .55rem 1.1rem; border-radius: 999px; font-family: inherit; font-size: .9rem; font-weight: 500; cursor: pointer; transition: background .18s ease, color .18s ease, border-color .18s ease, transform .18s ease; }
+    .filter-btn:hover { border-color: var(--burgundy); color: var(--burgundy); transform: translateY(-1px); }
+    .filter-btn.is-active { background: var(--burgundy); color: var(--cream); border-color: var(--burgundy); }
+    .work-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+    .work-card { margin: 0; position: relative; overflow: hidden; border-radius: 12px; aspect-ratio: 1/1; background: var(--blush); transition: transform .3s ease, opacity .3s ease; cursor: pointer; }
+    .work-card.is-hidden { display: none; }
+    .work-card img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+    .work-card:hover img { transform: scale(1.06); }
+    .work-card figcaption { position: absolute; inset: auto 0 0 0; background: linear-gradient(to top, rgba(42,26,29,.78), transparent); color: var(--cream); padding: 1.4rem .9rem .8rem; font-size: .84rem; font-weight: 600; letter-spacing: .02em; opacity: 0; transform: translateY(6px); transition: opacity .25s ease, transform .25s ease; }
+    .work-card:hover figcaption, .work-card:focus-visible figcaption { opacity: 1; transform: translateY(0); }
+    .work-card:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+    .gallery-note { text-align: center; margin: 2rem 0 0; color: var(--ink-soft); font-style: italic; font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; }
+    .gallery-note a { color: var(--burgundy); font-weight: 600; font-style: normal; }
+
+    .reviews { padding: 6rem 0; background: var(--cream); }
+    .review-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.1rem; }
+    @media (max-width: 1024px) { .review-grid { grid-template-columns: repeat(2, 1fr); gap: 1.2rem; } }
+    @media (max-width: 600px) { .review-grid { grid-template-columns: 1fr; } }
+    .review-card { background: var(--cream-2); border: 1px solid var(--line); border-radius: 14px; padding: 1.6rem 1.4rem; transition: transform .25s ease, box-shadow .25s ease; }
+    .review-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(122,31,43,.08); }
+    .stars { color: var(--gold); font-size: .95rem; letter-spacing: .12em; margin-bottom: .85rem; white-space: nowrap; }
+    .review-card blockquote { margin: 0 0 1rem; color: var(--ink); font-size: 1.02rem; line-height: 1.65; font-family: 'Cormorant Garamond', serif; font-style: italic; }
+    .review-card cite { font-style: normal; font-weight: 600; color: var(--ink-soft); font-size: .9rem; }
+    .review-source { color: var(--ink-muted); font-weight: 500; }
+    .reviews-cta { display: flex; gap: .8rem; justify-content: center; margin-top: 2.6rem; flex-wrap: wrap; }
+
+    .social { padding: 6rem 0; background: var(--cream-2); }
+    .social-inner { display: grid; grid-template-columns: 1fr 1.05fr; gap: 3.5rem; align-items: center; }
+    .social-copy h2 { font-size: clamp(1.9rem, 3.4vw, 2.5rem); margin-bottom: 1rem; max-width: 14ch; }
+    .social-copy p { color: var(--ink-soft); font-size: 1.04rem; margin: 0 0 1.6rem; max-width: 460px; }
+    .social-cta { display: flex; gap: .7rem; flex-wrap: wrap; margin-bottom: 1.4rem; }
+    .ig-handle { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--burgundy); font-size: 1.15rem; }
+    .social-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: .55rem; }
+    .social-tile { position: relative; aspect-ratio: 1/1; border-radius: 10px; overflow: hidden; display: block; background: var(--blush); }
+    .social-tile img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+    .social-tile:hover img { transform: scale(1.06); }
+    .social-overlay { position: absolute; inset: 0; background: rgba(122,31,43,.55); color: var(--cream); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity .25s ease; }
+    .social-tile:hover .social-overlay { opacity: 1; }
+
+    .faq { padding: 6rem 0; background: var(--cream); }
+    .faq-list { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: .65rem; }
+    .faq-item { background: var(--cream-2); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; transition: border-color .2s ease, box-shadow .2s ease; }
+    .faq-item[open] { border-color: var(--line-2); box-shadow: 0 6px 22px rgba(122,31,43,.07); }
+    .faq-item summary { list-style: none; cursor: pointer; padding: 1.15rem 1.4rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; font-weight: 600; color: var(--burgundy); font-size: 1.05rem; font-family: 'Cormorant Garamond', serif; }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-icon { font-size: 1.5rem; font-weight: 400; color: var(--gold); transition: transform .25s ease; line-height: 1; }
+    .faq-item[open] .faq-icon { transform: rotate(45deg); }
+    .faq-body { padding: 0 1.4rem 1.3rem; }
+    .faq-body p { margin: 0; color: var(--ink-soft); font-size: .98rem; line-height: 1.65; }
+
+    .visit { padding: 6rem 0; background: var(--burgundy); color: var(--cream); }
+    .visit-inner { text-align: center; }
+    .visit h2 { color: var(--cream); font-size: clamp(2rem, 4vw, 2.8rem); margin-bottom: 3rem; }
+    .visit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; max-width: 880px; margin: 0 auto; text-align: left; }
+    .visit-list { list-style: none; padding: 0; margin: 0 0 2rem; }
+    .visit-list li { padding: .85rem 0; border-bottom: 1px solid rgba(251,246,239,.15); display: flex; flex-direction: column; gap: .25rem; }
+    .visit-list li:last-child { border-bottom: none; }
+    .visit-list .lbl { font-size: .72rem; color: rgba(251,246,239,.55); letter-spacing: .12em; text-transform: uppercase; font-weight: 600; }
+    .visit-list a { color: var(--gold-light); font-weight: 600; }
+    .visit-list a:hover { color: #fff; opacity: 1; }
+    .visit-hours h3 { font-family: 'Cormorant Garamond', serif; color: var(--cream); font-size: 1.6rem; margin-bottom: 1rem; }
+    .hours-list { list-style: none; padding: 0; margin: 0; }
+    .hours-list li { display: flex; justify-content: space-between; padding: .5rem 0; border-bottom: 1px solid rgba(251,246,239,.1); font-size: .96rem; }
+    .hours-list li:last-child { border-bottom: none; }
+    .hours-list .closed { color: rgba(251,246,239,.45); }
+    .visit-ctas { display: flex; gap: .7rem; flex-wrap: wrap; }
+    .btn.big { font-size: 1rem; padding: 1.1rem 2rem; }
+    .visit .btn-primary { background: var(--gold); color: var(--ink); }
+    .visit .btn-primary:hover { background: var(--gold-light); color: var(--ink); }
+    .visit .btn-gold { background: var(--cream); color: var(--burgundy); }
+    .visit .btn-gold:hover { background: #fff; color: var(--burgundy-dark); }
+
+    .site-footer { background: #2a1a1d; color: rgba(251,246,239,.65); padding: 3rem 0 2.5rem; font-size: .9rem; }
+    .footer-inner { display: grid; grid-template-columns: 1fr auto; gap: 1.5rem 2rem; align-items: center; }
+    .footer-brand { display: flex; align-items: center; }
+    .footer-brand :global(svg) { height: 50px; width: auto; }
+    .footer-meta { text-align: right; }
+    .footer-meta a { color: var(--gold-light); }
+    .footer-meta a:hover { color: var(--cream); opacity: 1; }
+    .footer-meta .dot { color: rgba(251,246,239,.25); padding: 0 .35rem; }
+    .footer-fineprint { grid-column: 1 / -1; text-align: center; padding-top: 1.5rem; border-top: 1px solid rgba(251,246,239,.08); font-size: .82rem; color: rgba(251,246,239,.4); }
+
+    .mobile-bar { display: none; position: fixed; bottom: 0; left: 0; right: 0; padding: .65rem .75rem calc(.65rem + env(safe-area-inset-bottom, 0)); background: rgba(251,246,239,.98); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-top: 1px solid var(--line); gap: .55rem; z-index: 100; box-shadow: 0 -8px 30px rgba(122,31,43,.1); }
+    .mobile-bar-btn { flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: .5rem; padding: .9rem 1rem; border-radius: 999px; font-weight: 600; font-size: .94rem; text-decoration: none; transition: transform .15s ease, box-shadow .15s ease; }
+    .mobile-bar-btn.primary { background: var(--burgundy); color: var(--cream); }
+    .mobile-bar-btn.primary:active { transform: scale(.97); }
+    .mobile-bar-btn.gold { background: var(--gold); color: #fff; }
+    .mobile-bar-btn.gold:active { transform: scale(.97); }
+    .mobile-bar-btn svg { flex-shrink: 0; }
+
+    .lightbox { position: fixed; inset: 0; background: rgba(20,8,12,.92); display: none; align-items: center; justify-content: center; z-index: 200; padding: 2rem; opacity: 0; transition: opacity .2s ease; }
+    .lightbox.is-open { display: flex; opacity: 1; }
+    .lightbox-figure { margin: 0; max-width: 90vw; max-height: 90vh; display: flex; flex-direction: column; align-items: center; gap: .8rem; }
+    .lightbox img { max-width: 90vw; max-height: 78vh; border-radius: 12px; object-fit: contain; box-shadow: 0 30px 80px rgba(0,0,0,.5); }
+    .lightbox figcaption { color: var(--cream); font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-style: italic; letter-spacing: .02em; }
+    .lightbox-close, .lightbox-prev, .lightbox-next { position: absolute; background: rgba(251,246,239,.12); border: 1px solid rgba(251,246,239,.25); color: var(--cream); width: 48px; height: 48px; border-radius: 50%; font-size: 1.6rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background .15s ease, transform .15s ease; font-family: inherit; line-height: 1; }
+    .lightbox-close { top: 1.25rem; right: 1.25rem; }
+    .lightbox-prev { left: 1.5rem; top: 50%; transform: translateY(-50%); }
+    .lightbox-next { right: 1.5rem; top: 50%; transform: translateY(-50%); }
+    .lightbox-close:hover, .lightbox-prev:hover, .lightbox-next:hover { background: rgba(251,246,239,.22); }
+    .lightbox-prev:hover { transform: translateY(-50%) scale(1.08); }
+    .lightbox-next:hover { transform: translateY(-50%) scale(1.08); }
+
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s cubic-bezier(0.22,0.61,0.36,1), transform .7s cubic-bezier(0.22,0.61,0.36,1); transition-delay: calc(var(--i, 0) * 60ms); }
+    .reveal.is-visible { opacity: 1; transform: translateY(0); }
+    @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+
+    @media (max-width: 980px) {
+      .social-inner { grid-template-columns: 1fr; gap: 2rem; }
+    }
+
+    @media (max-width: 900px) {
+      .nav { display: none; }
+      .topbar-row { padding: .55rem 1rem; gap: .6rem; }
+      .topbar-call { padding: .5rem .85rem; font-size: .85rem; }
+      .lang-switch { padding: .35rem .6rem; font-size: .72rem; }
+      .brand :global(svg) { height: 56px; }
+      .hero { padding: 3rem 0 4.5rem; }
+      .hero-grid, .about-grid, .visit-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .hero-photo { order: -1; max-width: 340px; margin: 0 auto; }
+      .hero-photo img { aspect-ratio: 1/1; }
+      .hero-badge { bottom: -14px; left: -10px; padding: .7rem 1rem; }
+      .hero-badge strong { font-size: 1.4rem; }
+      .hero h1 { font-size: clamp(2rem, 8vw, 2.8rem); }
+      .hero-cta { flex-direction: column; gap: .7rem; }
+      .hero-cta .btn { justify-content: center; width: 100%; }
+      .hero-stats { grid-template-columns: repeat(2, 1fr); gap: 1.2rem; padding: 1.5rem 0 0; }
+      .hero-stats strong { font-size: 1.5rem; }
+      .why, .services, .about, .work, .reviews, .social, .faq, .visit { padding: 4rem 0; }
+      .section-head { margin-bottom: 2.5rem; }
+      .about-photo { max-width: 360px; margin: 0 auto; }
+      .stylists { grid-template-columns: 1fr; }
+      .visit-ctas { flex-direction: column; }
+      .visit-ctas .btn { width: 100%; justify-content: center; }
+      .footer-inner { grid-template-columns: 1fr; text-align: center; }
+      .footer-brand { justify-content: center; }
+      .footer-meta { text-align: center; }
+      .mobile-bar { display: flex; }
+      body { padding-bottom: 5.5rem; }
+      .lightbox-prev, .lightbox-next { width: 40px; height: 40px; font-size: 1.4rem; }
+      .lightbox-prev { left: .5rem; }
+      .lightbox-next { right: .5rem; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-stats { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+
+  <script is:inline>
+    // Topbar scroll state
+    (() => {
+      const topbar = document.querySelector('.topbar');
+      if (!topbar) return;
+      const onScroll = () => topbar.classList.toggle('scrolled', window.scrollY > 30);
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    })();
+
+    // Reveal-on-scroll with stagger via --i
+    (() => {
+      if (!('IntersectionObserver' in window)) return;
+      const targets = document.querySelectorAll('section, .work-card, .service-card, .review-card, .why-card, .faq-item, .social-tile');
+      targets.forEach((el) => el.classList.add('reveal'));
+      const io = new IntersectionObserver((entries) => entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px', threshold: 0.06 });
+      targets.forEach((el) => io.observe(el));
+    })();
+
+    // Active-nav-on-scroll
+    (() => {
+      if (!('IntersectionObserver' in window)) return;
+      const links = document.querySelectorAll('[data-nav]');
+      if (!links.length) return;
+      const map = new Map();
+      links.forEach((a) => {
+        const href = a.getAttribute('href') || '';
+        if (href.startsWith('#')) {
+          const id = href.slice(1);
+          const sec = document.getElementById(id);
+          if (sec) map.set(sec, a);
+        }
+      });
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          const a = map.get(e.target);
+          if (!a) return;
+          if (e.isIntersecting) {
+            links.forEach((l) => l.classList.remove('is-active'));
+            a.classList.add('is-active');
+          }
+        });
+      }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
+      map.forEach((_a, sec) => io.observe(sec));
+    })();
+
+    // Gallery filter
+    (() => {
+      const btns = document.querySelectorAll('.filter-btn');
+      const items = document.querySelectorAll('#gallery-grid .work-card');
+      if (!btns.length || !items.length) return;
+      btns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const filter = btn.getAttribute('data-filter');
+          btns.forEach((b) => { b.classList.remove('is-active'); b.setAttribute('aria-selected', 'false'); });
+          btn.classList.add('is-active');
+          btn.setAttribute('aria-selected', 'true');
+          items.forEach((it) => {
+            const cat = it.getAttribute('data-cat');
+            if (filter === 'todo' || cat === filter) it.classList.remove('is-hidden');
+            else it.classList.add('is-hidden');
+          });
+        });
+      });
+    })();
+
+    // Lightbox
+    (() => {
+      const lb = document.getElementById('lightbox');
+      const lbImg = document.getElementById('lightbox-img');
+      const lbCap = document.getElementById('lightbox-cap');
+      const closeBtn = lb && lb.querySelector('.lightbox-close');
+      const prevBtn = lb && lb.querySelector('.lightbox-prev');
+      const nextBtn = lb && lb.querySelector('.lightbox-next');
+      const cards = Array.from(document.querySelectorAll('#gallery-grid .work-card'));
+      if (!lb || !lbImg || !lbCap || !cards.length) return;
+      let idx = 0;
+
+      function visibleCards() { return cards.filter((c) => !c.classList.contains('is-hidden')); }
+      function open(i) {
+        const list = visibleCards();
+        if (!list.length) return;
+        idx = ((i % list.length) + list.length) % list.length;
+        const card = list[idx];
+        lbImg.src = card.getAttribute('data-src') || '';
+        lbImg.alt = card.getAttribute('data-label') || '';
+        lbCap.textContent = card.getAttribute('data-label') || '';
+        lb.classList.add('is-open');
+        lb.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+      function close() {
+        lb.classList.remove('is-open');
+        lb.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+      function step(d) { open(idx + d); }
+
+      cards.forEach((card, i) => {
+        card.addEventListener('click', () => {
+          const list = visibleCards();
+          const pos = list.indexOf(card);
+          open(pos >= 0 ? pos : 0);
+        });
+        card.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.click(); }
+        });
+      });
+      closeBtn && closeBtn.addEventListener('click', close);
+      prevBtn && prevBtn.addEventListener('click', () => step(-1));
+      nextBtn && nextBtn.addEventListener('click', () => step(1));
+      lb.addEventListener('click', (e) => { if (e.target === lb) close(); });
+      document.addEventListener('keydown', (e) => {
+        if (!lb.classList.contains('is-open')) return;
+        if (e.key === 'Escape') close();
+        if (e.key === 'ArrowLeft') step(-1);
+        if (e.key === 'ArrowRight') step(1);
+      });
+    })();
+  </script>
+</Base>
