@@ -4,11 +4,12 @@ export interface Props {
   variant?: 'dark' | 'light';
 }
 const { size = 'md', variant = 'dark' } = Astro.props;
-// Logo asset is a horizontal lockup: MB-monogram-with-crown + Mía + BEAUTY BOUTIQUE.
-// Source: public/images/brand/logo-mb-mia-{dark|light}.png
-// Heights tuned for header (md ~ 72px tall) and footer (sm ~ 44px tall).
+// Approved brand logo system (extracted from "color salon logo 1.png"):
+//   dark  -> logo-primary-color.png   (gold MB monogram + crown + dark wordmark, for light bg)
+//   light -> logo-primary-reverse.png (gold monogram + cream wordmark, for dark bg)
+// Stacked lockup ~1.35:1. Heights tuned for header (md) and footer (sm).
 const BASE = import.meta.env.BASE_URL;
-const file = variant === 'light' ? 'logo-mb-mia-light.png' : 'logo-mb-mia-dark.png';
+const file = variant === 'light' ? 'logo-primary-reverse.png' : 'logo-primary-color.png';
 const src = `${BASE}images/brand/${file}`;
 ---
 
@@ -22,11 +23,11 @@ const src = `${BASE}images/brand/${file}`;
 
 <style>
   .mia-logo { display: block; width: auto; max-width: 100%; }
-  .mia-logo-sm { height: 44px; }
-  .mia-logo-md { height: 72px; }
-  .mia-logo-lg { height: 100px; }
+  .mia-logo-sm { height: 56px; }
+  .mia-logo-md { height: 78px; }
+  .mia-logo-lg { height: 110px; }
 
   @media (max-width: 900px) {
-    .mia-logo-md { height: 56px; }
+    .mia-logo-md { height: 62px; }
   }
 </style>
