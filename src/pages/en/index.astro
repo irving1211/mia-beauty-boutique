@@ -40,14 +40,14 @@ const signatureServices = services.filter((s) => s.tier === 'signature');
 const secondaryServices = services.filter((s) => s.tier === 'secondary');
 
 const whyMia = [
-  { title: 'Dominican hair with real judgment', body: 'We work with curls, waves, mixed textures, color, and chemical processes with real experience. We know when to add shine, when to protect, and how to get a beautiful result without overdoing the hair.' },
-  { title: 'Walk-in friendly, still attentive', body: "You can come in without an appointment and still feel taken care of. We keep the visit organized, comfortable, and personal." },
-  { title: 'Natural communication, honest guidance', body: "We listen well, speak clearly, and guide you toward what actually suits you. The goal is for you to feel comfortable and confident from the start." },
-  { title: 'Results that look good and last', body: 'Blowouts with movement, color done well, and transformations that look beautiful in real life, not just in photos.' },
+  { title: 'Hair done with technique', body: 'We care about the process, the finish, and what truly suits you. The goal is a result that looks beautiful and feels right.' },
+  { title: 'Personalized attention', body: 'We listen to what you want, guide you honestly, and work with care so you leave happy with your result.' },
+  { title: 'Quality in every detail', body: 'From blowouts to color and styling, we work with dedication, quality products, and good taste.' },
+  { title: 'An experience you enjoy', body: 'We want you to feel comfortable, pampered, and confident throughout the visit, not just at the end.' },
 ];
 
 const stylists = [
-  { name: 'Marilyn', role: 'Founder · Lead Stylist', body: 'More than 30 years of experience in Dominican blowouts, color, and hair care. Her focus has always been the same: work with detail and make sure every client leaves looking beautiful.' },
+  { name: 'Marilyn', role: 'Founder · Lead Stylist', body: 'Specialist in Dominican blowouts, color, and hair care. Her focus has always been the same: work with detail and make sure every client leaves looking beautiful.' },
   { name: 'The team', role: 'Bilingual Stylists', body: 'Color, cuts, extensions, bridal, makeup, and bilingual service. We work as a team so your visit feels smooth, organized, and well cared for.' },
 ];
 
@@ -127,10 +127,10 @@ const faqs = [
   <section class="hero" id="top">
     <div class="container hero-grid">
       <div class="hero-copy">
-        <span class="eyebrow">Lawrence, MA · Beauty with experience and real care</span>
-        <h1>Where Dominican hair <em>shines</em>.</h1>
+        <span class="eyebrow">Over 30 years making you feel beautiful</span>
+        <h1>Where the Dominican blowout <em>shines</em>.</h1>
         <p class="hero-lede">
-          Mía Beauty Boutique is a salon in Lawrence, MA where hair is done with technique, care, and taste. Come in for a beautiful blowout, a well-done color, a full transformation, or simply to feel taken care of from start to finish.
+          Welcome to Mía Beauty Boutique, a beauty salon in Lawrence, Massachusetts dedicated to bringing out your beauty and confidence through professional, personalized, high-quality service.
         </p>
         <div class="hero-cta">
           <a class="btn btn-primary" href={`tel:${phoneTel}`}>Call the Salon</a>
@@ -138,17 +138,16 @@ const faqs = [
           <a class="btn btn-ghost" href="#consulta">Bridal · color · transformation</a>
         </div>
         <ul class="hero-stats">
-          <li><strong>30+</strong><span>years of experience</span></li>
+          <li><strong>Care</strong><span>warm and professional</span></li>
           <li><strong>Walk-ins</strong><span>first come, first served</span></li>
           <li><strong>Bilingual</strong><span>english · español</span></li>
-          <li><strong>Specialty</strong><span>blowouts · color · transformations</span></li>
+          <li><strong>Specialty</strong><span>blowouts · color · styling</span></li>
         </ul>
       </div>
       <div class="hero-photo">
         <img src={img('mia-1.jpg')} alt="Featured work from Mía Beauty Boutique" loading="eager" />
-        <div class="hero-badge">
-          <strong>30+</strong>
-          <span>years in Lawrence</span>
+        <div class="hero-badge hero-badge--phrase">
+          <span>Beauty · care · results</span>
         </div>
       </div>
     </div>
@@ -164,10 +163,10 @@ const faqs = [
         <span class="kicker">Meet Marilyn</span>
         <h2>Hi, I'm Marilyn.</h2>
         <p>
-          I've dedicated my life to this salon and to taking care of every client with warmth, judgment, and experience. The salon is named after my daughter, Mía, but everything we do here comes from the same commitment: that you leave feeling beautiful, confident, and cared for.
+          At Mía Beauty Boutique, we work so every client feels cared for, heard, and confident in her beauty. The salon is named after my daughter, Mía, and everything we do here comes from warmth, experience, and attention to detail.
         </p>
         <p>
-          We focus on doing things well — from a flawless blowout to color, transformations, and special-occasion services. If it's your first time, we'll take care of you with real attention. If you already know us, you know how we work here.
+          We focus on offering professional, personalized, high-quality service so that every visit feels special and every result makes you feel truly beautiful.
         </p>
         <span class="founder-sig">— Marilyn, founder</span>
       </div>
@@ -179,7 +178,7 @@ const faqs = [
       <div class="section-head">
         <span class="kicker">Why Mía</span>
         <h2>What you won't find at another salon.</h2>
-        <p class="section-sub">Dominican technique, real attention, and results you can see. That's what sets us apart.</p>
+        <p class="section-sub">At Mía Beauty Boutique, every client is the priority. We combine experience, professional technique, and warm attention so you feel heard, pampered, and confident in your results.</p>
       </div>
       <div class="why-grid">
         {whyMia.map((w, i) => (
@@ -197,8 +196,8 @@ const faqs = [
     <div class="container">
       <div class="section-head">
         <span class="kicker">Services</span>
-        <h2>What we do best.</h2>
-        <p class="section-sub">We're specialists in Dominican hair — blowouts, color, bridal, and transformations. We also take care of everything else your beauty needs.</p>
+        <h2>Everything your beauty needs in one place.</h2>
+        <p class="section-sub">Specialists in hair, color, and styling. We also offer semi-permanent makeup, hair removal, acrylic nails, manicure, pedicure, and gel, always with professional attention and quality products. Accessible prices — call us for more information.</p>
       </div>
 
       <div class="signature-grid">
@@ -249,12 +248,12 @@ const faqs = [
       </div>
       <div class="about-copy">
         <span class="kicker">About</span>
-        <h2>Beautiful work, real attention.</h2>
+        <h2>Beauty, confidence, and quality care.</h2>
         <p>
-          Mía Beauty Boutique is a Dominican salon in the heart of Lawrence. People know us for the blowout, for color, for the way we treat the hair, and for the attention we give every client.
+          Mía Beauty Boutique is a beauty salon in Lawrence where we work to bring out your beauty and confidence through services done with experience, care, and dedication.
         </p>
         <p>
-          We work with technique, professional products, and a clear eye for what suits you. We want you to feel comfortable, guided, and genuinely happy with the result.
+          We combine technique, personalized attention, and quality products so you feel renewed, cared for, and happy with every result.
         </p>
         <div class="stylists">
           {stylists.map((s) => (
@@ -266,7 +265,7 @@ const faqs = [
           ))}
         </div>
         <p class="about-pull">
-          When you leave here, you leave looking beautiful, feeling confident, and knowing it was worth the visit.
+          More than a service, we want you to enjoy an experience where you feel beautiful, pampered, and confident.
         </p>
       </div>
     </div>
@@ -275,9 +274,9 @@ const faqs = [
   <section class="heritage">
     <div class="container heritage-inner">
       <span class="kicker light">Our roots</span>
-      <h2>Dominican hair. Technique you can see.</h2>
+      <h2>Where the Dominican blowout shines.</h2>
       <p>
-        We specialize in Dominican hair: blowouts, color, texture work, smoothing, and well-executed transformations. It's done with practice, care, and a way of working you can feel in the result.
+        We specialize in bringing out the beauty of the hair through technique, care, and quality results. That is a big part of what makes us different.
       </p>
     </div>
   </section>
@@ -533,6 +532,8 @@ const faqs = [
     .hero-badge { position: absolute; bottom: -18px; left: -18px; background: var(--cream); padding: .9rem 1.2rem; border-radius: 12px; box-shadow: 0 12px 30px rgba(122,31,43,.18); display: flex; flex-direction: column; gap: .15rem; border: 1px solid var(--line); }
     .hero-badge strong { font-family: 'Cormorant Garamond', serif; font-size: 1.7rem; color: var(--burgundy); line-height: 1; }
     .hero-badge span { font-size: .72rem; color: var(--ink-muted); letter-spacing: .08em; text-transform: uppercase; font-weight: 600; }
+    .hero-badge--phrase { padding: .8rem 1.2rem; }
+    .hero-badge--phrase span { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; color: var(--burgundy); font-style: italic; letter-spacing: .02em; text-transform: none; font-weight: 600; }
 
     .section-head { text-align: center; max-width: 760px; margin: 0 auto 3.5rem; }
     .kicker { font-size: .74rem; font-weight: 600; color: var(--gold); letter-spacing: .14em; text-transform: uppercase; display: inline-block; margin-bottom: 1.1rem; }

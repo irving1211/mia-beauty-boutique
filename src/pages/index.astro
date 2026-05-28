@@ -40,14 +40,14 @@ const signatureServices = services.filter((s) => s.tier === 'signature');
 const secondaryServices = services.filter((s) => s.tier === 'secondary');
 
 const whyMia = [
-  { title: 'Cabello dominicano con criterio', body: 'Trabajamos rizos, ondas, texturas mixtas, color y procesos con experiencia real. Sabemos cuándo dar brillo, cuándo cuidar, y cómo lograr un resultado bonito sin maltratar el cabello.' },
-  { title: 'Sin cita, pero bien atendida', body: 'Aquí puedes llegar y te recibimos por orden de llegada. Hacemos que la visita se sienta organizada, cómoda y con atención de verdad.' },
-  { title: 'Español natural, trato cercano', body: 'Te hablamos claro, te escuchamos bien y te orientamos según lo que te favorece. Queremos que te sientas cómoda y segura desde que entras.' },
-  { title: 'Resultados que lucen y duran', body: 'Blowers con movimiento, color bien trabajado y cambios que se ven bonitos en persona, no solo en foto.' },
+  { title: 'Cabello trabajado con técnica', body: 'Aquí cuidamos el proceso, el acabado y cómo te favorece cada servicio. Nos importa que el resultado se vea bonito y se sienta bien.' },
+  { title: 'Atención personalizada', body: 'Escuchamos lo que quieres, te orientamos con sinceridad y trabajamos con cuidado para que salgas feliz con tu resultado.' },
+  { title: 'Calidad en cada detalle', body: 'Desde el blower hasta el color y el peinado, trabajamos con dedicación, productos de calidad y buen gusto.' },
+  { title: 'Una experiencia que se disfruta', body: 'Queremos que te sientas cómoda, consentida y segura durante toda tu visita, no solo al final.' },
 ];
 
 const stylists = [
-  { name: 'Marilyn', role: 'Fundadora · Estilista principal', body: 'Más de 30 años de experiencia en blower dominicano, color y cuidado del cabello. Su enfoque siempre ha sido el mismo: trabajar con detalle y hacer que cada clienta salga viéndose hermosa.' },
+  { name: 'Marilyn', role: 'Fundadora · Estilista principal', body: 'Especialista en blower dominicano, color y cuidado del cabello. Su enfoque siempre ha sido el mismo: trabajar con detalle y hacer que cada clienta salga viéndose hermosa.' },
   { name: 'El equipo', role: 'Estilistas bilingües', body: 'Color, cortes, extensiones, novias, maquillaje y atención bilingüe. Trabajamos en equipo para que tu visita se sienta ágil, organizada y bien cuidada.' },
 ];
 
@@ -127,10 +127,10 @@ const faqs = [
   <section class="hero" id="top">
     <div class="container hero-grid">
       <div class="hero-copy">
-        <span class="eyebrow">Lawrence, MA · Belleza con experiencia y mucho cuidado</span>
-        <h1>Donde el cabello dominicano <em>brilla</em>.</h1>
+        <span class="eyebrow">Más de 30 años haciéndote sentir hermosa</span>
+        <h1>Donde el blower dominicano <em>brilla</em>.</h1>
         <p class="hero-lede">
-          Mía Beauty Boutique es un salón en Lawrence, MA donde trabajamos el cabello con técnica, cuidado y buen gusto. Aquí vienes por un blower hermoso, un color bien hecho, una transformación, o simplemente por sentirte bien atendida de principio a fin.
+          Bienvenida a Mía Beauty Boutique, un salón de belleza en Lawrence, Massachusetts, dedicado a resaltar tu belleza y tu confianza con un servicio profesional, personalizado y de alta calidad.
         </p>
         <div class="hero-cta">
           <a class="btn btn-primary" href={`tel:${phoneTel}`}>Llamar al salón</a>
@@ -138,17 +138,16 @@ const faqs = [
           <a class="btn btn-ghost" href="#consulta">¿Boda, color, transformación?</a>
         </div>
         <ul class="hero-stats">
-          <li><strong>30+</strong><span>años de experiencia</span></li>
+          <li><strong>Atención</strong><span>cálida y profesional</span></li>
           <li><strong>Sin cita</strong><span>te atendemos por orden</span></li>
-          <li><strong>Bilingüe</strong><span>español · english</span></li>
-          <li><strong>Especialidad</strong><span>blower · color · cambios</span></li>
+          <li><strong>Bilingüe</strong><span>español · inglés</span></li>
+          <li><strong>Especialidad</strong><span>blower · color · peinados</span></li>
         </ul>
       </div>
       <div class="hero-photo">
         <img src={img('mia-1.jpg')} alt="Trabajo destacado de Mía Beauty Boutique" loading="eager" />
-        <div class="hero-badge">
-          <strong>30+</strong>
-          <span>años en Lawrence</span>
+        <div class="hero-badge hero-badge--phrase">
+          <span>Belleza · cuidado · resultados</span>
         </div>
       </div>
     </div>
@@ -164,10 +163,10 @@ const faqs = [
         <span class="kicker">Conoce a Marilyn</span>
         <h2>Hola, soy Marilyn.</h2>
         <p>
-          He dedicado mi vida a este salón y a atender a cada clienta con cariño, criterio y experiencia. El salón lleva el nombre de mi hija, Mía, pero todo lo que hacemos aquí nace del mismo compromiso: que salgas sintiéndote bella, segura y bien cuidada.
+          En Mía Beauty Boutique trabajamos para que cada clienta se sienta bien atendida, escuchada y segura de su belleza. El salón lleva el nombre de mi hija, Mía, y todo lo que hacemos aquí nace del cariño, la experiencia y la atención a cada detalle.
         </p>
         <p>
-          Nos enfocamos en hacerlo bien — desde un blower impecable hasta color, cambios y servicios para días especiales. Si vienes por primera vez, te vamos a recibir con mucha atención. Si ya nos conoces, sabes cómo trabajamos aquí.
+          Nos enfocamos en ofrecer un servicio profesional, personalizado y de alta calidad, para que cada visita se sienta especial y cada resultado te haga sentir hermosa de verdad.
         </p>
         <span class="founder-sig">— Marilyn, fundadora</span>
       </div>
@@ -179,7 +178,7 @@ const faqs = [
       <div class="section-head">
         <span class="kicker">Por qué Mía</span>
         <h2>Lo que no encuentras en otro salón.</h2>
-        <p class="section-sub">Técnica dominicana, atención de verdad y resultados que se notan. Eso es lo que nos distingue.</p>
+        <p class="section-sub">En Mía Beauty Boutique cada clienta es prioridad. Combinamos experiencia, técnicas profesionales y una atención cálida para que te sientas escuchada, consentida y segura de tus resultados.</p>
       </div>
       <div class="why-grid">
         {whyMia.map((w, i) => (
@@ -197,8 +196,8 @@ const faqs = [
     <div class="container">
       <div class="section-head">
         <span class="kicker">Servicios</span>
-        <h2>Lo que hacemos mejor.</h2>
-        <p class="section-sub">Somos especialistas en cabello dominicano — blower, color, novias y transformaciones. Y también atendemos todo lo demás que tu belleza necesita.</p>
+        <h2>Todo lo que tu belleza necesita en un solo lugar.</h2>
+        <p class="section-sub">Especialistas en cabello, color y peinados. También ofrecemos maquillaje semipermanente, depilación, uñas acrílicas, manicura, pedicura y gel, siempre con atención profesional y productos de calidad. Precios accesibles — llámanos para más información.</p>
       </div>
 
       <div class="signature-grid">
@@ -249,12 +248,12 @@ const faqs = [
       </div>
       <div class="about-copy">
         <span class="kicker">Sobre nosotras</span>
-        <h2>Belleza bien hecha, atención de verdad.</h2>
+        <h2>Belleza, confianza y atención de calidad.</h2>
         <p>
-          Mía Beauty Boutique es un salón dominicano en el corazón de Lawrence. Nos conocen por el blower, por el color, por cómo tratamos el cabello y por la forma en que atendemos a cada clienta con dedicación.
+          Mía Beauty Boutique es un salón de belleza en Lawrence donde trabajamos para resaltar tu belleza y tu confianza con servicios realizados con experiencia, cuidado y dedicación.
         </p>
         <p>
-          Aquí se trabaja con técnica, productos profesionales y un ojo claro para lo que te favorece. Queremos que te sientas cómoda, bien orientada y feliz con el resultado.
+          Aquí combinamos técnica, atención personalizada y productos de calidad para que te sientas renovada, bien atendida y feliz con cada resultado.
         </p>
         <div class="stylists">
           {stylists.map((s) => (
@@ -266,7 +265,7 @@ const faqs = [
           ))}
         </div>
         <p class="about-pull">
-          Cuando sales de aquí, sales viéndote hermosa, sintiéndote segura y sabiendo que valió la pena venir.
+          Más que un servicio, queremos que vivas una experiencia donde te sientas hermosa, consentida y segura de ti misma.
         </p>
       </div>
     </div>
@@ -275,9 +274,9 @@ const faqs = [
   <section class="heritage">
     <div class="container heritage-inner">
       <span class="kicker light">Nuestras raíces</span>
-      <h2>Cabello dominicano. Técnica que se nota.</h2>
+      <h2>Donde el blower dominicano brilla.</h2>
       <p>
-        Somos especialistas en cabello dominicano: blower, color, texturas, alisados y cambios bien trabajados. Lo hacemos con práctica, cuidado y una forma de trabajar que se siente en el resultado.
+        Nos especializamos en realzar la belleza del cabello con técnica, cuidado y resultados de calidad. Esa es una parte esencial de lo que nos distingue.
       </p>
     </div>
   </section>
@@ -533,6 +532,8 @@ const faqs = [
     .hero-badge { position: absolute; bottom: -18px; left: -18px; background: var(--cream); padding: .9rem 1.2rem; border-radius: 12px; box-shadow: 0 12px 30px rgba(122,31,43,.18); display: flex; flex-direction: column; gap: .15rem; border: 1px solid var(--line); }
     .hero-badge strong { font-family: 'Cormorant Garamond', serif; font-size: 1.7rem; color: var(--burgundy); line-height: 1; }
     .hero-badge span { font-size: .72rem; color: var(--ink-muted); letter-spacing: .08em; text-transform: uppercase; font-weight: 600; }
+    .hero-badge--phrase { padding: .8rem 1.2rem; }
+    .hero-badge--phrase span { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; color: var(--burgundy); font-style: italic; letter-spacing: .02em; text-transform: none; font-weight: 600; }
 
     .section-head { text-align: center; max-width: 760px; margin: 0 auto 3.5rem; }
     .kicker { font-size: .74rem; font-weight: 600; color: var(--gold); letter-spacing: .14em; text-transform: uppercase; display: inline-block; margin-bottom: 1.1rem; }
