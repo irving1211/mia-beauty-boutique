@@ -40,15 +40,15 @@ const signatureServices = services.filter((s) => s.tier === 'signature');
 const secondaryServices = services.filter((s) => s.tier === 'secondary');
 
 const whyMia = [
-  { title: 'Dominican hair specialists', body: 'More than 30 years working curls, waves, mixed textures, color, and chemistry. We learned it at home and perfected it here in Lawrence.' },
-  { title: 'Walk-ins, no stress', body: "Walk-ins welcome. Come when you can, we'll get you in. Perfect for busy moms and tight schedules." },
-  { title: 'Bilingual & family-run', body: "We greet you in English or Spanish. Family salon — three generations of clients, zero factory feel." },
-  { title: 'Results that last', body: 'Blowouts that last the week. Color that protects your hair. Decades of craft behind every chair.' },
+  { title: 'Dominican hair with real judgment', body: 'We work with curls, waves, mixed textures, color, and chemical processes with real experience. We know when to add shine, when to protect, and how to get a beautiful result without overdoing the hair.' },
+  { title: 'Walk-in friendly, still attentive', body: "You can come in without an appointment and still feel taken care of. We keep the visit organized, comfortable, and personal." },
+  { title: 'Natural communication, honest guidance', body: "We listen well, speak clearly, and guide you toward what actually suits you. The goal is for you to feel comfortable and confident from the start." },
+  { title: 'Results that look good and last', body: 'Blowouts with movement, color done well, and transformations that look beautiful in real life, not just in photos.' },
 ];
 
 const stylists = [
-  { name: 'Marilyn', role: 'Founder · Master Stylist', body: '30+ years perfecting the Dominican blowout. Three generations of clients know her by name.' },
-  { name: 'The team', role: 'Bilingual Stylists', body: 'Specialists in color, cuts, extensions, bridal, and makeup. We work as a team — someone is always ready for you.' },
+  { name: 'Marilyn', role: 'Founder · Lead Stylist', body: 'More than 30 years of experience in Dominican blowouts, color, and hair care. Her focus has always been the same: work with detail and make sure every client leaves looking beautiful.' },
+  { name: 'The team', role: 'Bilingual Stylists', body: 'Color, cuts, extensions, bridal, makeup, and bilingual service. We work as a team so your visit feels smooth, organized, and well cared for.' },
 ];
 
 const reviews = [
@@ -92,7 +92,7 @@ const faqs = [
   { q: 'Do I need a consultation before a wedding or full color?', a: "We recommend calling ahead — that way we arrive ready on the day. For brides we do a trial of makeup and hairstyle before the event. For full color or correction, we talk by phone or you stop in so we can see the hair." },
   { q: 'Do you ask for a deposit for brides?', a: "To hold your date we ask for a small deposit, which comes off the total on the day of the event. Call us for the details — every wedding is different." },
   { q: 'What are the best days to come in?', a: 'Tuesday through Thursday are our slowest days. Friday and Saturday are busiest — we still get you in, but wait can be longer. Earlier is better.' },
-  { q: 'Do you work with all hair types?', a: 'Yes. We specialize in Dominican hair — curls, waves, mixed textures, fine, thick, color-treated, all of it. Decades of experience with every type.' },
+  { q: 'Do you work with all hair types?', a: 'Yes. We specialize in Dominican hair — curls, waves, mixed textures, fine, thick, color-treated, all of it. We work each type with the right technique.' },
   { q: 'Do you do nails too?', a: 'Yes. We offer manicure, pedicure, gel nails, acrylic, dip powder, and nail art. You can get hair and nails done in the same visit — perfect for brides, events, or a full pampering day.' },
   { q: 'How long does a Dominican blowout last?', a: 'With basic care (silk cap at night, no getting it wet) our Dominican blowout lasts the whole week — many clients get 10 days.' },
   { q: 'Do you do bridal and large events?', a: 'Yes. For bridal, book your date in advance (ideally 4-8 weeks). We offer makeup and hair trials. Call to talk through your day.' },
@@ -127,10 +127,10 @@ const faqs = [
   <section class="hero" id="top">
     <div class="container hero-grid">
       <div class="hero-copy">
-        <span class="eyebrow">Lawrence, MA · 30+ years making women feel beautiful</span>
+        <span class="eyebrow">Lawrence, MA · Beauty with experience and real care</span>
         <h1>Where Dominican hair <em>shines</em>.</h1>
         <p class="hero-lede">
-          Mía Beauty Boutique is a family-run salon in Lawrence, MA — over three decades perfecting the Dominican blowout, color, bridal, and everything that makes you look exactly how you want to look.
+          Mía Beauty Boutique is a salon in Lawrence, MA where hair is done with technique, care, and taste. Come in for a beautiful blowout, a well-done color, a full transformation, or simply to feel taken care of from start to finish.
         </p>
         <div class="hero-cta">
           <a class="btn btn-primary" href={`tel:${phoneTel}`}>Call the Salon</a>
@@ -141,7 +141,7 @@ const faqs = [
           <li><strong>30+</strong><span>years of experience</span></li>
           <li><strong>Walk-ins</strong><span>first come, first served</span></li>
           <li><strong>Bilingual</strong><span>english · español</span></li>
-          <li><strong>Family</strong><span>3 generations</span></li>
+          <li><strong>Specialty</strong><span>blowouts · color · transformations</span></li>
         </ul>
       </div>
       <div class="hero-photo">
@@ -164,10 +164,10 @@ const faqs = [
         <span class="kicker">Meet Marilyn</span>
         <h2>Hi, I'm Marilyn.</h2>
         <p>
-          I've been running this salon for more than 30 years, taking care of Lawrence families — grandmothers, mothers, daughters, and now granddaughters. The salon is named after my daughter, Mía, but the heart of the work has always been the same: taking care of every client with experience, warmth, and consistency.
+          I've dedicated my life to this salon and to taking care of every client with warmth, judgment, and experience. The salon is named after my daughter, Mía, but everything we do here comes from the same commitment: that you leave feeling beautiful, confident, and cared for.
         </p>
         <p>
-          What we do here was learned at home, refined over the years, and we still do it with the same care. If you're coming for the first time, we'll welcome you like family. If you've been with us for years, you already know your hair is in good hands.
+          We focus on doing things well — from a flawless blowout to color, transformations, and special-occasion services. If it's your first time, we'll take care of you with real attention. If you already know us, you know how we work here.
         </p>
         <span class="founder-sig">— Marilyn, founder</span>
       </div>
@@ -179,7 +179,7 @@ const faqs = [
       <div class="section-head">
         <span class="kicker">Why Mía</span>
         <h2>What you won't find at another salon.</h2>
-        <p class="section-sub">Decades of Dominican craft, a family atmosphere, and results that last. This is what makes us different.</p>
+        <p class="section-sub">Dominican technique, real attention, and results you can see. That's what sets us apart.</p>
       </div>
       <div class="why-grid">
         {whyMia.map((w, i) => (
@@ -249,12 +249,12 @@ const faqs = [
       </div>
       <div class="about-copy">
         <span class="kicker">About</span>
-        <h2>Family. Craft. Three generations.</h2>
+        <h2>Beautiful work, real attention.</h2>
         <p>
-          Mía Beauty Boutique is a Dominican family salon in the heart of Lawrence. For more than 30 years we've taken care of three generations — grandmothers who already know the salon, daughters who grew up coming in, and now their granddaughters.
+          Mía Beauty Boutique is a Dominican salon in the heart of Lawrence. People know us for the blowout, for color, for the way we treat the hair, and for the attention we give every client.
         </p>
         <p>
-          What makes us different is the combination: lifelong Dominican technique, professional products, and the warm attention of a family that's been doing this well for decades. Here you're not just a customer — you're part of the house.
+          We work with technique, professional products, and a clear eye for what suits you. We want you to feel comfortable, guided, and genuinely happy with the result.
         </p>
         <div class="stylists">
           {stylists.map((s) => (
@@ -266,7 +266,7 @@ const faqs = [
           ))}
         </div>
         <p class="about-pull">
-          When you walk out of here, you walk out feeling more beautiful, taken care of, and like yourself — but better.
+          When you leave here, you leave looking beautiful, feeling confident, and knowing it was worth the visit.
         </p>
       </div>
     </div>
@@ -275,9 +275,9 @@ const faqs = [
   <section class="heritage">
     <div class="container heritage-inner">
       <span class="kicker light">Our roots</span>
-      <h2>Dominican hair. Thirty years of craft.</h2>
+      <h2>Dominican hair. Technique you can see.</h2>
       <p>
-        We're specialists in Dominican hair — curls, waves, mixed textures, color, and chemical processes. We learned it at home, perfected it here in Lawrence, and we still practice it the same way. No shortcuts. No rush. With care.
+        We specialize in Dominican hair: blowouts, color, texture work, smoothing, and well-executed transformations. It's done with practice, care, and a way of working you can feel in the result.
       </p>
     </div>
   </section>
@@ -414,7 +414,7 @@ const faqs = [
     <div class="container worth-inner">
       <span class="kicker">Clients come from across the area</span>
       <h3>Lawrence, Methuen, Andover, Haverhill, Lowell, and Salem, NH.</h3>
-      <p>Some have been coming for more than twenty years. Worth the drive — always worth the care.</p>
+      <p>Worth the drive. Worth the technique. And always worth the care.</p>
     </div>
   </section>
 

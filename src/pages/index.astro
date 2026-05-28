@@ -40,15 +40,15 @@ const signatureServices = services.filter((s) => s.tier === 'signature');
 const secondaryServices = services.filter((s) => s.tier === 'secondary');
 
 const whyMia = [
-  { title: 'Especialistas en cabello dominicano', body: 'Más de 30 años trabajando rizos, ondas, texturas mixtas, color y química. Lo aprendimos en casa y lo perfeccionamos aquí en Lawrence.' },
-  { title: 'Sin cita, sin estrés', body: 'Walk-ins bienvenidas. Llega cuando puedas y te atendemos por orden. Perfecto para mamás ocupadas y horarios apretados.' },
-  { title: 'Bilingüe y familiar', body: 'Te atendemos en español o english. Salón familiar — tres generaciones de clientas, cero ambiente de fábrica.' },
-  { title: 'Resultados que duran', body: 'Blowouts que aguantan toda la semana. Color que cuida el cabello. Técnica con décadas de oficio detrás.' },
+  { title: 'Cabello dominicano con criterio', body: 'Trabajamos rizos, ondas, texturas mixtas, color y procesos con experiencia real. Sabemos cuándo dar brillo, cuándo cuidar, y cómo lograr un resultado bonito sin maltratar el cabello.' },
+  { title: 'Sin cita, pero bien atendida', body: 'Aquí puedes llegar y te recibimos por orden de llegada. Hacemos que la visita se sienta organizada, cómoda y con atención de verdad.' },
+  { title: 'Español natural, trato cercano', body: 'Te hablamos claro, te escuchamos bien y te orientamos según lo que te favorece. Queremos que te sientas cómoda y segura desde que entras.' },
+  { title: 'Resultados que lucen y duran', body: 'Blowers con movimiento, color bien trabajado y cambios que se ven bonitos en persona, no solo en foto.' },
 ];
 
 const stylists = [
-  { name: 'Marilyn', role: 'Fundadora · Maestra estilista', body: 'Más de 30 años perfeccionando el blower dominicano. Tres generaciones de clientas la conocen por nombre.' },
-  { name: 'El equipo', role: 'Estilistas bilingües', body: 'Especialistas en color, cortes, extensiones, novias y maquillaje. Trabajamos en equipo — siempre tienes a alguien lista para atenderte.' },
+  { name: 'Marilyn', role: 'Fundadora · Estilista principal', body: 'Más de 30 años de experiencia en blower dominicano, color y cuidado del cabello. Su enfoque siempre ha sido el mismo: trabajar con detalle y hacer que cada clienta salga viéndose hermosa.' },
+  { name: 'El equipo', role: 'Estilistas bilingües', body: 'Color, cortes, extensiones, novias, maquillaje y atención bilingüe. Trabajamos en equipo para que tu visita se sienta ágil, organizada y bien cuidada.' },
 ];
 
 const reviews = [
@@ -92,7 +92,7 @@ const faqs = [
   { q: '¿Necesito consulta antes de una boda o color completo?', a: 'Recomendamos llamar antes para hablar — así llegamos al día listas. Para novias hacemos prueba de maquillaje y peinado antes del evento. Para color completo o corrección, conversamos por teléfono o pasas al salón para que veamos el cabello.' },
   { q: '¿Piden depósito para novias?', a: 'Para asegurar tu fecha pedimos un depósito pequeño que se descuenta del total el día del evento. Llámanos para los detalles — cada boda es distinta.' },
   { q: '¿Cuáles son los mejores días para venir?', a: 'Martes a jueves son nuestros días más tranquilos. Viernes y sábados son los más llenos — te atendemos igual, pero la espera puede ser más larga. Si vienes temprano, mejor.' },
-  { q: '¿Trabajan con todo tipo de cabello?', a: 'Sí. Somos especialistas en cabello dominicano — rizos, ondas, texturas mixtas, cabello fino, grueso, teñido, todo. Décadas de experiencia con cada tipo.' },
+  { q: '¿Trabajan con todo tipo de cabello?', a: 'Sí. Somos especialistas en cabello dominicano — rizos, ondas, texturas mixtas, cabello fino, grueso, teñido, todo. Trabajamos cada tipo con la técnica correcta.' },
   { q: '¿También hacen uñas?', a: 'Sí. Ofrecemos manicura, pedicura, uñas de gel, acrílicas, dip powder y arte de uñas. Puedes hacer cabello y uñas en la misma visita — perfecto para novias, eventos, o cuando quieres consentirte completa.' },
   { q: '¿Cuánto dura el blowout dominicano?', a: 'Con cuidado básico (gorro de noche, no mojarlo) un blowout dominicano nuestro te dura toda la semana — muchas clientas llegan a 10 días.' },
   { q: '¿Hacen novias y eventos grandes?', a: 'Sí. Para novias separa tu fecha con tiempo (idealmente 4-8 semanas antes). Ofrecemos prueba de maquillaje y peinado. Llama para hablar de tu día.' },
@@ -127,10 +127,10 @@ const faqs = [
   <section class="hero" id="top">
     <div class="container hero-grid">
       <div class="hero-copy">
-        <span class="eyebrow">Lawrence, MA · Más de 30 años haciéndote sentir bella</span>
+        <span class="eyebrow">Lawrence, MA · Belleza con experiencia y mucho cuidado</span>
         <h1>Donde el cabello dominicano <em>brilla</em>.</h1>
         <p class="hero-lede">
-          Mía Beauty Boutique es un salón familiar en Lawrence, MA — más de tres décadas perfeccionando el blowout dominicano, el color, las novias, y todo lo que te hace verte como tú quieres verte.
+          Mía Beauty Boutique es un salón en Lawrence, MA donde trabajamos el cabello con técnica, cuidado y buen gusto. Aquí vienes por un blower hermoso, un color bien hecho, una transformación, o simplemente por sentirte bien atendida de principio a fin.
         </p>
         <div class="hero-cta">
           <a class="btn btn-primary" href={`tel:${phoneTel}`}>Llamar al salón</a>
@@ -141,7 +141,7 @@ const faqs = [
           <li><strong>30+</strong><span>años de experiencia</span></li>
           <li><strong>Sin cita</strong><span>te atendemos por orden</span></li>
           <li><strong>Bilingüe</strong><span>español · english</span></li>
-          <li><strong>Familia</strong><span>3 generaciones</span></li>
+          <li><strong>Especialidad</strong><span>blower · color · cambios</span></li>
         </ul>
       </div>
       <div class="hero-photo">
@@ -164,10 +164,10 @@ const faqs = [
         <span class="kicker">Conoce a Marilyn</span>
         <h2>Hola, soy Marilyn.</h2>
         <p>
-          Llevo más de 30 años en este salón, atendiendo a familias de Lawrence — abuelas, mamás, hijas, y ahora nietas. El salón lleva el nombre de mi hija, Mía, pero el corazón del trabajo ha sido siempre el mismo: cuidar a cada clienta con experiencia, cariño y constancia.
+          He dedicado mi vida a este salón y a atender a cada clienta con cariño, criterio y experiencia. El salón lleva el nombre de mi hija, Mía, pero todo lo que hacemos aquí nace del mismo compromiso: que salgas sintiéndote bella, segura y bien cuidada.
         </p>
         <p>
-          Lo que hacemos aquí lo aprendimos en casa, lo perfeccionamos con los años, y lo seguimos haciendo con el mismo cuidado de siempre. Si vienes por primera vez, te recibimos como familia. Si llevas años con nosotras, ya sabes que tu cabello está en buenas manos.
+          Nos enfocamos en hacerlo bien — desde un blower impecable hasta color, cambios y servicios para días especiales. Si vienes por primera vez, te vamos a recibir con mucha atención. Si ya nos conoces, sabes cómo trabajamos aquí.
         </p>
         <span class="founder-sig">— Marilyn, fundadora</span>
       </div>
@@ -179,7 +179,7 @@ const faqs = [
       <div class="section-head">
         <span class="kicker">Por qué Mía</span>
         <h2>Lo que no encuentras en otro salón.</h2>
-        <p class="section-sub">Décadas de oficio dominicano, ambiente familiar, y resultados que duran. Esto es lo que nos hace diferentes.</p>
+        <p class="section-sub">Técnica dominicana, atención de verdad y resultados que se notan. Eso es lo que nos distingue.</p>
       </div>
       <div class="why-grid">
         {whyMia.map((w, i) => (
@@ -249,12 +249,12 @@ const faqs = [
       </div>
       <div class="about-copy">
         <span class="kicker">Sobre nosotras</span>
-        <h2>Familia. Oficio. Tres generaciones.</h2>
+        <h2>Belleza bien hecha, atención de verdad.</h2>
         <p>
-          Mía Beauty Boutique es un salón dominicano familiar en el corazón de Lawrence. Llevamos más de 30 años atendiendo a tres generaciones — abuelas que ya conocen el salón, sus hijas que crecieron viniendo, y ahora sus nietas.
+          Mía Beauty Boutique es un salón dominicano en el corazón de Lawrence. Nos conocen por el blower, por el color, por cómo tratamos el cabello y por la forma en que atendemos a cada clienta con dedicación.
         </p>
         <p>
-          Lo que nos hace diferentes es la combinación: técnica dominicana de toda una vida, productos profesionales, y la atención cálida de una familia que lleva décadas haciendo esto bien. Aquí no eres una clienta más — eres parte de la casa.
+          Aquí se trabaja con técnica, productos profesionales y un ojo claro para lo que te favorece. Queremos que te sientas cómoda, bien orientada y feliz con el resultado.
         </p>
         <div class="stylists">
           {stylists.map((s) => (
@@ -266,7 +266,7 @@ const faqs = [
           ))}
         </div>
         <p class="about-pull">
-          Cuando sales de aquí, sales sintiéndote más bella, más cuidada, y como tú misma — pero mejor.
+          Cuando sales de aquí, sales viéndote hermosa, sintiéndote segura y sabiendo que valió la pena venir.
         </p>
       </div>
     </div>
@@ -275,9 +275,9 @@ const faqs = [
   <section class="heritage">
     <div class="container heritage-inner">
       <span class="kicker light">Nuestras raíces</span>
-      <h2>Cabello dominicano. Treinta años de oficio.</h2>
+      <h2>Cabello dominicano. Técnica que se nota.</h2>
       <p>
-        Somos especialistas en cabello dominicano — rizos, ondas, texturas mixtas, color y procesos químicos. Lo aprendimos en casa, lo perfeccionamos aquí en Lawrence, y lo seguimos practicando con la misma técnica de siempre. Sin atajos. Sin prisa. Con cuidado.
+        Somos especialistas en cabello dominicano: blower, color, texturas, alisados y cambios bien trabajados. Lo hacemos con práctica, cuidado y una forma de trabajar que se siente en el resultado.
       </p>
     </div>
   </section>
@@ -414,7 +414,7 @@ const faqs = [
     <div class="container worth-inner">
       <span class="kicker">Vienen de toda el área</span>
       <h3>Clientas de Lawrence, Methuen, Andover, Haverhill, Lowell y Salem, NH.</h3>
-      <p>Algunas llevan más de veinte años viniendo. Vale el camino — y siempre vale el cuidado.</p>
+      <p>Vale el camino. Vale la técnica. Y siempre vale el cuidado.</p>
     </div>
   </section>
 

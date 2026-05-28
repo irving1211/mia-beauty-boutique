@@ -4,43 +4,29 @@ export interface Props {
   variant?: 'dark' | 'light';
 }
 const { size = 'md', variant = 'dark' } = Astro.props;
-const widths = { sm: 150, md: 220, lg: 300 };
-const heights = { sm: 64, md: 92, lg: 126 };
-const w = widths[size];
-const h = heights[size];
-const wordmarkColor = variant === 'light' ? '#fbf6ef' : '#7a1f2b';
-const accentColor = variant === 'light' ? '#e8c389' : '#b8893f';
+// Logo asset is a horizontal lockup: MB-monogram-with-crown + Mía + BEAUTY BOUTIQUE.
+// Source: public/images/brand/logo-mb-mia-{dark|light}.png
+// Heights tuned for header (md ~ 72px tall) and footer (sm ~ 44px tall).
+const BASE = import.meta.env.BASE_URL;
+const file = variant === 'light' ? 'logo-mb-mia-light.png' : 'logo-mb-mia-dark.png';
+const src = `${BASE}images/brand/${file}`;
 ---
 
-<svg
-  xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 260 110"
-  width={w}
-  height={h}
-  role="img"
-  aria-label="Mía Beauty Boutique"
-  class="mia-logo"
->
-  <text
-    x="130"
-    y="62"
-    text-anchor="middle"
-    style={`font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500; font-style: italic; font-size: 70px; fill: ${wordmarkColor}; letter-spacing: -0.02em;`}
-  >Mía</text>
-
-  <line x1="14" y1="93" x2="68" y2="93" stroke={accentColor} stroke-width="0.9" opacity="0.9" />
-  <circle cx="76" cy="93" r="1.7" fill={accentColor} />
-  <line x1="192" y1="93" x2="246" y2="93" stroke={accentColor} stroke-width="0.9" opacity="0.9" />
-  <circle cx="184" cy="93" r="1.7" fill={accentColor} />
-
-  <text
-    x="130"
-    y="98"
-    text-anchor="middle"
-    style={`font-family: 'Inter', sans-serif; font-weight: 700; font-size: 12px; fill: ${accentColor}; letter-spacing: 0.36em; text-transform: uppercase;`}
-  >Beauty · Boutique</text>
-</svg>
+<img
+  src={src}
+  alt="Mía Beauty Boutique"
+  class={`mia-logo mia-logo-${size}`}
+  loading="eager"
+  decoding="async"
+/>
 
 <style>
-  .mia-logo { display: block; height: auto; max-width: 100%; }
+  .mia-logo { display: block; width: auto; max-width: 100%; }
+  .mia-logo-sm { height: 44px; }
+  .mia-logo-md { height: 72px; }
+  .mia-logo-lg { height: 100px; }
+
+  @media (max-width: 900px) {
+    .mia-logo-md { height: 56px; }
+  }
 </style>
