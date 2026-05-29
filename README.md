@@ -2,7 +2,7 @@
 
 Dominican hair salon · Lawrence, MA · 40+ years.
 
-Bilingual (Spanish-first) Astro site for [Mía Beauty Boutique](https://www.instagram.com/miabeautyboutique264/) — 264 S Broadway, Lawrence, MA 01843 · (978) 208-7877.
+Bilingual (Spanish-first) Astro site for [Mía Beauty Boutique](https://www.instagram.com/miabeautyboutyque/) — 264 S Broadway, Lawrence, MA 01843 · (978) 208-7877.
 
 ## Preview
 
