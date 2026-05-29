@@ -15,7 +15,7 @@ const BASE = import.meta.env.BASE_URL;
 const ownerImg = (name: string) => `${BASE}images/owner/2026-05-27/${name}`;
 
 const focusServices = [
-  { title: 'Blower Dominicano', icon: '✦', body: 'Nuestro servicio más pedido, con brillo, movimiento y una duración que muchas clientas sienten toda la semana.' },
+  { title: 'Secado dominicano', icon: '✦', body: 'Uno de nuestros servicios más pedidos, con brillo, movimiento y una duración que muchas clientas sienten toda la semana.' },
   { title: 'Colorimetría y Mechas', icon: '✦', body: 'Balayage, highlights, color completo y corrección, siempre pensando primero en la salud del cabello.' },
   { title: 'Laciados y Queratina', icon: '✦', body: 'Servicios de alisado y control de frizz elegidos según textura, largo y mantenimiento real.' },
   { title: 'Extensiones y Peinados', icon: '✦', body: 'Postura de extensiones, peinados pulidos y acabados que se ven bonitos tanto en persona como en fotos.' },
@@ -27,12 +27,12 @@ const serviceGroups = [
     title: 'Cabello',
     intro: 'Los servicios que más nos piden en el salón.',
     items: [
-      'Secado / blower dominicano',
+      'Secado dominicano',
       'Colorimetría',
       'Mechas y balayage',
       'Todo tipo de cortes',
       'Postura de extensiones',
-      'Todo tipo de laciado',
+      'Todo tipo de alisado',
       'Todo tipo de peinado',
       'Tratamientos y reparación',
     ],
@@ -50,10 +50,10 @@ const serviceGroups = [
   },
   {
     title: 'Uñas',
-    intro: 'Lo que la dueña quiere destacar ahora mismo.',
+    intro: 'Servicios de uñas que también queremos destacar.',
     items: [
       'Polygel',
-      'Base rubber',
+      'Rubber base',
       'Resina',
       'Acrílico',
       'Gel y diseños',
@@ -63,21 +63,21 @@ const serviceGroups = [
 ];
 
 const whyMia = [
-  { title: 'Resultados que aguantan', body: 'El blower, el peinado y el acabado se trabajan para que sigan viéndose pulidos después de salir del salón.' },
+  { title: 'Resultados que aguantan', body: 'El secado, el peinado y el acabado se trabajan para que sigan viéndose pulidos después de salir del salón.' },
   { title: 'Orientación honesta', body: 'Si algo necesita consulta previa, te lo decimos. Si un servicio te conviene más que otro, también.' },
   { title: 'Belleza completa en una visita', body: 'Cabello, uñas, pestañas y depilación, todo con una misma dirección visual y una misma atención.' },
   { title: 'Confianza de la comunidad', body: 'Mujeres de Lawrence y ciudades cercanas vuelven por la mezcla de buen trato, rapidez y resultados bonitos.' },
 ];
 
 const salonPoints = [
-  { name: 'Cabello', role: 'blower · color · laciado', body: 'Desde secados del día a día hasta cambios de color y extensiones, trabajamos según el estado real de tu cabello.' },
+  { name: 'Cabello', role: 'secado · color · alisados', body: 'Desde secados del día a día hasta cambios de color y extensiones, trabajamos según el estado real de tu cabello.' },
   { name: 'Belleza', role: 'uñas · pestañas · depilación', body: 'También resolvemos los detalles que completan el look, sin que la cita se sienta apurada ni improvisada.' },
-  { name: 'Equipo bilingüe', role: 'español · english', body: 'La consulta es clara, directa y cómoda, tanto para clientas de siempre como para primeras visitas.' },
+  { name: 'Equipo bilingüe', role: 'español · inglés', body: 'La consulta es clara, directa y cómoda, tanto para clientas de siempre como para primeras visitas.' },
 ];
 
 const reviews = [
-  { name: 'Yesenia M.', source: 'Google', body: 'Todas las muchachas son tan dulces. Y trabajan en equipo, siempre salgo feliz. Mi blowout dura toda la semana.', cat: 'blower' },
-  { name: 'Joselyn T.', source: 'Google', body: 'Sin cita previa y siempre me atienden rápido. Mi blowout dura toda la semana. Las recomiendo a todas mis amigas.', cat: 'blower' },
+  { name: 'Yesenia M.', source: 'Google', body: 'Todas las muchachas son tan dulces. Y trabajan en equipo, siempre salgo feliz. Mi secado me dura toda la semana.', cat: 'blower' },
+  { name: 'Joselyn T.', source: 'Google', body: 'Sin cita previa y siempre me atienden rápido. Mi secado me dura toda la semana. Las recomiendo a todas mis amigas.', cat: 'blower' },
   { name: 'Mariela P.', source: 'Yelp', body: 'Llevo años yendo. Conocen mi cabello como nadie. No voy a otro salón.', cat: 'blower' },
   { name: 'Carmen R.', source: 'Google', body: 'Me hicieron sentir como una reina el día de mi boda. El maquillaje duró todo el día y todas las fotos quedaron preciosas.', cat: 'novias' },
   { name: 'Linette V.', source: 'Google', body: 'Me hicieron las extensiones para mi quinceañera. Quedaron naturales, suaves, y mi mamá lloró de la emoción.', cat: 'novias' },
@@ -86,15 +86,15 @@ const reviews = [
 
 const reviewFilters = [
   { id: 'todo', label: 'Todas' },
-  { id: 'blower', label: 'Blower y cuidado' },
+  { id: 'blower', label: 'Secados y cuidado' },
   { id: 'novias', label: 'Novias y eventos' },
   { id: 'color', label: 'Color' },
 ];
 
 const galleryItems = [
-  { src: 'gallery-blower-curls.jpg', cat: 'blower', label: 'Blower Dominicano' },
+  { src: 'gallery-blower-curls.jpg', cat: 'blower', label: 'Secado dominicano' },
   { src: 'gallery-color-balayage.jpg', cat: 'color', label: 'Balayage Caramelo' },
-  { src: 'gallery-blower-golden.jpg', cat: 'blower', label: 'Blower Dominicano' },
+  { src: 'gallery-blower-golden.jpg', cat: 'blower', label: 'Secado dominicano' },
   { src: 'gallery-color-red.jpg', cat: 'color', label: 'Color Rojo' },
   { src: 'gallery-extensions-detail.jpg', cat: 'extensiones', label: 'Extensiones' },
   { src: 'gallery-cut-pixie.jpg', cat: 'cortes', label: 'Corte Pixie' },
@@ -104,7 +104,7 @@ const galleryItems = [
 
 const galleryFilters = [
   { id: 'todo', label: 'Todo' },
-  { id: 'blower', label: 'Blower' },
+  { id: 'blower', label: 'Secados' },
   { id: 'color', label: 'Color' },
   { id: 'extensiones', label: 'Extensiones' },
   { id: 'cortes', label: 'Cortes' },
@@ -112,13 +112,13 @@ const galleryFilters = [
 
 const socialHighlights = [
   'Transformaciones nuevas cada semana',
-  'Ideas para novias, color y blower',
+  'Ideas para novias, color y secados',
   'Uñas, pestañas y detalles del salón',
 ];
 
 const socialNotes = [
   { title: 'Qué vas a ver', body: 'Resultados reales, videos cortos y trabajos recién salidos del salón.' },
-  { title: 'Para qué sirve', body: 'Si vienes por color, novias, blower o uñas, ahí subimos lo más reciente.' },
+  { title: 'Para qué sirve', body: 'Si vienes por color, novias, secado o uñas, ahí subimos lo más reciente.' },
   { title: 'Cómo escribirnos', body: 'Guarda la foto que te guste y mándala por Instagram o llámanos para hablarla.' },
 ];
 
@@ -129,8 +129,8 @@ const faqs = [
   { q: '¿Piden depósito para novias?', a: 'Para asegurar tu fecha pedimos un depósito pequeño que luego se descuenta del total. Cada boda es distinta, así que llámanos y te orientamos.' },
   { q: '¿Cuáles son los mejores días para venir?', a: 'Martes a jueves son nuestros días más tranquilos. Viernes y sábados son los más llenos. Si vienes temprano, mejor.' },
   { q: '¿Trabajan con todo tipo de cabello?', a: 'Sí. Somos especialistas en cabello dominicano, rizos, ondas, texturas mixtas, cabello fino, grueso o teñido. Trabajamos cada tipo con la técnica correcta.' },
-  { q: '¿También hacen uñas?', a: 'Sí. Ofrecemos polygel, base rubber, resina, acrílico, gel, diseños y todo tipo de pedicura. Puedes hacer cabello y uñas en la misma visita.' },
-  { q: '¿Cuánto dura el blowout dominicano?', a: 'Con cuidado básico, como gorro de noche y evitando mojarlo, muchas clientas lo sienten bonito toda la semana, y algunas llegan a 10 días.' },
+  { q: '¿También hacen uñas?', a: 'Sí. Ofrecemos polygel, rubber base, resina, acrílico, gel, diseños y todo tipo de pedicura. Puedes hacer cabello y uñas en la misma visita.' },
+  { q: '¿Cuánto dura el secado dominicano?', a: 'Con cuidado básico, como gorro de noche y evitando mojarlo, muchas clientas lo sienten bonito toda la semana, y algunas llegan a 10 días.' },
   { q: '¿Hacen novias y eventos grandes?', a: 'Sí. Para novias, separa tu fecha con tiempo. Ofrecemos prueba de maquillaje y peinado, y te ayudamos a organizar el día.' },
   { q: '¿Qué formas de pago aceptan?', a: 'Efectivo y tarjeta de crédito, Visa, Mastercard y Amex. Si tienes una duda puntual, llámanos antes de venir.' },
   { q: '¿Hay parqueo?', a: 'Sí, hay parqueo gratis en la calle y lotes cercanos en S Broadway. Estamos en una zona fácil de encontrar.' },
@@ -186,7 +186,7 @@ const faqs = [
         <span class="eyebrow">Lawrence, MA · más de 30 años de experiencia</span>
         <h1>Brillo, movimiento y belleza bien hecha.</h1>
         <p class="hero-lede">
-          Mía Beauty Boutique es el salón para clientas que quieren blower, color, uñas y belleza con un acabado pulido, una atención cálida y una cita que se sienta bien llevada de principio a fin.
+          Mía Beauty Boutique es el salón para clientas que quieren secado dominicano, color, uñas y servicios de belleza con un acabado pulido, una atención cálida y una cita que se sienta bien llevada de principio a fin.
         </p>
         <div class="hero-cta">
           <a class="btn btn-primary" href={`tel:${phoneTel}`}>Llamar al salón</a>
@@ -195,13 +195,13 @@ const faqs = [
         </div>
         <ul class="hero-stats">
           <li><strong>30+ años</strong><span>atendiendo en Lawrence</span></li>
-          <li><strong>Walk-ins</strong><span>para citas del día a día</span></li>
-          <li><strong>Bilingüe</strong><span>español · english</span></li>
-          <li><strong>Consulta</strong><span>novias · color · extensiones</span></li>
+          <li><strong>Sin cita</strong><span>para visitas del día a día</span></li>
+          <li><strong>Bilingüe</strong><span>español · inglés</span></li>
+          <li><strong>Consulta previa</strong><span>novias · color · extensiones</span></li>
         </ul>
       </div>
       <div class="hero-photo">
-        <img src={ownerImg('gallery-blower-curls.jpg')} alt="Trabajo destacado de blower dominicano en Mía Beauty Boutique" loading="eager" />
+        <img src={ownerImg('gallery-blower-curls.jpg')} alt="Trabajo destacado de secado dominicano en Mía Beauty Boutique" loading="eager" />
         <div class="hero-badge hero-badge--phrase">
           <span>Cabello · uñas · belleza</span>
         </div>
@@ -233,7 +233,7 @@ const faqs = [
       <div class="section-head">
         <span class="kicker">Por qué Mía</span>
         <h2>Lo que la clienta siente distinto cuando entra aquí.</h2>
-        <p class="section-sub">No buscamos sonar como cualquier salón. Queremos que la web se vea como se siente la cita: cuidada, clara y enfocada en resultados.</p>
+        <p class="section-sub">No buscamos sonar como cualquier salón. Queremos que la página se sienta como la cita: cuidada, clara y enfocada en resultados.</p>
       </div>
       <div class="why-grid">
         {whyMia.map((w, i) => (
@@ -303,7 +303,7 @@ const faqs = [
         <span class="kicker">Tu cita</span>
         <h2>Pensamos cada servicio según tu cabello, tu tiempo y el resultado que buscas.</h2>
         <p>
-          Aquí no usamos una lista rígida de precios porque un blower, un color o una pedicura no cuestan lo mismo para todas. El largo, la densidad, el diseño y el tiempo real de trabajo importan.
+          Aquí no usamos una lista rígida de precios porque un secado, un color o una pedicura no cuestan lo mismo para todas. El largo, la densidad, el diseño y el tiempo real de trabajo importan.
         </p>
         <p>
           Por eso la web te enseña claramente lo que hacemos, y la cotización final la damos cuando sabemos bien qué necesitas.
