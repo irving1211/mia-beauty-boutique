@@ -16,21 +16,27 @@ const {
 } = Astro.props;
 
 const phone = '(978) 208-7877';
-const phoneTel = '+19782087877';
-const address = '264 S Broadway, Lawrence, MA 01843';
+
+const BASE = import.meta.env.BASE_URL;
+const siteOrigin = Astro.site ? Astro.site.origin : 'https://irving1211.github.io';
+const siteBaseUrl = `${siteOrigin}${BASE}`;
+const canonicalUrl = `${siteOrigin}${Astro.url.pathname}`;
+const hrefEs = `${siteOrigin}${BASE}`;
+const hrefEn = `${siteOrigin}${BASE}en/`;
+const ogImage = `${siteOrigin}${BASE}images/brand/logo-primary-color.png`;
 
 const localBusinessJsonLd = {
   '@context': 'https://schema.org',
   '@type': ['BeautySalon', 'HairSalon'],
   name: 'Mía Beauty Boutique',
   alternateName: ['Mia Beauty Boutique', 'Salón Mía', 'Mia Salon Lawrence'],
-  image: 'https://miabeautyboutique.com/images/og.jpg',
-  '@id': 'https://miabeautyboutique.com',
-  url: 'https://miabeautyboutique.com',
+  image: ogImage,
+  '@id': siteBaseUrl,
+  url: siteBaseUrl,
   telephone: phone,
   priceRange: '$$',
-  description: description || 'Salón dominicano en Lawrence, MA. Más de 30 años haciendo sentir bellas a las mujeres. Dominican blowout, color, extensiones, maquillaje, novias, depilación con hilo, manicura y pedicura.',
-  founder: { '@type': 'Person', name: 'Mía' },
+  description: description || 'Salón dominicano en Lawrence, MA. Más de 30 años haciendo sentir bellas a las mujeres. Blowouts, color, extensiones, maquillaje, novias, depilación, uñas y pedicura.',
+  founder: { '@type': 'Person', name: 'Marilyn' },
   foundingDate: '1996',
   knowsLanguage: ['es', 'en'],
   paymentAccepted: ['Cash', 'Credit Card'],
@@ -45,7 +51,15 @@ const localBusinessJsonLd = {
   },
   geo: { '@type': 'GeoCoordinates', latitude: 42.6964, longitude: -71.1714 },
   hasMap: 'https://www.google.com/maps/place/264+S+Broadway,+Lawrence,+MA+01843',
-  areaServed: ['Lawrence', 'Methuen', 'North Andover', 'Andover', 'Haverhill', 'Lowell', 'Salem NH'].map((city) => ({ '@type': 'City', name: `${city}, MA` })),
+  areaServed: [
+    { '@type': 'City', name: 'Lawrence', containedInPlace: { '@type': 'State', name: 'Massachusetts' } },
+    { '@type': 'City', name: 'Methuen', containedInPlace: { '@type': 'State', name: 'Massachusetts' } },
+    { '@type': 'City', name: 'North Andover', containedInPlace: { '@type': 'State', name: 'Massachusetts' } },
+    { '@type': 'City', name: 'Andover', containedInPlace: { '@type': 'State', name: 'Massachusetts' } },
+    { '@type': 'City', name: 'Haverhill', containedInPlace: { '@type': 'State', name: 'Massachusetts' } },
+    { '@type': 'City', name: 'Lowell', containedInPlace: { '@type': 'State', name: 'Massachusetts' } },
+    { '@type': 'City', name: 'Salem', containedInPlace: { '@type': 'State', name: 'New Hampshire' } },
+  ],
   openingHoursSpecification: [
     { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Tuesday', 'Wednesday', 'Thursday'], opens: '09:30', closes: '18:00' },
     { '@type': 'OpeningHoursSpecification', dayOfWeek: 'Friday', opens: '08:00', closes: '17:30' },
@@ -60,45 +74,39 @@ const localBusinessJsonLd = {
   ],
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
-    name: 'Servicios de belleza',
+    name: 'Beauty services',
     itemListElement: [
       { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Dominican Blowout', alternateName: 'Blower dominicano' } },
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Hair Color & Balayage', alternateName: 'Color y mechas' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Hair Color and Highlights', alternateName: 'Color y mechas' } },
       { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Haircuts', alternateName: 'Cortes de cabello' } },
       { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Hair Extensions', alternateName: 'Extensiones de cabello' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Hair Straightening and Keratin', alternateName: 'Laciados y queratina' } },
       { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Professional Makeup', alternateName: 'Maquillaje profesional' } },
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Bridal Hair & Makeup', alternateName: 'Peinado y maquillaje de novia' } },
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Eyebrow Threading', alternateName: 'Depilación de cejas con hilo' } },
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Hair Treatments', alternateName: 'Tratamientos capilares' } },
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Manicure', alternateName: 'Manicura' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Bridal Hair and Makeup', alternateName: 'Peinado y maquillaje de novia' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Hair Removal', alternateName: 'Depilación' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Lashes and Tinting', alternateName: 'Pestañas y tintados' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Polygel Nails', alternateName: 'Polygel' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Rubber Base Nails', alternateName: 'Base rubber' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Acrylic Nails', alternateName: 'Acrílico' } },
       { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Pedicure', alternateName: 'Pedicura' } },
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Gel Nails', alternateName: 'Uñas de gel' } },
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Acrylic Nails', alternateName: 'Uñas acrílicas' } },
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Nail Art', alternateName: 'Diseños de uñas' } },
     ],
   },
 };
 
 const defaultTitle = lang === 'es'
   ? 'Salón Dominicano en Lawrence, MA | Mía Beauty Boutique · 30+ Años'
-  : "Dominican Hair Salon in Lawrence, MA | Mía Beauty Boutique · 30+ Years";
+  : 'Dominican Hair Salon in Lawrence, MA | Mia Beauty Boutique · 30+ Years';
 
 const defaultDesc = lang === 'es'
-  ? 'Salón dominicano en Lawrence, MA con más de 30 años de experiencia. Dominican blowout, color, mechas, extensiones, maquillaje, novias, depilación con hilo, manicura y pedicura. Sin cita previa. Llama (978) 208-7877.'
-  : 'Dominican hair salon in Lawrence, MA with over 30 years of experience. Dominican blowout, color, highlights, extensions, makeup, bridal, threading, manicures, and pedicures. Walk-ins welcome. Call (978) 208-7877.';
+  ? 'Salón dominicano en Lawrence, MA con más de 30 años de experiencia. Blowouts, color, mechas, extensiones, maquillaje, novias, depilación, pestañas, manicura y pedicura. Sin cita previa. Llama (978) 208-7877.'
+  : 'Dominican hair salon in Lawrence, MA with over 30 years of experience. Blowouts, color, highlights, extensions, makeup, bridal beauty, hair removal, lashes, manicure, and pedicure. Walk-ins welcome. Call (978) 208-7877.';
 
 const keywords = lang === 'es'
-  ? 'salon dominicano lawrence ma, dominican blowout lawrence, peluqueria dominicana, salon de belleza lawrence massachusetts, mia beauty boutique, peluqueria lawrence ma, color de cabello lawrence, extensiones de cabello, maquillaje profesional lawrence, salon novias massachusetts, manicura lawrence ma, pedicura lawrence, uñas de gel lawrence, uñas acrilicas lawrence, salon de uñas dominicano lawrence'
-  : 'dominican hair salon lawrence ma, dominican blowout, hair salon lawrence massachusetts, mia beauty boutique, hair color lawrence ma, hair extensions lawrence, bridal makeup massachusetts, walk in hair salon lawrence, nail salon lawrence ma, manicure lawrence ma, pedicure lawrence, gel nails lawrence, acrylic nails lawrence, dominican nail salon lawrence';
+  ? 'salon dominicano lawrence ma, dominican blowout lawrence, peluqueria dominicana, salon de belleza lawrence massachusetts, mia beauty boutique, peluqueria lawrence ma, color de cabello lawrence, extensiones de cabello, maquillaje profesional lawrence, salon novias massachusetts, polygel lawrence ma, pedicura lawrence, uñas acrilicas lawrence'
+  : 'dominican hair salon lawrence ma, dominican blowout lawrence, hair salon lawrence massachusetts, mia beauty boutique, hair color lawrence ma, hair extensions lawrence, bridal makeup massachusetts, walk in hair salon lawrence, polygel lawrence ma, pedicure lawrence, acrylic nails lawrence';
 
 const finalTitle = title || defaultTitle;
 const finalDesc = description || defaultDesc;
-
-const BASE = import.meta.env.BASE_URL; // includes trailing slash, e.g. /mia-beauty-boutique/
-const siteOrigin = Astro.site ? Astro.site.origin : 'https://miabeautyboutique.com';
-const canonicalUrl = `${siteOrigin}${Astro.url.pathname}`;
-const hrefEs = `${siteOrigin}${BASE}`;
-const hrefEn = `${siteOrigin}${BASE}en/`;
 ---
 
 <!doctype html>
@@ -116,6 +124,13 @@ const hrefEn = `${siteOrigin}${BASE}en/`;
     <meta property="og:description" content={finalDesc} />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content={lang === 'es' ? 'es_US' : 'en_US'} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:alt" content="Mia Beauty Boutique brand mark" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={finalTitle} />
+    <meta name="twitter:description" content={finalDesc} />
+    <meta name="twitter:image" content={ogImage} />
     <meta name="theme-color" content="#7a1f2b" />
     <link rel="icon" type="image/svg+xml" href={`${BASE}favicon.svg`} />
     <link rel="alternate icon" href={`${BASE}favicon.ico`} />
@@ -150,7 +165,8 @@ const hrefEn = `${siteOrigin}${BASE}en/`;
       * { box-sizing: border-box; }
       html { scroll-behavior: smooth; }
       html, body {
-        margin: 0; padding: 0;
+        margin: 0;
+        padding: 0;
         background: var(--cream);
         color: var(--ink);
         font-family: 'Inter', system-ui, -apple-system, sans-serif;
@@ -174,14 +190,17 @@ const hrefEn = `${siteOrigin}${BASE}en/`;
       img { max-width: 100%; display: block; }
       .container { max-width: 1140px; margin: 0 auto; padding: 0 1.75rem; }
       .btn {
-        display: inline-flex; align-items: center; gap: .55rem;
+        display: inline-flex;
+        align-items: center;
+        gap: .55rem;
         padding: .95rem 1.7rem;
         border-radius: 999px;
         font-weight: 600;
         font-size: .98rem;
         letter-spacing: 0;
         transition: transform .18s ease, background .18s ease, box-shadow .18s ease, color .18s ease, border-color .18s ease;
-        cursor: pointer; border: none;
+        cursor: pointer;
+        border: none;
         font-family: inherit;
         text-decoration: none;
       }
@@ -194,7 +213,6 @@ const hrefEn = `${siteOrigin}${BASE}en/`;
     </style>
 
     <script is:inline define:vars={{ BASE }}>
-      // Auto-redirect to user's preferred language on first visit only
       (function() {
         try {
           if (sessionStorage.getItem('mia-lang-checked')) return;

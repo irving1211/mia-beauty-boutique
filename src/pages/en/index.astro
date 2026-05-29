@@ -6,58 +6,82 @@ const phone = '(978) 208-7877';
 const phoneTel = '+19782087877';
 const address = '264 S Broadway, Lawrence, MA 01843';
 const directionsUrl = 'https://www.google.com/maps/dir/?api=1&destination=264+S+Broadway%2C+Lawrence%2C+MA+01843';
-const mapsUrl = 'https://www.google.com/maps/place/264+S+Broadway,+Lawrence,+MA+01843';
 const reviewsUrl = 'https://www.google.com/search?q=Mia+Beauty+Boutique+Lawrence+MA';
-// TODO: Real Google Place ID still needed for the "leave a review" link. Until confirmed,
-// the "Leave a review" button is routed to reviewsUrl (Google search) instead of a broken placeholder.
-const writeReviewUrl = 'https://search.google.com/local/writereview?placeid=ChIJ_____MiaBeautyBoutique'; // placeholder — do NOT link in UI until real Place ID confirmed
 const instagramUrl = 'https://www.instagram.com/miabeautyboutique264/';
 const facebookUrl = 'https://www.facebook.com/p/Mia-Beauty-Boutique-100058155380527/';
 const yelpUrl = 'https://www.yelp.com/biz/mia-beauty-boutique-lawrence-2';
 
 const BASE = import.meta.env.BASE_URL;
-const img = (name: string) => `${BASE}images/work/${name}`;
 const ownerImg = (name: string) => `${BASE}images/owner/2026-05-27/${name}`;
 
-const services = [
-  // Signature — top-ticket services the salon is known for
-  { title: 'Dominican Blowout', tier: 'signature', icon: '✦', body: 'Our specialty. The blowout that made us known — soft, full-bodied, shiny, and it holds all week.', price: 'From $45' },
-  { title: 'Color & Highlights', tier: 'signature', icon: '✦', body: 'Color, balayage, highlights, correction. We work with Pravana and professional brands. Healthy hair always comes first.', price: 'Call for consult' },
-  { title: 'Bridal & Events', tier: 'signature', icon: '✦', body: 'Bridal makeup and hair, quinceañeras, events. We do a trial before the day. Book your date in advance.', price: 'By appointment' },
-  { title: 'Extensions & Transformations', tier: 'signature', icon: '✦', body: 'Brazilian and natural-hair extensions, keratin, relaxers, full transformations. Let’s talk before the appointment.', price: 'Consultation required' },
-
-  // Secondary — also offered
-  { title: 'Haircuts', tier: 'secondary', icon: '✦', body: 'Classic, modern, layered, bangs.', price: 'From $30' },
-  { title: 'Professional Makeup', tier: 'secondary', icon: '✦', body: 'For events, photoshoots, or a special day.', price: 'From $65' },
-  { title: 'Hair Treatments', tier: 'secondary', icon: '✦', body: 'Deep conditioning, keratin, shine, and repair.', price: 'From $40' },
-  { title: 'Threading', tier: 'secondary', icon: '✦', body: 'Eyebrows, upper lip, full face. Precise, gentle technique for sensitive skin.', price: 'From $12' },
-  { title: 'Manicure', tier: 'secondary', icon: '✦', body: 'Classic, gel, and nail art.', price: 'From $20' },
-  { title: 'Pedicure', tier: 'secondary', icon: '✦', body: 'Classic and spa pedicures. Soft feet, perfect nails.', price: 'From $30' },
-  { title: 'Acrylic & Gel Nails', tier: 'secondary', icon: '✦', body: 'Acrylic, gel, dip powder, nail art.', price: 'From $35' },
+const focusServices = [
+  { title: 'Dominican Blowout', icon: '✦', body: 'Our most requested service, with shine, movement, and a finish many clients still love all week.' },
+  { title: 'Color & Highlights', icon: '✦', body: 'Balayage, highlights, full color, and correction, always planned around the health of the hair first.' },
+  { title: 'Straightening & Keratin', icon: '✦', body: 'Smoothing and frizz-control services chosen based on texture, length, and realistic upkeep.' },
+  { title: 'Extensions & Styling', icon: '✦', body: 'Extension installs, polished styling, and finishes that look strong both in person and in photos.' },
+  { title: 'Bridal & Events', icon: '✦', body: 'Hair and makeup with a trial, clear planning, and looks that hold up through the full day.' },
 ];
 
-const signatureServices = services.filter((s) => s.tier === 'signature');
-const secondaryServices = services.filter((s) => s.tier === 'secondary');
+const serviceGroups = [
+  {
+    title: 'Hair',
+    intro: 'What clients ask for most in the salon.',
+    items: [
+      'Dominican blowout / blow dry',
+      'Color services',
+      'Highlights and balayage',
+      'All kinds of cuts',
+      'Extension installs',
+      'All types of straightening',
+      'All kinds of styling',
+      'Treatments and repair',
+    ],
+  },
+  {
+    title: 'Beauty',
+    intro: 'The details that complete the appointment in one place.',
+    items: [
+      'Professional makeup',
+      'Bridal and event beauty',
+      'Hair removal',
+      'Tinting',
+      'Lashes',
+    ],
+  },
+  {
+    title: 'Nails',
+    intro: 'The services the owner wants to spotlight right now.',
+    items: [
+      'Polygel',
+      'Rubber base',
+      'Resin',
+      'Acrylic',
+      'Gel and nail art',
+      'All types of pedicure',
+    ],
+  },
+];
 
 const whyMia = [
-  { title: 'Hair done with technique', body: 'We care about the process, the finish, and what truly suits you. The goal is a result that looks beautiful and feels right.' },
-  { title: 'Personalized attention', body: 'We listen to what you want, guide you honestly, and work with care so you leave happy with your result.' },
-  { title: 'Quality in every detail', body: 'From blowouts to color and styling, we work with dedication, quality products, and good taste.' },
-  { title: 'An experience you enjoy', body: 'We want you to feel comfortable, pampered, and confident throughout the visit, not just at the end.' },
+  { title: 'Results that last', body: 'The blowout, styling, and finish are all done so the hair still looks polished after you leave.' },
+  { title: 'Honest guidance', body: 'If something needs a consultation first, we say it. If one service makes more sense than another, we say that too.' },
+  { title: 'Full beauty in one visit', body: 'Hair, nails, lashes, and hair removal, all shaped with the same level of care and visual consistency.' },
+  { title: 'Trusted by the community', body: 'Women from Lawrence and nearby cities come back for the balance of good service, speed, and beautiful results.' },
 ];
 
-const stylists = [
-  { name: 'Marilyn', role: 'Founder · Lead Stylist', body: 'Specialist in Dominican blowouts, color, and hair care. Her focus has always been the same: work with detail and make sure every client leaves looking beautiful.' },
-  { name: 'The team', role: 'Bilingual Stylists', body: 'Color, cuts, extensions, bridal, makeup, and bilingual service. We work as a team so your visit feels smooth, organized, and well cared for.' },
+const salonPoints = [
+  { name: 'Hair', role: 'blowouts · color · smoothing', body: 'From regular weekly styling to color changes and extensions, we work based on the real condition of your hair.' },
+  { name: 'Beauty', role: 'nails · lashes · hair removal', body: 'We also handle the details that complete the look, without making the appointment feel rushed or improvised.' },
+  { name: 'Bilingual team', role: 'english · español', body: 'The consultation stays clear, direct, and comfortable for long-time clients and first-time visits alike.' },
 ];
 
 const reviews = [
-  { name: 'Yesenia M.', source: 'Google', body: 'All the ladies are so sweet. And they work as a team — I always leave happy. My blowout lasts the whole week.', cat: 'blowout' },
-  { name: 'Joselyn T.', source: 'Google', body: "Walk-in and they always get me in fast. My blowout lasts the whole week. I recommend them to all my friends.", cat: 'blowout' },
-  { name: 'Mariela P.', source: 'Yelp', body: "Been going for years. They know my hair like nobody else. I won't go anywhere else.", cat: 'blowout' },
+  { name: 'Yesenia M.', source: 'Google', body: 'All the ladies are so sweet, and they work as a team. I always leave happy. My blowout lasts the whole week.', cat: 'blowout' },
+  { name: 'Joselyn T.', source: 'Google', body: 'Walk-in and they always get me in fast. My blowout lasts the whole week. I recommend them to all my friends.', cat: 'blowout' },
+  { name: 'Mariela P.', source: 'Yelp', body: 'Been going for years. They know my hair like nobody else. I will not go anywhere else.', cat: 'blowout' },
   { name: 'Carmen R.', source: 'Google', body: 'They made me feel like a queen on my wedding day. The makeup lasted all day and every photo came out beautifully.', cat: 'bridal' },
-  { name: 'Linette V.', source: 'Google', body: 'They did my extensions for my quinceañera. Looked natural, soft, and my mom cried with joy.', cat: 'bridal' },
-  { name: 'Andrea S.', source: 'Facebook', body: "Best color I've ever had in my life. They know how to protect the hair — no burn, no damage. Real Pravana.", cat: 'color' },
+  { name: 'Linette V.', source: 'Google', body: 'They did my extensions for my quinceañera. It looked natural, soft, and my mom cried with joy.', cat: 'bridal' },
+  { name: 'Andrea S.', source: 'Facebook', body: 'Best color I have ever had in my life. They know how to protect the hair, no burn, no damage.', cat: 'color' },
 ];
 
 const reviewFilters = [
@@ -70,47 +94,59 @@ const reviewFilters = [
 const galleryItems = [
   { src: 'gallery-blower-curls.jpg', cat: 'blowout', label: 'Dominican Blowout' },
   { src: 'gallery-color-balayage.jpg', cat: 'color', label: 'Caramel Balayage' },
-  { src: 'mia-3.jpg', cat: 'bridal', label: 'Bridal', legacy: true },
   { src: 'gallery-blower-golden.jpg', cat: 'blowout', label: 'Dominican Blowout' },
   { src: 'gallery-color-red.jpg', cat: 'color', label: 'Red Color' },
   { src: 'gallery-extensions-detail.jpg', cat: 'extensions', label: 'Extensions' },
   { src: 'gallery-cut-pixie.jpg', cat: 'cuts', label: 'Pixie Cut' },
   { src: 'gallery-color-red-black.jpg', cat: 'color', label: 'Red Highlights' },
+  { src: 'gallery-cut-platinum.jpg', cat: 'cuts', label: 'Platinum Cut' },
 ];
 
 const galleryFilters = [
   { id: 'all', label: 'All' },
   { id: 'blowout', label: 'Blowout' },
   { id: 'color', label: 'Color' },
-  { id: 'bridal', label: 'Bridal' },
   { id: 'extensions', label: 'Extensions' },
   { id: 'cuts', label: 'Cuts' },
 ];
 
+const socialHighlights = [
+  'Fresh transformations every week',
+  'Ideas for bridal, color, and blowouts',
+  'Nails, lashes, and everyday salon details',
+];
+
+const socialNotes = [
+  { title: 'What you will see', body: 'Real results, short videos, and work that just came out of the salon.' },
+  { title: 'Why it helps', body: 'If you are coming in for color, bridal, blowouts, or nails, that is where the newest work shows up first.' },
+  { title: 'How to reach out', body: 'Save the photo you like and send it over on Instagram, or call us to talk through it.' },
+];
+
 const faqs = [
-  { q: 'Do I need an appointment?', a: "No — we take walk-ins first come, first served. For longer services (bridal, full color, extensions) we recommend calling ahead to reserve a time." },
-  { q: 'Do I need a consultation before a wedding or full color?', a: "We recommend calling ahead — that way we arrive ready on the day. For brides we do a trial of makeup and hairstyle before the event. For full color or correction, we talk by phone or you stop in so we can see the hair." },
-  { q: 'Do you ask for a deposit for brides?', a: "To hold your date we ask for a small deposit, which comes off the total on the day of the event. Call us for the details — every wedding is different." },
-  { q: 'What are the best days to come in?', a: 'Tuesday through Thursday are our slowest days. Friday and Saturday are busiest — we still get you in, but wait can be longer. Earlier is better.' },
-  { q: 'Do you work with all hair types?', a: 'Yes. We specialize in Dominican hair — curls, waves, mixed textures, fine, thick, color-treated, all of it. We work each type with the right technique.' },
-  { q: 'Do you do nails too?', a: 'Yes. We offer manicure, pedicure, gel nails, acrylic, dip powder, and nail art. You can get hair and nails done in the same visit — perfect for brides, events, or a full pampering day.' },
-  { q: 'How long does a Dominican blowout last?', a: 'With basic care (silk cap at night, no getting it wet) our Dominican blowout lasts the whole week — many clients get 10 days.' },
-  { q: 'Do you do bridal and large events?', a: 'Yes. For bridal, book your date in advance (ideally 4-8 weeks). We offer makeup and hair trials. Call to talk through your day.' },
-  { q: 'What payment do you accept?', a: 'Cash and credit card (Visa, Mastercard, Amex). If you have questions, call before you come.' },
-  { q: 'Is there parking?', a: 'Yes — free street parking and nearby lots on S Broadway. Easy to find in the heart of Lawrence.' },
-  { q: 'Do you speak English?', a: 'Yes. The whole team is bilingual — English and Spanish. We serve clients from Lawrence, Methuen, Andover, Haverhill, Lowell, and Salem NH.' },
+  { q: 'Do I need an appointment?', a: 'No. Walk-ins are welcome and we take clients first come, first served. For longer services, like bridal, full color, or extensions, we recommend calling ahead.' },
+  { q: 'Why are there no exact prices on the website?', a: 'Because the final cost changes with hair length, density, design, touch-up needs, or a full transformation. We would rather quote you well once we know what you actually want.' },
+  { q: 'Do I need a consultation before bridal or full color?', a: 'Yes, it is worth calling first so the plan is clear. For brides, we do a trial for hair and makeup. For full color or correction, we prefer to see the hair or talk through it first.' },
+  { q: 'Do you require a deposit for brides?', a: 'To hold the date we ask for a small deposit, and it gets applied to the total later. Every wedding is different, so call us and we will walk you through it.' },
+  { q: 'What are the best days to come in?', a: 'Tuesday through Thursday are the calmest days. Friday and Saturday are busiest. Earlier is better.' },
+  { q: 'Do you work with all hair types?', a: 'Yes. We specialize in Dominican hair, curls, waves, mixed textures, fine hair, thick hair, and color-treated hair. Each texture gets the right technique.' },
+  { q: 'Do you do nails too?', a: 'Yes. We offer polygel, rubber base, resin, acrylic, gel, nail art, and all types of pedicure. You can do hair and nails in the same visit.' },
+  { q: 'How long does a Dominican blowout last?', a: 'With basic care, like a night wrap and keeping it dry, many clients still feel good about it all week, and some stretch it to 10 days.' },
+  { q: 'Do you handle bridal parties and larger events?', a: 'Yes. For bridal, reserve your date in advance. We offer a trial and help you plan the beauty schedule for the day.' },
+  { q: 'What payment methods do you accept?', a: 'Cash and credit card, Visa, Mastercard, and Amex. If you have a very specific question, call before you come in.' },
+  { q: 'Is there parking?', a: 'Yes. There is free street parking and nearby lots on S Broadway. The salon is easy to find.' },
+  { q: 'Do you speak Spanish?', a: 'Yes. The whole team works in English and Spanish. We welcome clients from Lawrence, Methuen, Andover, Haverhill, Lowell, and Salem, NH.' },
 ];
 ---
 
 <Base lang="en" pathEs="/" pathEn="/en/">
   <header class="topbar">
     <div class="container topbar-row">
-      <a class="brand" href="#top" aria-label="Mía Beauty Boutique">
+      <a class="brand" href="#top" aria-label="Mia Beauty Boutique">
         <Logo size="md" />
       </a>
       <nav class="nav" aria-label="Main">
-        <a href="#marilyn" data-nav>Marilyn</a>
-        <a href="#why" data-nav>Why Mía</a>
+        <a href="#marilyn" data-nav>Story</a>
+        <a href="#why" data-nav>Why Mia</a>
         <a href="#services" data-nav>Services</a>
         <a href="#gallery" data-nav>Gallery</a>
         <a href="#reviews" data-nav>Reviews</a>
@@ -120,6 +156,26 @@ const faqs = [
       <div class="topbar-right">
         <a class="lang-switch" href={BASE} hreflang="es" aria-label="Ver en español">ES</a>
         <a class="topbar-call" href={`tel:${phoneTel}`}>{phone}</a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+          <span class="menu-toggle-lines" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+          <span>Menu</span>
+        </button>
+      </div>
+    </div>
+    <div class="mobile-menu" id="mobile-menu" hidden>
+      <div class="mobile-menu-inner">
+        <a href="#marilyn" data-nav>Story</a>
+        <a href="#why" data-nav>Why Mia</a>
+        <a href="#services" data-nav>Services</a>
+        <a href="#gallery" data-nav>Gallery</a>
+        <a href="#reviews" data-nav>Reviews</a>
+        <a href="#faq" data-nav>FAQ</a>
+        <a href="#visit" data-nav>Visit</a>
+        <a class="mobile-menu-call" href={`tel:${phoneTel}`}>Call the salon</a>
       </div>
     </div>
   </header>
@@ -127,27 +183,27 @@ const faqs = [
   <section class="hero" id="top">
     <div class="container hero-grid">
       <div class="hero-copy">
-        <span class="eyebrow">Over 30 years making you feel beautiful</span>
-        <h1>Where the Dominican blowout <em>shines</em>.</h1>
+        <span class="eyebrow">Lawrence, MA · over 30 years of salon experience</span>
+        <h1>Gloss, movement, and beauty done well.</h1>
         <p class="hero-lede">
-          Welcome to Mía Beauty Boutique, a beauty salon in Lawrence, Massachusetts dedicated to bringing out your beauty and confidence through professional, personalized, high-quality service.
+          Mia Beauty Boutique is the salon for clients who want blowouts, color, nails, and beauty services with a polished finish, warm care, and an appointment that feels well run from start to finish.
         </p>
         <div class="hero-cta">
           <a class="btn btn-primary" href={`tel:${phoneTel}`}>Call the Salon</a>
           <a class="btn btn-gold" href={directionsUrl} target="_blank" rel="noopener">Get Directions</a>
-          <a class="btn btn-ghost" href="#consulta">Bridal · color · transformation</a>
+          <a class="btn btn-ghost" href="#services">View Services</a>
         </div>
         <ul class="hero-stats">
-          <li><strong>Care</strong><span>warm and professional</span></li>
-          <li><strong>Walk-ins</strong><span>first come, first served</span></li>
+          <li><strong>30+ years</strong><span>serving Lawrence</span></li>
+          <li><strong>Walk-ins</strong><span>for everyday visits</span></li>
           <li><strong>Bilingual</strong><span>english · español</span></li>
-          <li><strong>Specialty</strong><span>blowouts · color · styling</span></li>
+          <li><strong>Consults</strong><span>bridal · color · extensions</span></li>
         </ul>
       </div>
       <div class="hero-photo">
-        <img src={img('mia-1.jpg')} alt="Featured work from Mía Beauty Boutique" loading="eager" />
+        <img src={ownerImg('gallery-blower-curls.jpg')} alt="Featured Dominican blowout work at Mia Beauty Boutique" loading="eager" />
         <div class="hero-badge hero-badge--phrase">
-          <span>Beauty · care · results</span>
+          <span>Hair · nails · beauty</span>
         </div>
       </div>
     </div>
@@ -156,19 +212,18 @@ const faqs = [
   <section class="founder" id="marilyn">
     <div class="container founder-grid">
       <div class="founder-photo">
-        {/* TODO: Replace src with a real portrait of Marilyn (founder) when provided. Currently using identity-neutral salon work shot from owner media 2026-05-27 (raw: "WhatsApp Image 2026-05-27 at 21.21.21 (1).jpeg"). No clearly captioned Marilyn portrait was included in that batch. Update both src AND alt once a real founder portrait arrives. */}
-        <img src={ownerImg('founder-placeholder.jpg')} alt="Mía Beauty Boutique salon work in Lawrence, MA — long hair with balayage" loading="lazy" />
+        <img src={ownerImg('founder-placeholder.jpg')} alt="Color and polished finish work at Mia Beauty Boutique" loading="lazy" />
       </div>
       <div class="founder-copy">
-        <span class="kicker">Meet Marilyn</span>
-        <h2>Hi, I'm Marilyn.</h2>
+        <span class="kicker">Marilyn's vision</span>
+        <h2>A salon built so you leave looking polished, not just done.</h2>
         <p>
-          At Mía Beauty Boutique, we work so every client feels cared for, heard, and confident in her beauty. The salon is named after my daughter, Mía, and everything we do here comes from warmth, experience, and attention to detail.
+          Marilyn built Mia Beauty Boutique around one simple idea: combine technique, warm service, and results that still look beautiful after the appointment is over.
         </p>
         <p>
-          We focus on offering professional, personalized, high-quality service so that every visit feels special and every result makes you feel truly beautiful.
+          The salon is named after her daughter, Mia, and that mix of care, discipline, and pride in doing the work well still shapes how the team serves clients today.
         </p>
-        <span class="founder-sig">— Marilyn, founder</span>
+        <span class="founder-sig">Marilyn · founder</span>
       </div>
     </div>
   </section>
@@ -176,9 +231,9 @@ const faqs = [
   <section class="why" id="why">
     <div class="container">
       <div class="section-head">
-        <span class="kicker">Why Mía</span>
-        <h2>What you won't find at another salon.</h2>
-        <p class="section-sub">At Mía Beauty Boutique, every client is the priority. We combine experience, professional technique, and warm attention so you feel heard, pampered, and confident in your results.</p>
+        <span class="kicker">Why Mia</span>
+        <h2>What feels different to a client the moment she walks in.</h2>
+        <p class="section-sub">We are not trying to sound like every salon. The site should feel the way the appointment feels: cared for, clear, and focused on results.</p>
       </div>
       <div class="why-grid">
         {whyMia.map((w, i) => (
@@ -196,45 +251,43 @@ const faqs = [
     <div class="container">
       <div class="section-head">
         <span class="kicker">Services</span>
-        <h2>Everything your beauty needs in one place.</h2>
-        <p class="section-sub">Specialists in hair, color, and styling. We also offer semi-permanent makeup, hair removal, acrylic nails, manicure, pedicure, and gel, always with professional attention and quality products. Accessible prices — call us for more information.</p>
+        <h2>The most requested services, without a confusing price menu.</h2>
+        <p class="section-sub">We removed prices from the site because the final cost depends on length, density, design, and the real time involved. If you want a real quote, call us.</p>
       </div>
 
       <div class="signature-grid">
-        {signatureServices.map((s, i) => (
+        {focusServices.map((s, i) => (
           <article class="signature-card" style={`--i: ${i}`}>
             <span class="service-mark">{s.icon}</span>
             <h3>{s.title}</h3>
             <p>{s.body}</p>
-            <span class="service-price">{s.price}</span>
           </article>
         ))}
       </div>
 
-      <div class="secondary-block">
-        <h3 class="secondary-head">We also offer…</h3>
-        <ul class="secondary-list">
-          {secondaryServices.map((s) => (
-            <li class="secondary-item">
-              <div class="secondary-row">
-                <span class="secondary-title">{s.title}</span>
-                <span class="secondary-price">{s.price}</span>
-              </div>
-              <p class="secondary-body">{s.body}</p>
-            </li>
-          ))}
-        </ul>
+      <div class="services-columns">
+        {serviceGroups.map((group, i) => (
+          <article class="service-group" style={`--i: ${i}`}>
+            <h3>{group.title}</h3>
+            <p>{group.intro}</p>
+            <ul class="service-tag-list">
+              {group.items.map((item) => (
+                <li class="service-tag">{item}</li>
+              ))}
+            </ul>
+          </article>
+        ))}
       </div>
 
       <div class="services-cta" id="consulta">
         <div class="services-cta-card walk-in">
-          <h4>A regular visit?</h4>
-          <p>Walk-ins welcome, first come first served. Call ahead if you'd like to check the wait.</p>
+          <h4>An everyday visit?</h4>
+          <p>Walk-ins are welcome, first come first served. Call if you want to check how the wait looks today.</p>
           <a class="btn btn-primary" href={`tel:${phoneTel}`}>Call {phone}</a>
         </div>
         <div class="services-cta-card premium">
           <h4>Bridal, full color, or a transformation?</h4>
-          <p>Call us before the appointment so we can talk through what you want. That way we arrive ready — no surprises.</p>
+          <p>Call us before the appointment so the plan is clear and the day does not feel improvised.</p>
           <a class="btn btn-gold" href={`tel:${phoneTel}`}>Call for consultation</a>
         </div>
       </div>
@@ -244,19 +297,19 @@ const faqs = [
   <section class="about" id="about">
     <div class="container about-grid">
       <div class="about-photo">
-        <img src={ownerImg('about-salon.jpg')} alt="Color and Dominican blowout work at Mía Beauty Boutique" loading="lazy" />
+        <img src={ownerImg('about-salon.jpg')} alt="Color and blow dry work at Mia Beauty Boutique" loading="lazy" />
       </div>
       <div class="about-copy">
-        <span class="kicker">About</span>
-        <h2>Beauty, confidence, and quality care.</h2>
+        <span class="kicker">Your visit</span>
+        <h2>Every service is shaped around your hair, your timing, and the result you want.</h2>
         <p>
-          Mía Beauty Boutique is a beauty salon in Lawrence where we work to bring out your beauty and confidence through services done with experience, care, and dedication.
+          We do not use a rigid website price list because a blowout, color service, or pedicure is not priced the same for every client. Length, density, design, and real service time matter.
         </p>
         <p>
-          We combine technique, personalized attention, and quality products so you feel renewed, cared for, and happy with every result.
+          That is why the website shows clearly what the salon does, and the final quote happens once we know what you actually need.
         </p>
         <div class="stylists">
-          {stylists.map((s) => (
+          {salonPoints.map((s) => (
             <div class="stylist">
               <h4>{s.name}</h4>
               <span class="stylist-role">{s.role}</span>
@@ -265,19 +318,9 @@ const faqs = [
           ))}
         </div>
         <p class="about-pull">
-          More than a service, we want you to enjoy an experience where you feel beautiful, pampered, and confident.
+          If you are coming in for color, bridal, extensions, or a bigger change, call first and we will set it up well.
         </p>
       </div>
-    </div>
-  </section>
-
-  <section class="heritage">
-    <div class="container heritage-inner">
-      <span class="kicker light">Our roots</span>
-      <h2>Where the Dominican blowout shines.</h2>
-      <p>
-        We specialize in bringing out the beauty of the hair through technique, care, and quality results. That is a big part of what makes us different.
-      </p>
     </div>
   </section>
 
@@ -285,8 +328,8 @@ const faqs = [
     <div class="container">
       <div class="section-head">
         <span class="kicker">Gallery</span>
-        <h2>Our work.</h2>
-        <p class="section-sub">Filter by category · Tap any photo to view full size.</p>
+        <h2>Real salon work.</h2>
+        <p class="section-sub">Filter by category and tap any photo to view it larger.</p>
       </div>
       <div class="filter-bar" role="tablist" aria-label="Filter gallery">
         {galleryFilters.map((f, i) => (
@@ -301,7 +344,7 @@ const faqs = [
       </div>
       <div class="work-grid" id="gallery-grid">
         {galleryItems.map((w, i) => {
-          const path = w.legacy ? img(w.src) : ownerImg(w.src);
+          const path = ownerImg(w.src);
           return (
             <figure
               class="work-card"
@@ -319,7 +362,7 @@ const faqs = [
           );
         })}
       </div>
-      <p class="gallery-note">Follow us on <a href={instagramUrl} target="_blank" rel="noopener">Instagram</a> for new photos every week.</p>
+      <p class="gallery-note">Follow us on <a href={instagramUrl} target="_blank" rel="noopener">Instagram</a> for new work every week.</p>
     </div>
   </section>
 
@@ -327,8 +370,8 @@ const faqs = [
     <div class="container">
       <div class="section-head">
         <span class="kicker">Reviews</span>
-        <h2>What our clients say.</h2>
-        <p class="section-sub">Real reviews from Google, Yelp, and Facebook — filter by what you're coming in for.</p>
+        <h2>What clients say when they leave happy.</h2>
+        <p class="section-sub">Real reviews from Google, Yelp, and Facebook, filtered around what people come in for most.</p>
       </div>
       <div class="filter-bar" role="tablist" aria-label="Filter reviews">
         {reviewFilters.map((f, i) => (
@@ -346,13 +389,13 @@ const faqs = [
           <article class="review-card" data-cat={r.cat} style={`--i: ${i}`}>
             <div class="stars" aria-label="5 stars">★★★★★</div>
             <blockquote>{r.body}</blockquote>
-            <cite>— {r.name} <span class="review-source">· {r.source}</span></cite>
+            <cite>{r.name} <span class="review-source">· {r.source}</span></cite>
           </article>
         ))}
       </div>
       <div class="reviews-cta">
-        <a class="btn btn-primary" href={reviewsUrl} target="_blank" rel="noopener">Read more reviews</a>
-        <a class="btn btn-ghost" href={reviewsUrl} target="_blank" rel="noopener">See reviews on Google</a>
+        <a class="btn btn-primary" href={reviewsUrl} target="_blank" rel="noopener">Read More Reviews</a>
+        <a class="btn btn-ghost" href={reviewsUrl} target="_blank" rel="noopener">View Google Reviews</a>
       </div>
     </div>
   </section>
@@ -360,31 +403,29 @@ const faqs = [
   <section class="social" id="social">
     <div class="container social-inner">
       <div class="social-copy">
-        <span class="kicker">Follow</span>
-        <h2>New transformations every week.</h2>
-        <p>Color, blowouts, bridal, before-and-afters — all on our Instagram. Follow for the salon's latest work.</p>
+        <span class="kicker">Instagram</span>
+        <h2>A feed that feels as aligned as the salon itself.</h2>
+        <p>That is where the newest work lives: color, blowouts, bridal, nails, and the real day-to-day details. We treat it like a living portfolio, not filler.</p>
         <div class="social-cta">
           <a class="btn btn-primary" href={instagramUrl} target="_blank" rel="noopener">Follow on Instagram</a>
           <a class="btn btn-ghost" href={facebookUrl} target="_blank" rel="noopener">Facebook</a>
         </div>
         <span class="ig-handle">@miabeautyboutique264</span>
       </div>
-      <div class="social-grid">
-        {galleryItems.slice(0, 6).map((w, i) => {
-          const path = w.legacy ? img(w.src) : ownerImg(w.src);
-          return (
-          <a class="social-tile" href={instagramUrl} target="_blank" rel="noopener" aria-label="View on Instagram" style={`--i: ${i}`}>
-            <img src={path} alt={w.label} loading="lazy" />
-            <span class="social-overlay" aria-hidden="true">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
-              </svg>
-            </span>
-          </a>
-          );
-        })}
+      <div class="social-panel">
+        <div class="social-chip-list">
+          {socialHighlights.map((item) => (
+            <span class="social-chip">{item}</span>
+          ))}
+        </div>
+        <div class="social-note-list">
+          {socialNotes.map((note, i) => (
+            <article class="social-note" style={`--i: ${i}`}>
+              <h3>{note.title}</h3>
+              <p>{note.body}</p>
+            </article>
+          ))}
+        </div>
       </div>
     </div>
   </section>
@@ -393,7 +434,7 @@ const faqs = [
     <div class="container">
       <div class="section-head">
         <span class="kicker">Questions</span>
-        <h2>Everything you want to know before your visit.</h2>
+        <h2>Everything you may want to know before coming in.</h2>
       </div>
       <div class="faq-list">
         {faqs.map((f, i) => (
@@ -411,26 +452,26 @@ const faqs = [
 
   <section class="worth-drive">
     <div class="container worth-inner">
-      <span class="kicker">Clients come from across the area</span>
+      <span class="kicker">Clients come from all around</span>
       <h3>Lawrence, Methuen, Andover, Haverhill, Lowell, and Salem, NH.</h3>
-      <p>Worth the drive. Worth the technique. And always worth the care.</p>
+      <p>The drive is worth it, the technique is worth it, and the care is worth it.</p>
     </div>
   </section>
 
   <section class="visit" id="visit">
     <div class="container visit-inner">
       <span class="kicker light">Visit Us</span>
-      <h2>We're waiting for you in Lawrence.</h2>
+      <h2>We are ready for you in Lawrence.</h2>
       <div class="visit-grid">
         <div class="visit-info">
           <ul class="visit-list">
             <li><span class="lbl">Address</span><span>{address}</span></li>
             <li><span class="lbl">Phone</span><a href={`tel:${phoneTel}`}>{phone}</a></li>
-            <li><span class="lbl">Walk-ins welcome</span><span>First come, first served</span></li>
+            <li><span class="lbl">Walk-ins</span><span>First come, first served</span></li>
             <li><span class="lbl">Parking</span><span>Free street parking and nearby lots</span></li>
-            <li><span class="lbl">Payment</span><span>Cash and card (Visa · MC · Amex)</span></li>
-            <li><span class="lbl">Best days</span><span>Tuesday through Thursday — less wait</span></li>
-            <li><span class="lbl">Bridal & full color</span><span>Call ahead to reserve your time</span></li>
+            <li><span class="lbl">Payment</span><span>Cash and card, Visa · MC · Amex</span></li>
+            <li><span class="lbl">Best days</span><span>Tuesday through Thursday, shorter waits</span></li>
+            <li><span class="lbl">Bridal and full color</span><span>Call ahead to set your time well</span></li>
           </ul>
           <div class="visit-ctas">
             <a class="btn btn-primary big" href={`tel:${phoneTel}`}>Call Now</a>
@@ -471,7 +512,7 @@ const faqs = [
         <span class="dot">·</span>
         <a href={BASE} hreflang="es">Español</a>
       </div>
-      <div class="footer-fineprint">© {new Date().getFullYear()} Mía Beauty Boutique · Lawrence, MA</div>
+      <div class="footer-fineprint">© {new Date().getFullYear()} Mia Beauty Boutique · Lawrence, MA</div>
     </div>
   </footer>
 
@@ -480,7 +521,7 @@ const faqs = [
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
       <span>Call</span>
     </a>
-    <a class="mobile-bar-btn gold" href={directionsUrl} target="_blank" rel="noopener" aria-label="Get Directions">
+    <a class="mobile-bar-btn gold" href={directionsUrl} target="_blank" rel="noopener" aria-label="Get directions">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
       <span>Directions</span>
     </a>
@@ -497,9 +538,9 @@ const faqs = [
   </div>
 
   <style>
-    .topbar { background: rgba(251,246,239,.78); backdrop-filter: saturate(160%) blur(14px); -webkit-backdrop-filter: saturate(160%) blur(14px); border-bottom: 1px solid transparent; position: sticky; top: 0; z-index: 50; transition: background .25s ease, border-color .25s ease, box-shadow .25s ease; }
+    .topbar { background: rgba(251,246,239,.82); backdrop-filter: saturate(160%) blur(14px); -webkit-backdrop-filter: saturate(160%) blur(14px); border-bottom: 1px solid transparent; position: sticky; top: 0; z-index: 50; transition: background .25s ease, border-color .25s ease, box-shadow .25s ease; }
     .topbar.scrolled { background: rgba(251,246,239,.95); border-bottom-color: var(--line); box-shadow: 0 1px 0 rgba(122,31,43,.02), 0 6px 20px rgba(122,31,43,.04); }
-    .topbar-row { display: flex; align-items: center; gap: 1.5rem; padding: .65rem 1.75rem; transition: padding .25s ease; }
+    .topbar-row { display: flex; align-items: center; gap: 1.5rem; padding: .65rem 1.75rem; transition: padding .25s ease; position: relative; }
     .topbar.scrolled .topbar-row { padding: .45rem 1.75rem; }
     .brand { display: flex; align-items: center; }
     .brand :global(svg) { height: 72px; width: auto; }
@@ -512,40 +553,44 @@ const faqs = [
     .topbar-right { display: flex; align-items: center; gap: .65rem; }
     .lang-switch { padding: .45rem .75rem; border: 1px solid var(--line-2); border-radius: 999px; font-size: .78rem; font-weight: 600; letter-spacing: .08em; color: var(--burgundy); }
     .lang-switch:hover { background: var(--burgundy); color: var(--cream); opacity: 1; }
-    .topbar-call { padding: .55rem 1rem; background: var(--burgundy); color: var(--cream); border-radius: 999px; font-weight: 600; font-size: .9rem; transition: background .18s ease, transform .18s ease; }
+    .topbar-call { padding: .55rem 1rem; background: var(--burgundy); color: var(--cream); border-radius: 999px; font-weight: 600; font-size: .9rem; letter-spacing: -0.005em; transition: background .18s ease, transform .18s ease; }
     .topbar-call:hover { background: var(--burgundy-dark); color: var(--cream); opacity: 1; transform: scale(1.03); }
+    .menu-toggle { display: none; align-items: center; gap: .65rem; padding: .55rem .85rem; border-radius: 999px; border: 1px solid var(--line); background: var(--cream); color: var(--burgundy); font: inherit; font-weight: 600; cursor: pointer; }
+    .menu-toggle-lines { display: inline-flex; flex-direction: column; gap: 3px; }
+    .menu-toggle-lines span { width: 16px; height: 2px; background: currentColor; border-radius: 999px; display: block; }
+    .mobile-menu { display: none; position: absolute; top: calc(100% + .55rem); left: 1rem; right: 1rem; z-index: 55; }
+    .mobile-menu[hidden] { display: none !important; }
+    .mobile-menu-inner { background: rgba(251,246,239,.98); border: 1px solid var(--line); border-radius: 18px; box-shadow: 0 22px 50px rgba(42,26,29,.15); padding: 1rem; display: grid; gap: .35rem; }
+    .mobile-menu-inner a { padding: .8rem .9rem; border-radius: 12px; color: var(--ink); font-weight: 600; }
+    .mobile-menu-inner a:hover, .mobile-menu-inner a.is-active { background: var(--cream-2); color: var(--burgundy); opacity: 1; }
+    .mobile-menu-call { margin-top: .35rem; background: var(--burgundy); color: var(--cream) !important; text-align: center; }
 
     .hero { padding: 5rem 0 6rem; background: var(--cream); position: relative; overflow: hidden; }
     .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 85% 15%, rgba(184,137,63,.1), transparent 50%), radial-gradient(circle at 15% 85%, rgba(240,212,204,.18), transparent 50%); pointer-events: none; }
-    .hero-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 3.5rem; align-items: center; position: relative; }
+    .hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 3.5rem; align-items: center; position: relative; }
     .eyebrow { display: inline-block; font-size: .78rem; font-weight: 600; color: var(--gold); letter-spacing: .14em; text-transform: uppercase; margin-bottom: 1.5rem; }
-    .hero h1 { font-size: clamp(2.6rem, 6vw, 4.8rem); margin-bottom: 1.4rem; max-width: 14ch; }
-    .hero h1 em { font-style: italic; color: var(--gold); font-weight: 600; }
-    .hero-lede { font-size: clamp(1.05rem, 1.4vw, 1.18rem); color: var(--ink-soft); max-width: 540px; margin: 0 0 2.4rem; line-height: 1.65; font-weight: 400; }
+    .hero h1 { font-size: clamp(2.8rem, 6vw, 4.8rem); margin-bottom: 1.4rem; max-width: 11ch; }
+    .hero-lede { font-size: clamp(1.05rem, 1.4vw, 1.18rem); color: var(--ink-soft); max-width: 560px; margin: 0 0 2.4rem; line-height: 1.65; font-weight: 400; }
     .hero-cta { display: flex; gap: .75rem; flex-wrap: wrap; margin-bottom: 3rem; }
     .hero-stats { list-style: none; padding: 2rem 0 0; margin: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; border-top: 1px solid var(--line); }
     .hero-stats li { display: flex; flex-direction: column; gap: .3rem; }
     .hero-stats strong { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 1.9rem; color: var(--burgundy); line-height: 1; }
     .hero-stats span { font-size: .78rem; color: var(--ink-muted); letter-spacing: .01em; }
-    .hero-photo { position: relative; }
-    .hero-photo img { border-radius: 14px; aspect-ratio: 4/5; object-fit: cover; box-shadow: 0 18px 50px rgba(122,31,43,.15), 0 1px 3px rgba(122,31,43,.06); }
-    .hero-badge { position: absolute; bottom: -18px; left: -18px; background: var(--cream); padding: .9rem 1.2rem; border-radius: 12px; box-shadow: 0 12px 30px rgba(122,31,43,.18); display: flex; flex-direction: column; gap: .15rem; border: 1px solid var(--line); }
-    .hero-badge strong { font-family: 'Cormorant Garamond', serif; font-size: 1.7rem; color: var(--burgundy); line-height: 1; }
-    .hero-badge span { font-size: .72rem; color: var(--ink-muted); letter-spacing: .08em; text-transform: uppercase; font-weight: 600; }
-    .hero-badge--phrase { padding: .8rem 1.2rem; }
-    .hero-badge--phrase span { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; color: var(--burgundy); font-style: italic; letter-spacing: .02em; text-transform: none; font-weight: 600; }
+    .hero-photo { position: relative; max-width: 520px; justify-self: end; }
+    .hero-photo img { width: 100%; border-radius: 18px; aspect-ratio: 4 / 5; object-fit: cover; box-shadow: 0 18px 50px rgba(122,31,43,.15), 0 1px 3px rgba(122,31,43,.06); }
+    .hero-badge { position: absolute; bottom: -18px; left: -18px; background: var(--cream); padding: .9rem 1.2rem; border-radius: 12px; box-shadow: 0 12px 30px rgba(122,31,43,.18); border: 1px solid var(--line); }
+    .hero-badge--phrase span { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; color: var(--burgundy); font-style: italic; letter-spacing: .02em; font-weight: 600; }
 
     .section-head { text-align: center; max-width: 760px; margin: 0 auto 3.5rem; }
     .kicker { font-size: .74rem; font-weight: 600; color: var(--gold); letter-spacing: .14em; text-transform: uppercase; display: inline-block; margin-bottom: 1.1rem; }
     .kicker.light { color: #d4a960; }
-    .section-head h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: .9rem; max-width: 22ch; margin-left: auto; margin-right: auto; }
-    .section-sub { color: var(--ink-soft); font-size: 1.05rem; margin: 0; max-width: 580px; margin-left: auto; margin-right: auto; }
+    .section-head h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: .9rem; max-width: 19ch; margin-left: auto; margin-right: auto; }
+    .section-sub { color: var(--ink-soft); font-size: 1.05rem; margin: 0 auto; max-width: 620px; }
 
-    /* Founder band */
     .founder { padding: 5rem 0; background: var(--cream-2); border-top: 1px solid var(--line); }
-    .founder-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 3.5rem; align-items: center; }
-    .founder-photo img { border-radius: 14px; aspect-ratio: 4/5; object-fit: cover; box-shadow: 0 14px 40px rgba(122,31,43,.13); }
-    .founder-copy h2 { font-size: clamp(2rem, 3.8vw, 2.8rem); margin-bottom: 1.2rem; }
+    .founder-grid { display: grid; grid-template-columns: .92fr 1.08fr; gap: 3.5rem; align-items: center; }
+    .founder-photo img { border-radius: 16px; aspect-ratio: 4 / 5; object-fit: cover; box-shadow: 0 14px 40px rgba(122,31,43,.13); }
+    .founder-copy h2 { font-size: clamp(2rem, 3.8vw, 2.9rem); margin-bottom: 1.2rem; max-width: 14ch; }
     .founder-copy p { font-size: 1.06rem; color: var(--ink-soft); line-height: 1.75; margin: 0 0 1rem; }
     .founder-sig { display: inline-block; margin-top: .8rem; font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--burgundy); font-size: 1.2rem; }
 
@@ -558,27 +603,19 @@ const faqs = [
     .why-card h3 { font-size: 1.3rem; margin-bottom: .6rem; }
     .why-card p { color: var(--ink-soft); margin: 0; font-size: .96rem; line-height: 1.65; }
 
-    /* Services — two-tier hierarchy */
     .services { padding: 6rem 0; background: var(--cream-2); }
-    .service-mark { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--gold); display: block; margin-bottom: .7rem; }
-    .service-price { display: inline-block; align-self: flex-start; font-size: .82rem; font-weight: 600; color: var(--burgundy); background: var(--blush); padding: .3rem .7rem; border-radius: 999px; letter-spacing: .01em; }
-
-    .signature-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.4rem; margin-bottom: 3.5rem; }
-    .signature-card { background: var(--cream); border: 1px solid var(--line-2); border-radius: 16px; padding: 2.4rem 2rem; box-shadow: 0 2px 8px rgba(122,31,43,.04); transition: transform .25s cubic-bezier(0.22,0.61,0.36,1), box-shadow .25s ease; display: flex; flex-direction: column; }
+    .signature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.15rem; margin-bottom: 2rem; }
+    .signature-card { background: var(--cream); border: 1px solid var(--line-2); border-radius: 18px; padding: 2rem 1.6rem; box-shadow: 0 2px 8px rgba(122,31,43,.04); transition: transform .25s cubic-bezier(0.22,0.61,0.36,1), box-shadow .25s ease; display: flex; flex-direction: column; }
     .signature-card:hover { transform: translateY(-4px); box-shadow: 0 10px 28px rgba(122,31,43,.1); }
-    .signature-card h3 { font-size: 1.6rem; margin-bottom: .6rem; }
-    .signature-card p { color: var(--ink-soft); margin: 0 0 1.2rem; font-size: 1rem; line-height: 1.65; flex: 1; }
-
-    .secondary-block { background: var(--cream); border: 1px solid var(--line); border-radius: 14px; padding: 2rem 2.2rem; margin-bottom: 3rem; }
-    .secondary-head { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; color: var(--burgundy); margin: 0 0 1.2rem; font-weight: 600; font-style: italic; }
-    .secondary-list { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem 2rem; }
-    .secondary-item { padding: .9rem 0; border-bottom: 1px solid var(--line); }
-    .secondary-item:last-child, .secondary-item:nth-last-child(2) { border-bottom: none; }
-    .secondary-row { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; margin-bottom: .25rem; }
-    .secondary-title { font-weight: 600; color: var(--ink); font-size: 1rem; }
-    .secondary-price { font-size: .82rem; color: var(--burgundy); font-weight: 600; white-space: nowrap; }
-    .secondary-body { color: var(--ink-soft); font-size: .88rem; margin: 0; line-height: 1.5; }
-
+    .service-mark { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--gold); display: block; margin-bottom: .7rem; }
+    .signature-card h3 { font-size: 1.55rem; margin-bottom: .6rem; }
+    .signature-card p { color: var(--ink-soft); margin: 0; font-size: .98rem; line-height: 1.62; }
+    .services-columns { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 3rem; }
+    .service-group { background: var(--cream); border: 1px solid var(--line); border-radius: 16px; padding: 1.7rem 1.5rem; }
+    .service-group h3 { font-size: 1.45rem; margin-bottom: .45rem; }
+    .service-group p { margin: 0 0 1rem; color: var(--ink-soft); font-size: .94rem; }
+    .service-tag-list { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: .55rem; }
+    .service-tag { padding: .55rem .8rem; border-radius: 999px; background: var(--cream-2); border: 1px solid var(--line); color: var(--ink); font-size: .88rem; }
     .services-cta { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-top: 1rem; }
     .services-cta-card { padding: 2rem 1.8rem; border-radius: 14px; }
     .services-cta-card.walk-in { background: var(--cream); border: 1px solid var(--line); }
@@ -593,22 +630,15 @@ const faqs = [
 
     .about { padding: 6rem 0; background: var(--cream); }
     .about-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: 4rem; align-items: center; }
-    .about-photo img { border-radius: 14px; aspect-ratio: 4/5; object-fit: cover; box-shadow: 0 14px 40px rgba(122,31,43,.13); }
-    .about-copy h2 { font-size: clamp(1.9rem, 3.5vw, 2.6rem); margin-bottom: 1.4rem; max-width: 18ch; }
+    .about-photo img { border-radius: 16px; aspect-ratio: 4 / 5; object-fit: cover; box-shadow: 0 14px 40px rgba(122,31,43,.13); }
+    .about-copy h2 { font-size: clamp(1.9rem, 3.5vw, 2.7rem); margin-bottom: 1.4rem; max-width: 15ch; }
     .about-copy p { font-size: 1.05rem; color: var(--ink-soft); margin: 0 0 1.1rem; line-height: 1.7; }
-    .stylists { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin: 1.6rem 0 1.4rem; }
+    .stylists { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 1.6rem 0 1.4rem; }
     .stylist { background: var(--cream-2); border: 1px solid var(--line); border-radius: 12px; padding: 1.1rem 1.2rem; }
     .stylist h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--burgundy); margin: 0 0 .1rem; font-weight: 600; }
     .stylist-role { font-size: .78rem; color: var(--gold); letter-spacing: .1em; text-transform: uppercase; font-weight: 600; display: block; margin-bottom: .5rem; }
     .stylist p { font-size: .92rem; line-height: 1.55; margin: 0; }
     .about-pull { background: var(--blush); border-left: 3px solid var(--burgundy); padding: 1.2rem 1.4rem; border-radius: 8px; font-size: 1.1rem !important; color: var(--burgundy) !important; font-style: italic; font-family: 'Cormorant Garamond', serif !important; }
-
-    /* Heritage full-bleed band */
-    .heritage { padding: 5rem 0; background: var(--burgundy); color: var(--cream); text-align: center; }
-    .heritage-inner { max-width: 720px; }
-    .heritage .kicker.light { color: #d4a960; }
-    .heritage h2 { color: var(--cream); font-size: clamp(1.9rem, 3.6vw, 2.6rem); margin: 0 0 1.4rem; max-width: 20ch; margin-left: auto; margin-right: auto; }
-    .heritage p { color: rgba(251,246,239,.88); font-size: 1.1rem; line-height: 1.75; margin: 0; }
 
     .work { padding: 6rem 0; background: var(--cream-2); }
     .filter-bar { display: flex; flex-wrap: wrap; gap: .5rem; justify-content: center; margin: -1.5rem 0 2rem; }
@@ -616,7 +646,7 @@ const faqs = [
     .filter-btn:hover { border-color: var(--burgundy); color: var(--burgundy); transform: translateY(-1px); }
     .filter-btn.is-active { background: var(--burgundy); color: var(--cream); border-color: var(--burgundy); }
     .work-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
-    .work-card { margin: 0; position: relative; overflow: hidden; border-radius: 12px; aspect-ratio: 3/4; background: var(--blush); transition: transform .3s ease, opacity .3s ease; cursor: pointer; }
+    .work-card { margin: 0; position: relative; overflow: hidden; border-radius: 12px; aspect-ratio: 3 / 4; background: var(--blush); transition: transform .3s ease, opacity .3s ease; cursor: pointer; }
     .work-card.is-hidden { display: none; }
     .work-card img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
     .work-card:hover img { transform: scale(1.06); }
@@ -642,16 +672,17 @@ const faqs = [
 
     .social { padding: 6rem 0; background: var(--cream-2); }
     .social-inner { display: grid; grid-template-columns: 1fr 1.05fr; gap: 3.5rem; align-items: center; }
-    .social-copy h2 { font-size: clamp(1.9rem, 3.4vw, 2.5rem); margin-bottom: 1rem; max-width: 14ch; }
+    .social-copy h2 { font-size: clamp(1.9rem, 3.4vw, 2.5rem); margin-bottom: 1rem; max-width: 13ch; }
     .social-copy p { color: var(--ink-soft); font-size: 1.04rem; margin: 0 0 1.6rem; max-width: 460px; }
     .social-cta { display: flex; gap: .7rem; flex-wrap: wrap; margin-bottom: 1.4rem; }
     .ig-handle { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--burgundy); font-size: 1.15rem; }
-    .social-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: .55rem; }
-    .social-tile { position: relative; aspect-ratio: 1/1; border-radius: 10px; overflow: hidden; display: block; background: var(--blush); }
-    .social-tile img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
-    .social-tile:hover img { transform: scale(1.06); }
-    .social-overlay { position: absolute; inset: 0; background: rgba(122,31,43,.55); color: var(--cream); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity .25s ease; }
-    .social-tile:hover .social-overlay { opacity: 1; }
+    .social-panel { background: linear-gradient(180deg, rgba(251,246,239,.88), rgba(245,236,223,.95)); border: 1px solid var(--line); border-radius: 20px; padding: 1.4rem; box-shadow: 0 14px 36px rgba(122,31,43,.08); }
+    .social-chip-list { display: flex; flex-wrap: wrap; gap: .55rem; margin-bottom: 1rem; }
+    .social-chip { padding: .55rem .8rem; border-radius: 999px; background: rgba(184,137,63,.12); color: var(--burgundy); font-size: .84rem; font-weight: 600; }
+    .social-note-list { display: grid; gap: .75rem; }
+    .social-note { background: rgba(251,246,239,.92); border: 1px solid var(--line); border-radius: 14px; padding: 1rem 1rem 1.05rem; }
+    .social-note h3 { font-size: 1.18rem; margin-bottom: .3rem; }
+    .social-note p { margin: 0; color: var(--ink-soft); font-size: .92rem; }
 
     .faq { padding: 6rem 0; background: var(--cream); }
     .faq-list { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: .65rem; }
@@ -664,7 +695,6 @@ const faqs = [
     .faq-body { padding: 0 1.4rem 1.3rem; }
     .faq-body p { margin: 0; color: var(--ink-soft); font-size: .98rem; line-height: 1.65; }
 
-    /* Worth-the-drive band */
     .worth-drive { padding: 3.5rem 0; background: var(--cream); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); text-align: center; }
     .worth-inner { max-width: 680px; margin: 0 auto; }
     .worth-drive h3 { font-size: clamp(1.4rem, 2.6vw, 1.9rem); margin: .4rem auto 1rem; color: var(--burgundy); max-width: 24ch; }
@@ -723,27 +753,25 @@ const faqs = [
     .lightbox-prev:hover { transform: translateY(-50%) scale(1.08); }
     .lightbox-next:hover { transform: translateY(-50%) scale(1.08); }
 
-    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s cubic-bezier(0.22,0.61,0.36,1), transform .7s cubic-bezier(0.22,0.61,0.36,1); transition-delay: calc(var(--i, 0) * 60ms); }
-    .reveal.is-visible { opacity: 1; transform: translateY(0); }
-    @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
-
     @media (max-width: 980px) {
       .social-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .services-columns { grid-template-columns: 1fr; }
+      .stylists { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 900px) {
       .nav { display: none; }
+      .menu-toggle { display: inline-flex; }
+      .mobile-menu { display: block; }
       .topbar-row { padding: .55rem 1rem; gap: .6rem; }
-      .topbar-call { padding: .5rem .85rem; font-size: .85rem; }
+      .topbar-call { display: none; }
       .lang-switch { padding: .35rem .6rem; font-size: .72rem; }
       .brand :global(svg) { height: 56px; }
       .hero { padding: 3rem 0 4.5rem; }
       .hero-grid, .about-grid, .visit-grid, .founder-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-      .hero-photo { order: -1; max-width: 340px; margin: 0 auto; }
-      .hero-photo img { aspect-ratio: 1/1; }
+      .hero-photo { order: -1; max-width: 360px; margin: 0 auto; justify-self: center; }
       .hero-badge { bottom: -14px; left: -10px; padding: .7rem 1rem; }
-      .hero-badge strong { font-size: 1.4rem; }
-      .hero h1 { font-size: clamp(2rem, 8vw, 2.8rem); }
+      .hero h1 { font-size: clamp(2.2rem, 8vw, 3rem); }
       .hero-cta { flex-direction: column; gap: .7rem; }
       .hero-cta .btn { justify-content: center; width: 100%; }
       .hero-stats { grid-template-columns: repeat(2, 1fr); gap: 1.2rem; padding: 1.5rem 0 0; }
@@ -751,17 +779,10 @@ const faqs = [
       .founder { padding: 3.5rem 0; }
       .founder-photo { max-width: 320px; margin: 0 auto; }
       .why, .services, .about, .work, .reviews, .social, .faq, .visit { padding: 4rem 0; }
-      .heritage { padding: 3.5rem 0; }
-      .heritage p { font-size: 1rem; }
       .section-head { margin-bottom: 2.5rem; }
       .about-photo { max-width: 360px; margin: 0 auto; }
-      .stylists { grid-template-columns: 1fr; }
-      .signature-grid { grid-template-columns: 1fr; gap: 1rem; }
       .signature-card { padding: 1.8rem 1.5rem; }
       .signature-card h3 { font-size: 1.35rem; }
-      .secondary-list { grid-template-columns: 1fr; }
-      .secondary-item:nth-last-child(2) { border-bottom: 1px solid var(--line); }
-      .secondary-block { padding: 1.5rem 1.4rem; }
       .services-cta { grid-template-columns: 1fr; }
       .visit-ctas { flex-direction: column; }
       .visit-ctas .btn { width: 100%; justify-content: center; }
@@ -777,6 +798,7 @@ const faqs = [
 
     @media (max-width: 480px) {
       .hero-stats { grid-template-columns: 1fr 1fr; }
+      .hero-photo { max-width: 300px; }
     }
   </style>
 
@@ -790,40 +812,60 @@ const faqs = [
     })();
 
     (() => {
-      if (!('IntersectionObserver' in window)) return;
-      const targets = document.querySelectorAll('section, .work-card, .signature-card, .review-card, .why-card, .faq-item, .social-tile');
-      targets.forEach((el) => el.classList.add('reveal'));
-      const io = new IntersectionObserver((entries) => entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px', threshold: 0.06 });
-      targets.forEach((el) => io.observe(el));
+      const toggle = document.querySelector('.menu-toggle');
+      const menu = document.getElementById('mobile-menu');
+      if (!toggle || !menu) return;
+      const closeMenu = () => {
+        toggle.setAttribute('aria-expanded', 'false');
+        menu.hidden = true;
+      };
+      const openMenu = () => {
+        toggle.setAttribute('aria-expanded', 'true');
+        menu.hidden = false;
+      };
+      toggle.addEventListener('click', () => {
+        if (toggle.getAttribute('aria-expanded') === 'true') closeMenu();
+        else openMenu();
+      });
+      menu.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+      document.addEventListener('click', (event) => {
+        if (menu.hidden) return;
+        const target = event.target;
+        if (!(target instanceof Node)) return;
+        if (menu.contains(target) || toggle.contains(target)) return;
+        closeMenu();
+      });
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 900) closeMenu();
+      });
     })();
 
     (() => {
       if (!('IntersectionObserver' in window)) return;
-      const links = document.querySelectorAll('[data-nav]');
+      const links = Array.from(document.querySelectorAll('[data-nav]'));
       if (!links.length) return;
       const map = new Map();
-      links.forEach((a) => {
-        const href = a.getAttribute('href') || '';
-        if (href.startsWith('#')) {
-          const id = href.slice(1);
-          const sec = document.getElementById(id);
-          if (sec) map.set(sec, a);
-        }
+      links.forEach((link) => {
+        const href = link.getAttribute('href') || '';
+        if (!href.startsWith('#')) return;
+        const id = href.slice(1);
+        const section = document.getElementById(id);
+        if (!section) return;
+        const existing = map.get(section) || [];
+        existing.push(link);
+        map.set(section, existing);
       });
       const io = new IntersectionObserver((entries) => {
-        entries.forEach((e) => {
-          const a = map.get(e.target);
-          if (!a) return;
-          if (e.isIntersecting) {
-            links.forEach((l) => l.classList.remove('is-active'));
-            a.classList.add('is-active');
-          }
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          links.forEach((link) => link.classList.remove('is-active'));
+          const activeLinks = map.get(entry.target) || [];
+          activeLinks.forEach((link) => link.classList.add('is-active'));
         });
       }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
-      map.forEach((_a, sec) => io.observe(sec));
+      map.forEach((_links, section) => io.observe(section));
     })();
 
-    // Gallery filter (scoped to .work section)
     (() => {
       const btns = document.querySelectorAll('.work .filter-btn');
       const items = document.querySelectorAll('#gallery-grid .work-card');
@@ -831,7 +873,10 @@ const faqs = [
       btns.forEach((btn) => {
         btn.addEventListener('click', () => {
           const filter = btn.getAttribute('data-filter');
-          btns.forEach((b) => { b.classList.remove('is-active'); b.setAttribute('aria-selected', 'false'); });
+          btns.forEach((b) => {
+            b.classList.remove('is-active');
+            b.setAttribute('aria-selected', 'false');
+          });
           btn.classList.add('is-active');
           btn.setAttribute('aria-selected', 'true');
           items.forEach((it) => {
@@ -843,7 +888,6 @@ const faqs = [
       });
     })();
 
-    // Reviews filter (scoped to .reviews section)
     (() => {
       const btns = document.querySelectorAll('.reviews .filter-btn');
       const items = document.querySelectorAll('#review-grid .review-card');
@@ -851,7 +895,10 @@ const faqs = [
       btns.forEach((btn) => {
         btn.addEventListener('click', () => {
           const filter = btn.getAttribute('data-filter');
-          btns.forEach((b) => { b.classList.remove('is-active'); b.setAttribute('aria-selected', 'false'); });
+          btns.forEach((b) => {
+            b.classList.remove('is-active');
+            b.setAttribute('aria-selected', 'false');
+          });
           btn.classList.add('is-active');
           btn.setAttribute('aria-selected', 'true');
           items.forEach((it) => {
@@ -901,13 +948,18 @@ const faqs = [
           open(pos >= 0 ? pos : 0);
         });
         card.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.click(); }
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            card.click();
+          }
         });
       });
       closeBtn && closeBtn.addEventListener('click', close);
       prevBtn && prevBtn.addEventListener('click', () => step(-1));
       nextBtn && nextBtn.addEventListener('click', () => step(1));
-      lb.addEventListener('click', (e) => { if (e.target === lb) close(); });
+      lb.addEventListener('click', (e) => {
+        if (e.target === lb) close();
+      });
       document.addEventListener('keydown', (e) => {
         if (!lb.classList.contains('is-open')) return;
         if (e.key === 'Escape') close();
