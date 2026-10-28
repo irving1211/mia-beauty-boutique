@@ -18,17 +18,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      # The site moved to https://miabeautyboutique.com (2026-10-28): publish only the redirect pages.
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-          cache: 'npm'
-      - run: npm ci || npm install
-      - run: npm run build
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist
+          path: ./redirect
 
   deploy:
     needs: build
